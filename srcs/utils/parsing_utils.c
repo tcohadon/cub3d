@@ -1,28 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/06 11:11:05 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/06/06 14:06:20 by tcohadon         ###   ########.fr       */
+/*   Created: 2025/06/06 13:30:40 by tcohadon          #+#    #+#             */
+/*   Updated: 2025/06/06 13:41:22 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "../../include/cub3d.h"
 
-# include <stdio.h>
-# include <fcntl.h>
-# include "libft/libft.h"
-# include "MLX42/include/MLX42/MLX42.h"
-# include "error.h"
+static bool	valid_ext(char *av)
+{
+	if (ft_strlen(av) != 4)
+		return (false);
+	if (!ft_strcmp(av, ".cub"))
+		return (true);
+	return (false);
+}
 
+bool	verif_ext(char *av)
+{
+	int	i;
 
-
-//parsing
-bool	parsing(int ac, char **av);
-bool	verif_ext(char *av);
-
-#endif
+	i = 0;
+	if (!av)
+		return (false);
+	av += ft_strlen(av) - 1;
+	while (*av)
+	{
+		if (*av == '.')
+			return(valid_ext(av));
+		av--;
+	}
+	return (false);
+}

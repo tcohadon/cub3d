@@ -7,8 +7,9 @@ MLX = $(addprefix $(LIBFT_PATH), $(LIBFT_NAME))
 LIBFT_PATH = ./include/libft/
 LIBFT_NAME = libft.a
 LIBFT = $(addprefix $(LIBFT_PATH), $(LIBFT_NAME))
+
 # Sources
-SRC = srcs/main.c
+SRC = srcs/main.c srcs/parsing/parse_arg.c srcs/utils/parsing_utils.c
 OBJ_DIR = obj
 OBJ := $(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
 

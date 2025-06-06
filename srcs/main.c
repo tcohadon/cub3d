@@ -6,7 +6,7 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 11:22:51 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/06/06 11:51:32 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/06/06 13:25:16 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int main(int ac, char **av)
 {
-	(void)av;
-	if (ac != 2)
-		return (fd_printf(2, ERR_ARG), 1);
+	if (!parsing(ac, av))
+		return (1);
 }
