@@ -6,7 +6,7 @@
 /*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 11:11:05 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/06/09 15:22:49 by lmancho          ###   ########.fr       */
+/*   Updated: 2025/06/09 17:52:00 by lmancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ typedef struct s_map
 typedef struct s_data
 {
 	void		*mlx;
-	char		**map;
 	mlx_image_t	*img;
 	t_texture	*texture;
 	t_map 		map;

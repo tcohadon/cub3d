@@ -6,7 +6,7 @@
 /*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 12:37:50 by lmancho           #+#    #+#             */
-/*   Updated: 2025/06/09 15:09:45 by lmancho          ###   ########.fr       */
+/*   Updated: 2025/06/09 17:10:34 by lmancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static bool	is_valid_char(char c)
         || c == 'E' || c == 'W');
 }
 
-bool	check_map_chars(t_game *game)
+bool	check_map_chars(t_map *game)
 {
 	int i;
 	int j;
@@ -47,8 +47,9 @@ bool	check_map_chars(t_game *game)
 	return (true);
 }
 
-void	final_check_map(t_game *game)
+void	final_check_map(t_map *game)
 {
 	if (!check_map_chars(game->map))
 		exit(EXIT_FAILURE);
+	
 }
