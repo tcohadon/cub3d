@@ -1,20 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/06 11:48:59 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/06/09 12:31:43 by lmancho          ###   ########.fr       */
+/*   Created: 2025/06/09 12:59:18 by lmancho           #+#    #+#             */
+/*   Updated: 2025/06/09 13:00:59 by lmancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
-# define ERROR_H
-
-# define ERR_ARG "Error\nToo many arguments\n"
-# define ERR_EXT "Error\nInvalid extension\n"
-# define ERR_FILE "Error\nFile does not exist or you dont have permission\n"
-
-#endif
+#include "../../include/cub3d.h"

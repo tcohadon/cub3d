@@ -1,20 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   parse_args                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/06 11:48:59 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/06/09 12:31:43 by lmancho          ###   ########.fr       */
+/*   Created: 2025/06/06 13:26:37 by tcohadon          #+#    #+#             */
+/*   Updated: 2025/06/09 13:19:46 by lmancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
-# define ERROR_H
+#include "../../include/cub3d.h"
 
-# define ERR_ARG "Error\nToo many arguments\n"
-# define ERR_EXT "Error\nInvalid extension\n"
-# define ERR_FILE "Error\nFile does not exist or you dont have permission\n"
+bool file_exist(char *file)
+{
+	int	fd;
 
-#endif
+	fd = open(file, O_RDONLY);
+	if (fd == -1)
+		return (false);
+	close(fd);
+	return (true);
+}
+
+
+bool	parsing(int ac, char **av)
+{
+	if (ac != 2)
+		return(fd_printf(2, ERR_ARG), false);
+	if (!verif_ext(av[1]))
+		return (fd_printf(2,ERR_EXT), false);
+	if (!file_exist(av[1]))
+		return (fd_printf(2, ERR_FILE), false);
+	return (true);
+}
