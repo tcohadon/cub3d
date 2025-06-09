@@ -6,7 +6,7 @@
 /*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 12:37:50 by lmancho           #+#    #+#             */
-/*   Updated: 2025/06/09 13:18:43 by lmancho          ###   ########.fr       */
+/*   Updated: 2025/06/09 15:09:45 by lmancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,41 @@
 
 static bool	is_valid_char(char c)
 {
-	if (c == '0' || c == '1' || c == ' ' || c == 'N' || c == 'S' 
-		|| c == 'E' || c == 'W');
-		return (true);
-	return (false);
+    return (c == '0' || c == '1' || c == ' ' || c == 'N' || c == 'S'
+        || c == 'E' || c == 'W');
 }
 
-static bool	is_valid_line(const char *line)
+bool	check_map_chars(t_game *game)
 {
 	int i;
+	int j;
+	int	player;
 
 	i = 0;
-	while (line[i])
+	player = 0;
+	while (game->map[i++])
 	{
-		if (!is_valid_char(line[i]))
-			return (false);
+		j = 0;
+		while (game->map[i][j])
+		{
+			if (!is_valid_char(game->map[i][j]))
+				return (fd_printf(2, "Error\nInvalid character in map\n"), false);
+			if (game->map[i][j] == 'N' || game->map[i][j] == 'S'
+				|| game->map[i][j] == 'E' || game->map[i][j] == 'W')
+			{
+				player++;
+				if (player > 1)
+					return (fd_printf(2, "Error\nMultiple players in map\n"), false);
+			}
+			j++;
+		}
 		i++;
 	}
 	return (true);
 }
 
-bool	parse_cub_file(const char *filename, t_data *map)
+void	final_check_map(t_game *game)
 {
-	int fd;
-	char *line;
-	
-	fd = open(map->path, O_RDONLY);
-	if (fd < 0)
-		return (fd_printf(2, "Error\nCould not open file\n"), false);
-	line = get_next_line(fd);
-	while (line)
+	if (!check_map_chars(game->map))
+		exit(EXIT_FAILURE);
 }

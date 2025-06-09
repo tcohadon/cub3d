@@ -6,7 +6,7 @@
 /*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 11:11:05 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/06/09 13:11:28 by lmancho          ###   ########.fr       */
+/*   Updated: 2025/06/09 15:22:49 by lmancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,24 @@ typedef struct s_texture
 	mlx_texture_t	*player_texture;
 }	t_texture;
 
+typedef struct s_map
+{
+	int			fd;
+	int			h;
+	char		*path;
+	int			w;
+	char		**map;
+	char 	**copy_map;
+}	t_map;
+
 typedef struct s_data
 {
 	void		*mlx;
 	char		**map;
 	mlx_image_t	*img;
-	char		*path;
 	t_texture	*texture;
-}	t_data;
-
+	t_map 		map;
+}t_data;
 
 
 #endif
