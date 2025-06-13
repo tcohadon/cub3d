@@ -6,7 +6,7 @@
 /*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 11:11:05 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/06/09 17:52:00 by lmancho          ###   ########.fr       */
+/*   Updated: 2025/06/13 15:40:45 by lmancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,31 +27,32 @@
 
 typedef struct s_texture
 {
-    char	*no_tex;   // Chemin texture Nord
-    char	*so_tex;   // Chemin texture Sud
-    char	*we_tex;   // Chemin texture Ouest
-    char	*ea_tex;   // Chemin texture Est
+    char			*no_tex;
+    char			*so_tex;
+    char			*we_tex;
+    char			*ea_tex;
+	char			*floor_color;
+	char			*ceiling_color;
 	mlx_image_t		*ifloor;
 	mlx_image_t		*iplayer;
 	mlx_texture_t	*player_texture;
 }	t_texture;
 
-typedef struct s_map
+typedef struct s_data
 {
+	void		*mlx;
+	char		*filename;
 	int			fd;
 	int			h;
 	char		*path;
 	int			w;
 	char		**map;
 	char 	**copy_map;
-}	t_map;
-
-typedef struct s_data
-{
-	void		*mlx;
+	char		*content_of_filename;
+	size_t		size_of_filename;
+	char		**split_content;
 	mlx_image_t	*img;
 	t_texture	*texture;
-	t_map 		map;
 }t_data;
 
 
