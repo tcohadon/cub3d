@@ -6,19 +6,19 @@
 /*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 12:59:18 by lmancho           #+#    #+#             */
-/*   Updated: 2025/06/13 11:52:59 by lmancho          ###   ########.fr       */
+/*   Updated: 2025/06/16 14:26:43 by lmancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	check_fd_error(t_data *data)
-{
-	if (data->fd < 0 || read(data->fd, 0, 0) < 0)
-		exit (fd_printf(2, "Error\nfd not working."));
-}
+// static void	check_fd_error(t_data *data)
+// {
+// 	if (data->fd < 0 || read(data->fd, 0, 0) < 0)
+// 		exit (fd_printf(2, "Error\nfd not working."));
+// }
 
-void	allocate_and_initialize_copy_map(t_data *map)
+static void	allocate_and_initialize_copy_map(t_data *map)
 {
 	int	i;
 	int	j;
@@ -41,9 +41,10 @@ void	allocate_and_initialize_copy_map(t_data *map)
 		map->copy_map[i][j] = '\0';
 		i++;
 	}
+	map->copy_map[i] = NULL;
 }
 
-void	map_allocation(t_data *map)
+static void	map_allocation(t_data *map)
 {
 	int	i;
 	int	j;
@@ -66,9 +67,10 @@ void	map_allocation(t_data *map)
 		map->map[i][j] = '\0';
 		i++;
 	}
+	map->map[i] = NULL;
 }
 
-void	finalgrid_allocation(t_data *map)
+void	finalmap_allocation(t_data *map)
 {
 	map_allocation(map);
 	allocate_and_initialize_copy_map(map);

@@ -1,21 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/06 11:48:59 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/06/16 14:27:38 by lmancho          ###   ########.fr       */
+/*   Created: 2025/06/16 14:19:07 by lmancho           #+#    #+#             */
+/*   Updated: 2025/06/16 14:19:26 by lmancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
-# define ERROR_H
+#include "../../include/cub3d.h"
 
-# define ERR_ARG "Error\nBad arguments\n"
-# define ERR_EXT "Error\nInvalid extension\n"
-# define ERR_FILE "Error\nFile does not exist or you dont have permission\n"
-# define ERR_ALLOC "Error\nMemory allocation failed\n"
+static bool	valid_ext(char *av)
+{
+	if (ft_strlen(av) != 4)
+		return (false);
+	if (!ft_strcmp(av, ".cub"))
+		return (true);
+	return (false);
+}
 
-#endif
+bool	verif_ext(char *av)
+{
+	int	i;
+
+	i = 0;
+	if (!av)
+		return (false);
+	av += ft_strlen(av) - 1;
+	while (*av)
+	{
+		if (*av == '.')
+			return(valid_ext(av));
+		av--;
+	}
+	return (false);
+}

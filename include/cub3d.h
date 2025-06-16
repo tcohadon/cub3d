@@ -6,7 +6,7 @@
 /*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 11:11:05 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/06/13 15:40:45 by lmancho          ###   ########.fr       */
+/*   Updated: 2025/06/16 14:30:38 by lmancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@
 
 # define TILE_SIZE 30
 # define PLAYER_SIZE 12
-
-
 
 typedef struct s_texture
 {
@@ -53,7 +51,20 @@ typedef struct s_data
 	char		**split_content;
 	mlx_image_t	*img;
 	t_texture	*texture;
-}t_data;
+}	t_data;
 
+//Parsing
+bool	parsing(int ac, char **av);
+void	parse_and_fill_map(t_data *data);
+bool	check_map_chars(t_data *game);
+bool	verif_ext(char *av);
+
+//Utils
+bool	is_empty_line(char *line);
+void	free_all(t_data *data);
+
+//Init
+int		init_data(t_data *data, char **av);
+void	finalmap_allocation(t_data *map);
 
 #endif

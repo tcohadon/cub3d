@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_maps.c                                       :+:      :+:    :+:   */
+/*   verify_char.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 12:37:50 by lmancho           #+#    #+#             */
-/*   Updated: 2025/06/13 15:27:05 by lmancho          ###   ########.fr       */
+/*   Updated: 2025/06/16 15:09:35 by lmancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ static bool	is_valid_char(char c)
 
 bool	check_map_chars(t_data *game)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 	int	player;
 
 	i = 0;
 	player = 0;
-	while (game->map[i++])
+	while (game->map[i])
 	{
 		j = 0;
 		while (game->map[i][j])
@@ -45,11 +45,4 @@ bool	check_map_chars(t_data *game)
 		i++;
 	}
 	return (true);
-}
-
-void	final_check_map(t_data *game)
-{
-	if (!check_map_chars(game->map))
-		exit(EXIT_FAILURE);
-	
 }
