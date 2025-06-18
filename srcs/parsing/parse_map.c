@@ -6,7 +6,7 @@
 /*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 13:51:45 by lmancho           #+#    #+#             */
-/*   Updated: 2025/06/18 10:04:29 by lmancho          ###   ########.fr       */
+/*   Updated: 2025/06/18 11:56:39 by lmancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,20 @@
 
 static	int	find_map_start(char **split_content)
 {
-	int	i;
+    int	i;
+    int	j;
 
-	i = 0;
-	while (split_content[i])
-	{
-		if (split_content[i][0] == '1')
-			return (i);
-		i++;
-	}
-	return (-1);
+    i = 0;
+    while (split_content[i])
+    {
+        j = 0;
+        while (split_content[i][j] == ' ' || split_content[i][j] == '\t')
+            j++;
+        if (split_content[i][j] == '1')
+            return (i);
+        i++;
+    }
+    return (-1);
 }
 
 static int	find_map_end(char **split_content)
@@ -59,30 +63,33 @@ static int	max_map_width(char **split_content, int start, int end)
 
 static void	fill_maps_from_split(t_data *data, int map_start)
 {
-	int i;
-	int	j;
+    int i;
+    int j;
 
-	i = 0;
-	while (i < data->h)
-	{
-		j = 0;
-		while(data->split_content[map_start + i][j])
-		{
-			data->map[i][j] = data->split_content[map_start + i][j];
-			data->copy_map[i][j] = data->split_content[map_start + i][j];
-			j++;
-		}
-		while (j < data->w)
-		{
-			data->copy_map[i][j] = ' ';
-			j++;
-		}
-		data->map[i][j] = '\0';
-		data->copy_map[i][j] = '\0';
-		i++;
-	}
-	data->map[data->h] = NULL;
-	data->copy_map[data->h] = NULL;
+    i = 0;
+    while (i < data->h)
+    {
+        char *trimmed = ft_strtrim(data->split_content[map_start + i], " \t");
+        j = 0;
+        while (trimmed[j])
+        {
+            data->map[i][j] = trimmed[j];
+            data->copy_map[i][j] = trimmed[j];
+            j++;
+        }
+        while (j < data->w)
+        {
+            data->map[i][j] = ' ';
+            data->copy_map[i][j] = ' ';
+            j++;
+        }
+        data->map[i][j] = '\0';
+        data->copy_map[i][j] = '\0';
+        free(trimmed);
+        i++;
+    }
+    data->map[data->h] = NULL;
+    data->copy_map[data->h] = NULL;
 }
 
 bool	parse_and_fill_map(t_data *data)

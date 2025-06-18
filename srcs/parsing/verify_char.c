@@ -6,7 +6,7 @@
 /*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 12:37:50 by lmancho           #+#    #+#             */
-/*   Updated: 2025/06/18 10:14:29 by lmancho          ###   ########.fr       */
+/*   Updated: 2025/06/18 13:22:42 by lmancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ static bool	check_map_chars(t_data *game)
 	int	i;
 	int	j;
 	int	player;
+	int	walkable;
 
+	walkable = 0;
 	i = 0;
 	player = 0;
 	while (game->map[i])
@@ -36,14 +38,19 @@ static bool	check_map_chars(t_data *game)
 			if (game->map[i][j] == 'N' || game->map[i][j] == 'S'
 				|| game->map[i][j] == 'E' || game->map[i][j] == 'W')
 			{
+				walkable++;
 				player++;
-				if (player > 1)
-					return (fd_printf(2, "Error\nMultiple players in map\n"), false);
 			}
+			else if (game->map[i][j] == '0')
+				walkable++;
 			j++;
 		}
 		i++;
 	}
+	if (player != 1)
+		return (fd_printf(2, ERR_PLAYER), false);
+	if (walkable == 0)
+		return (fd_printf(2, ERR_WALKABLE), false);
 	return (true);
 }
 

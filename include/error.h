@@ -6,7 +6,7 @@
 /*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 11:48:59 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/06/18 10:16:20 by lmancho          ###   ########.fr       */
+/*   Updated: 2025/06/18 13:41:47 by lmancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,11 @@
 # define ERR_ALLOC "Error\nMemory allocation failed"
 # define ERR_SPLIT "Error\nFile is empty or split failed"
 # define ERR_TOPWALL "Erorr\nMap is not closed on the top"
+# define ERR_PLAYER "Error\nThere must be only one player"
+# define ERR_WALKABLE "Error\nThere must be at least one walkable tile"
+# define ERR_DUPLICATE "Error\nDuplicate texture"
 # define ERR_BOTTOMWALL "Error\nMap is not closed on the bottom"
+# define ERR_TEXTURES "Error\nMissing one or more wall textures"
 # define ERR_LEFTWALL "Error\nMap is not closed on the left"
 # define ERR_RIGHTWALL "Error\nMap is not closed on the right"
 # define ERR_INVCHAR "Error\nInvalid characters on your map"
