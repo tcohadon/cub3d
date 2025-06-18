@@ -6,7 +6,7 @@
 /*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 12:37:50 by lmancho           #+#    #+#             */
-/*   Updated: 2025/06/16 15:09:35 by lmancho          ###   ########.fr       */
+/*   Updated: 2025/06/18 10:14:29 by lmancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static bool	is_valid_char(char c)
         || c == 'E' || c == 'W');
 }
 
-bool	check_map_chars(t_data *game)
+static bool	check_map_chars(t_data *game)
 {
 	int	i;
 	int	j;
@@ -45,4 +45,68 @@ bool	check_map_chars(t_data *game)
 		i++;
 	}
 	return (true);
+}
+
+static bool	check_map_border_top(t_data *data)
+{
+	int i;
+	int last;
+
+	i = 0;
+	while (data->map[0][i])
+	{
+		if (data->map[0][i] != ' ' && data->map[0][i] != '1')
+			err_msg(ERR_TOPWALL, false);
+		i++;	
+	}
+	last = data->h - 1;
+	i = 0;
+	while (data->map[last][i])
+	{
+		if (data->map[last][i] != ' ' && data->map[last][i] != '1')
+			err_msg(ERR_BOTTOMWALL, false);
+		i++;
+	}
+	return (true);
+}
+
+static bool	check_map_lr(t_data *data)
+{
+	int	x;
+	int y;
+
+	x = 0;
+	while (data->map[x])
+	{
+		y = 0;
+		while (data->map[x][y] && data->map[x][y] == ' ')
+			y++;
+		if (data->map[x][y] != '1')
+			err_msg(ERR_LEFTWALL, false);
+		x++;
+	}
+	x = 0;
+	while (data->map[x])
+	{
+		y = 0;
+		while (data->map[x][y + 1])
+			y++;
+		while (data->map && data->map[x][y] == ' ')
+			y--;
+		if (data->map[x][y] != '1')
+			err_msg(ERR_RIGHTWALL, false);
+		x++;
+	}
+	return (true);
+}
+
+bool	verify_map(t_data *data)
+{
+    if (!check_map_border_top(data))
+        return (false);
+    if (!check_map_lr(data))
+        return false;
+    if (!check_map_chars(data))
+        return false;
+    return true;
 }

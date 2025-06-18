@@ -6,7 +6,7 @@
 /*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 13:51:45 by lmancho           #+#    #+#             */
-/*   Updated: 2025/06/16 15:11:51 by lmancho          ###   ########.fr       */
+/*   Updated: 2025/06/18 10:04:29 by lmancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static void	fill_maps_from_split(t_data *data, int map_start)
 	data->copy_map[data->h] = NULL;
 }
 
-void	parse_and_fill_map(t_data *data)
+bool	parse_and_fill_map(t_data *data)
 {
 	int map_start;
 	int map_end;
@@ -98,6 +98,7 @@ void	parse_and_fill_map(t_data *data)
     data->w = max_map_width(data->split_content, map_start, map_end);
     finalmap_allocation(data);
     fill_maps_from_split(data, map_start);
-	if (!check_map_chars(data))
-		return ;
+	if (!verify_map(data))
+		return (false);
+	return (true);
 }

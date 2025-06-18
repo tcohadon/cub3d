@@ -6,7 +6,7 @@
 /*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 14:19:07 by lmancho           #+#    #+#             */
-/*   Updated: 2025/06/16 14:19:26 by lmancho          ###   ########.fr       */
+/*   Updated: 2025/06/18 10:15:32 by lmancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,10 @@ bool	verif_ext(char *av)
 		av--;
 	}
 	return (false);
+}
+
+void	err_msg(char *str, int code)
+{
+	fd_printf(2, "%s\n", str);
+	exit (code);
 }

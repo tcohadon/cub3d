@@ -6,7 +6,7 @@
 /*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 11:25:47 by lmancho           #+#    #+#             */
-/*   Updated: 2025/06/16 14:49:42 by lmancho          ###   ########.fr       */
+/*   Updated: 2025/06/18 09:17:15 by lmancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ static int	parse_file(t_data *data)
 	data->content_of_filename[data->size_of_filename] = '\0';
 	close(data->fd);
 	data->split_content = ft_split(data->content_of_filename, '\n');
+	if (!data->split_content || !data->split_content[0])
+		return (fd_printf(2, ERR_SPLIT), 0);
 	return (1);
 }
 
@@ -66,5 +68,6 @@ int	init_data(t_data *data, char **av)
 	parse_file(data);
 	parse_ressources(data);
 	parse_and_fill_map(data);
+	debug_data(data);
 	return (1);
 }

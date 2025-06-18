@@ -13,7 +13,7 @@ OBJ_DIR = obj
 OBJ := $(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
 
 # Flags
-FLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
+FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 
 # Loading bar setup
 TOTAL_FILES := $(words $(SRC))

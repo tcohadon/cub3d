@@ -6,7 +6,7 @@
 /*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 11:11:05 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/06/16 14:30:38 by lmancho          ###   ########.fr       */
+/*   Updated: 2025/06/18 10:15:39 by lmancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,15 @@ typedef struct s_data
 
 //Parsing
 bool	parsing(int ac, char **av);
-void	parse_and_fill_map(t_data *data);
-bool	check_map_chars(t_data *game);
+bool	parse_and_fill_map(t_data *data);
 bool	verif_ext(char *av);
+bool	verify_map(t_data *data);
 
 //Utils
 bool	is_empty_line(char *line);
 void	free_all(t_data *data);
+void	debug_data(t_data *data);
+void	err_msg(char *str, int code);
 
 //Init
 int		init_data(t_data *data, char **av);
