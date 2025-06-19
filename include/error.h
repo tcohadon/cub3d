@@ -7,6 +7,7 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 11:48:59 by tcohadon          #+#    #+#             */
 /*   Updated: 2025/06/18 13:41:47 by lmancho          ###   ########.fr       */
+/*   Updated: 2025/06/06 13:58:58 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +28,4 @@
 # define ERR_LEFTWALL "Error\nMap is not closed on the left"
 # define ERR_RIGHTWALL "Error\nMap is not closed on the right"
 # define ERR_INVCHAR "Error\nInvalid characters on your map"
-
 #endif

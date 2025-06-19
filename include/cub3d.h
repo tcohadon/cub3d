@@ -69,4 +69,9 @@ void	err_msg(char *str, int code);
 int		init_data(t_data *data, char **av);
 void	finalmap_allocation(t_data *map);
 
+
+//parsing
+bool	parsing(int ac, char **av);
+bool	verif_ext(char *av);
+
 #endif
