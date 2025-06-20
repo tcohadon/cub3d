@@ -6,7 +6,7 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 11:11:05 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/06/20 13:02:08 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/06/20 13:41:43 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define PLAYER_SIZE 5
 # define PI 3.1415926535
 # define FOV 60.0
-# define NUM_RAYS 100
+# define NUM_RAYS 1000
 
 typedef struct s_player
 {
