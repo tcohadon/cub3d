@@ -6,7 +6,7 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 11:25:47 by lmancho           #+#    #+#             */
-/*   Updated: 2025/06/20 09:59:30 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/06/20 13:12:06 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,8 @@ int	init_data(t_data *data, char **av)
 		!data->texture->we_tex || !data->texture->ea_tex ||
 		!data->texture->floor_color || !data->texture->ceiling_color)
 		return (fd_printf(2, ERR_TEXTURES), false);
-	parse_and_fill_map(data);
+	if (!parse_and_fill_map(data))
+		return (false);
 	debug_data(data);
 	data->texture->ifloor = NULL;
 	data->texture->iplayer = NULL;

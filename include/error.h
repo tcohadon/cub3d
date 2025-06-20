@@ -6,7 +6,7 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 11:48:59 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/06/19 15:50:50 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/06/20 13:12:52 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@
 # define ERR_LEFTWALL "Error\nMap is not closed on the left"
 # define ERR_RIGHTWALL "Error\nMap is not closed on the right"
 # define ERR_INVCHAR "Error\nInvalid characters on your map"
-# define ERR_IMG "Eror\nCannot load image\n"
+# define ERR_IMG "Error\nCannot load image\n"
 #endif

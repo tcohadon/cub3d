@@ -6,7 +6,7 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 13:19:45 by lmancho           #+#    #+#             */
-/*   Updated: 2025/06/20 11:27:17 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/06/20 13:25:50 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void	free_all(t_data *data)
 			mlx_delete_image(data->mlx, data->texture->iplayer);
 		free(data->texture);
 	}
+	if (data->player)
+		free(data->player);
 }
 
 void	debug_data(t_data *data)
