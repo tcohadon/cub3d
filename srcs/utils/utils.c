@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 13:19:45 by lmancho           #+#    #+#             */
-/*   Updated: 2025/06/18 09:11:28 by lmancho          ###   ########.fr       */
+/*   Updated: 2025/06/20 11:27:17 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,29 +30,37 @@ bool	is_empty_line(char *line)
 
 void	free_tab(char **tab)
 {
-    if (!tab)
-        return;
-    for (int i = 0; tab[i]; i++)
-        free(tab[i]);
-    free(tab);
+	if (!tab)
+		return;
+	for (int i = 0; tab[i]; i++)
+		free(tab[i]);
+	free(tab);
 }
 
 void	free_all(t_data *data)
 {
-    free_tab(data->map);
-    free_tab(data->copy_map);
-    free_tab(data->split_content);
-    free(data->content_of_filename);
-    if (data->texture)
-    {
-        free(data->texture->no_tex);
-        free(data->texture->so_tex);
-        free(data->texture->we_tex);
-        free(data->texture->ea_tex);
-        free(data->texture->floor_color);
-        free(data->texture->ceiling_color);
-        free(data->texture);
-    }
+	free_tab(data->map);
+	free_tab(data->copy_map);
+	free_tab(data->split_content);
+	free(data->content_of_filename);
+	if (data->texture)
+	{
+		free(data->texture->no_tex);
+		free(data->texture->so_tex);
+		free(data->texture->we_tex);
+		free(data->texture->ea_tex);
+		free(data->texture->floor_color);
+		free(data->texture->ceiling_color);
+		if (data->texture->player_texture)
+			mlx_delete_texture(data->texture->player_texture);
+		if (data->texture->iwall)
+			mlx_delete_image(data->mlx, data->texture->iwall);
+		if (data->texture->ifloor)
+			mlx_delete_image(data->mlx, data->texture->ifloor);
+		if (data->texture->iplayer)
+			mlx_delete_image(data->mlx, data->texture->iplayer);
+		free(data->texture);
+	}
 }
 
 void	debug_data(t_data *data)

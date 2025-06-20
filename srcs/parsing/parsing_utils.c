@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 12:59:18 by lmancho           #+#    #+#             */
-/*   Updated: 2025/06/16 14:26:43 by lmancho          ###   ########.fr       */
+/*   Updated: 2025/06/20 11:14:12 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void	map_allocation(t_data *map)
 		j = 0;
 		while (j < map->w)
 		{
-			map->map[i][j] = '0';
+			//map->map[i][j] = '';
 			j++;
 		}
 		map->map[i][j] = '\0';

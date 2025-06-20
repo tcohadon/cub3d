@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   error.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 11:48:59 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/06/18 13:41:47 by lmancho          ###   ########.fr       */
-/*   Updated: 2025/06/06 13:58:58 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/06/19 15:50:50 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef ERROR_H
 # define ERROR_H
@@ -28,4 +28,5 @@
 # define ERR_LEFTWALL "Error\nMap is not closed on the left"
 # define ERR_RIGHTWALL "Error\nMap is not closed on the right"
 # define ERR_INVCHAR "Error\nInvalid characters on your map"
+# define ERR_IMG "Eror\nCannot load image\n"
 #endif

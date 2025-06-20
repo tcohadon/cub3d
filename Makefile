@@ -1,15 +1,15 @@
 NAME = cub3d
 
 # Lib
-MLX_PATH = ./include/MLX42
+MLX_PATH = ./include/MLX42/build/
 MLX_NAME = libmlx42.a
-MLX = $(addprefix $(LIBFT_PATH), $(LIBFT_NAME))
+MLX = $(addprefix $(MLX_PATH), $(MLX_NAME))
 LIBFT_PATH = ./include/libft/
 LIBFT_NAME = libft.a
 LIBFT = $(addprefix $(LIBFT_PATH), $(LIBFT_NAME))
 
 # Sources
-SRC = srcs/main.c srcs/parsing/parse_arg.c srcs/utils/parsing_utils.c
+SRC = srcs/main.c srcs/utils/utils.c srcs/parsing/parse_args.c srcs/parsing/parse_init.c srcs/parsing/parse_map.c srcs/parsing/parsing_utils.c srcs/parsing/verify_char.c srcs/utils/utils2.c srcs/exec/move_player.c srcs/exec/ray_casting.c srcs/exec/hook.c srcs/exec/render.c
 OBJ_DIR = obj
 OBJ := $(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
 
@@ -42,9 +42,9 @@ $(LIBFT):
 	@make --no-print-directory -C $(LIBFT_PATH)
 	@cmake $(MLX_PATH) -B $(MLX_PATH)/build && make -C $(MLX_PATH)/build -j4
 
-$(NAME): $(LIBFT) $(OBJ)
+$(NAME): $(LIBFT) $(MLX) $(OBJ)
 	@echo ""  # New line after loading bar
-	@cc $(FLAGS) $(OBJ) $(LIBFT) -lreadline -o $(NAME)
+	@cc $(FLAGS) $(OBJ) $(LIBFT) $(MLX) -lglfw -ldl -lm -pthread -o $(NAME)
 	@echo "Compilation de $(NAME) réussie !"
 
 clean:

@@ -1,0 +1,7 @@
+/home/tcohadon/Desktop/gitrepo/cub3d-main/include/MLX42/build/build/CMakeFiles/mlx42.dir
+/home/tcohadon/Desktop/gitrepo/cub3d-main/include/MLX42/build/build/CMakeFiles/edit_cache.dir
+/home/tcohadon/Desktop/gitrepo/cub3d-main/include/MLX42/build/build/CMakeFiles/rebuild_cache.dir
+/home/tcohadon/Desktop/gitrepo/cub3d-main/include/MLX42/build/build/CMakeFiles/list_install_components.dir
+/home/tcohadon/Desktop/gitrepo/cub3d-main/include/MLX42/build/build/CMakeFiles/install.dir
+/home/tcohadon/Desktop/gitrepo/cub3d-main/include/MLX42/build/build/CMakeFiles/install/local.dir
+/home/tcohadon/Desktop/gitrepo/cub3d-main/include/MLX42/build/build/CMakeFiles/install/strip.dir
