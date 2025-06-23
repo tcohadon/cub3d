@@ -3,7 +3,7 @@ SO img/128/duke/south.xpm
 WE img/128/duke/west.xpm
 EA img/128/duke/east.xpm
 
-F 20,20,20
+F 20,20,
 C 200,200,200
         1111111111111111111111111
         1000000000110000000000001

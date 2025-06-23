@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ucas <ucas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 11:11:05 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/06/20 13:41:43 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/06/23 11:28:30 by ucas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ bool	parse_and_fill_map(t_data *data);
 bool	verif_ext(char *av);
 bool	verify_map(t_data *data);
 void	render_map(t_data *data);
+bool	validate_color_format(const char *line);
 //Utils
 bool	is_empty_line(char *line);
 void	free_all(t_data *data);

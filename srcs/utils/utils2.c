@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ucas <ucas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 14:19:07 by lmancho           #+#    #+#             */
-/*   Updated: 2025/06/18 10:15:32 by lmancho          ###   ########.fr       */
+/*   Updated: 2025/06/23 11:28:27 by ucas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,6 @@ static bool	valid_ext(char *av)
 
 bool	verif_ext(char *av)
 {
-	int	i;
-
-	i = 0;
 	if (!av)
 		return (false);
 	av += ft_strlen(av) - 1;

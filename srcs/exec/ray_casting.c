@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ucas <ucas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 15:27:14 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/06/20 14:09:14 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/06/23 11:03:01 by ucas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,7 @@ static void	cast_single_ray(t_data *data, float ray_angle)
 {
 	const float	ray_dir_x = cos(ray_angle * PI / 180.0);
 	const float	ray_dir_y = sin(ray_angle * PI / 180.0);
-	float		ray_pos_x;
-	float		ray_pos_y;
 
-	ray_pos_y = data->player->y;
-	ray_pos_x = data->player->x;
 	cast_loop(data, ray_dir_x, ray_dir_y);
 }
 

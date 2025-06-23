@@ -1,0 +1,3 @@
+/home/ucas/cub3d/include/MLX42/build/build/_deps/glfw-subbuild/CMakeFiles/glfw-populate.dir
+/home/ucas/cub3d/include/MLX42/build/build/_deps/glfw-subbuild/CMakeFiles/edit_cache.dir
+/home/ucas/cub3d/include/MLX42/build/build/_deps/glfw-subbuild/CMakeFiles/rebuild_cache.dir
