@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 15:48:00 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/06/20 13:07:29 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/06/23 12:48:46 by lmancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	render_player_minimap(t_data *data)
 	py = (int)data->player->y - PLAYER_SIZE / 2;
 	data->texture->iplayer->instances[0].x = px;
 	data->texture->iplayer->instances[0].y = py;
-
 }
 
 static void	init_player_pos(t_data *data, int x, int y, char angle)
@@ -65,7 +64,8 @@ void	render_map(t_data *data)
 				image = data->texture->iwall;
 			else if (data->copy_map[y][x] == '0')
 				image = data->texture->ifloor;
-			else if (data->copy_map[y][x] == 'N' || data->copy_map[y][x] == 'S' ||
+			else if (data->copy_map[y][x] == 'N'
+				|| data->copy_map[y][x] == 'S' ||
 				data->copy_map[y][x] == 'E' || data->copy_map[y][x] == 'W')
 				init_player_pos(data, x, y, data->copy_map[y][x]);
 			if (image)
@@ -79,7 +79,8 @@ void	render_player(t_data *data)
 {
 	if (!data->player->x || !data->player->y)
 		return ;
-	mlx_image_to_window(data->mlx, data->texture->iplayer, data->player->x, data->player->y);
-	data->player->x +=  PLAYER_SIZE / 2;
+	mlx_image_to_window(data->mlx, data->texture->iplayer,
+		data->player->x, data->player->y);
+	data->player->x += PLAYER_SIZE / 2;
 	data->player->y += PLAYER_SIZE / 2;
 }

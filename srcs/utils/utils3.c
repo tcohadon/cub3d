@@ -6,7 +6,7 @@
 /*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 11:19:19 by ucas              #+#    #+#             */
-/*   Updated: 2025/06/23 11:42:53 by lmancho          ###   ########.fr       */
+/*   Updated: 2025/06/23 12:49:44 by lmancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,20 @@ static bool	is_valid_character(char c)
 
 static bool	count_commas(const char *line)
 {
-	int	i;
-	int	count;
+    int i;
+    int count;
 
-	i = 0;
-	count = 0;
-	while (line[i])
-	{
-		if (line[i] == ',')
-			count++;
-		else if (!is_valid_character(line[i]))
-			return (fd_printf(2, "Error\nInvalid character in color: %s\n", line), false);
-		i++;
-	}
-	if (count != 2)
+    i = 0;
+    count = 0;
+    while (line[i])
+    {
+        if (line[i] == ',')
+            count++;
+        else if (!is_valid_character(line[i]))
+            return (fd_printf(2, "Error\nInvalid character in color: %s\n", line), false);
+        i++;
+    }
+    if (count != 2)
 		return (fd_printf(2, "Error\nInvalid color format: %s\n", line), false);
 	return (true);
 }

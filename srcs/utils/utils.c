@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 13:19:45 by lmancho           #+#    #+#             */
-/*   Updated: 2025/06/20 13:25:50 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/06/23 14:55:47 by lmancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,16 @@ bool	is_empty_line(char *line)
 
 void	free_tab(char **tab)
 {
+	int	i;
+
+	i = 0;
 	if (!tab)
-		return;
-	for (int i = 0; tab[i]; i++)
+		return ;
+	while (tab[i])
+	{
 		free(tab[i]);
+		i++;
+	}
 	free(tab);
 }
 
@@ -65,25 +71,25 @@ void	free_all(t_data *data)
 		free(data->player);
 }
 
-void	debug_data(t_data *data)
-{
-    printf("filename: %s\n", data->filename);
-    printf("fd: %d\n", data->fd);
-    printf("size_of_filename: %zu\n", data->size_of_filename);
-    printf("content_of_filename: %s\n", data->content_of_filename ? "OK" : "NULL");
-    printf("split_content: %s\n", data->split_content ? "OK" : "NULL");
-    printf("h: %d, w: %d\n", data->h, data->w);
-    printf("map: %s\n", data->map ? "OK" : "NULL");
-    printf("copy_map: %s\n", data->copy_map ? "OK" : "NULL");
-    if (data->texture)
-    {
-        printf("no_tex: %s\n", data->texture->no_tex);
-        printf("so_tex: %s\n", data->texture->so_tex);
-        printf("we_tex: %s\n", data->texture->we_tex);
-        printf("ea_tex: %s\n", data->texture->ea_tex);
-        printf("floor_color: %s\n", data->texture->floor_color);
-        printf("ceiling_color: %s\n", data->texture->ceiling_color);
-    }
-    else
-        printf("texture: NULL\n");
-}
+// void	debug_data(t_data *data)
+// {
+//     printf("filename: %s\n", data->filename);
+//     printf("fd: %d\n", data->fd);
+//     printf("size_of_filename: %zu\n", data->size_of_filename);
+//     printf("content_of_filename: %s\n", data->content_of_filename ? "OK" : "NULL");
+//     printf("split_content: %s\n", data->split_content ? "OK" : "NULL");
+//     printf("h: %d, w: %d\n", data->h, data->w);
+//     printf("map: %s\n", data->map ? "OK" : "NULL");
+//     printf("copy_map: %s\n", data->copy_map ? "OK" : "NULL");
+//     if (data->texture)
+//     {
+//         printf("no_tex: %s\n", data->texture->no_tex);
+//         printf("so_tex: %s\n", data->texture->so_tex);
+//         printf("we_tex: %s\n", data->texture->we_tex);
+//         printf("ea_tex: %s\n", data->texture->ea_tex);
+//         printf("floor_color: %s\n", data->texture->floor_color);
+//         printf("ceiling_color: %s\n", data->texture->ceiling_color);
+//     }
+//     else
+//         printf("texture: NULL\n");
+// }

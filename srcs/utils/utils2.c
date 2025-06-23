@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ucas <ucas@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 14:19:07 by lmancho           #+#    #+#             */
-/*   Updated: 2025/06/23 11:28:27 by ucas             ###   ########.fr       */
+/*   Updated: 2025/06/23 14:53:46 by lmancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ bool	verif_ext(char *av)
 	while (*av)
 	{
 		if (*av == '.')
-			return(valid_ext(av));
+			return (valid_ext(av));
 		av--;
 	}
 	return (false);

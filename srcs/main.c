@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 11:22:51 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/06/19 17:18:55 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/06/23 12:39:50 by lmancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	init_0(t_data *data, char *map_path)
 	data->texture = NULL;
 	data->content_of_filename = NULL;
 	data->img = NULL;
-
+	data->player = NULL;
 }
 
 int	main(int ac, char **av)
