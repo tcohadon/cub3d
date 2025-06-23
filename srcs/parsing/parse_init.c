@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ucas <ucas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 11:25:47 by lmancho           #+#    #+#             */
-/*   Updated: 2025/06/23 11:43:39 by lmancho          ###   ########.fr       */
+/*   Updated: 2025/06/23 12:05:51 by ucas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,8 @@ int	init_data(t_data *data, char **av)
 	if (!data->texture)
 		return (fd_printf(2, ERR_ALLOC), 0);
 	parse_file(data);
-	parse_ressources(data);
+	if (!parse_ressources(data))
+		return (false);
 	if (!data->texture->no_tex || !data->texture->so_tex ||
 		!data->texture->we_tex || !data->texture->ea_tex ||
 		!data->texture->floor_color || !data->texture->ceiling_color)
