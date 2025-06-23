@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ucas <ucas@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 11:25:47 by lmancho           #+#    #+#             */
-/*   Updated: 2025/06/23 11:32:24 by ucas             ###   ########.fr       */
+/*   Updated: 2025/06/23 11:43:39 by lmancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ static	bool	parse_ressources(t_data *data)
 			if (data->texture->floor_color != NULL)
 				return (fd_printf(2, ERR_DUPLICATE), false);
 			if (!validate_color_format(data->split_content[i] + 2))
+				return (false);
 			data->texture->floor_color = ft_strdup(data->split_content[i] + 2);
 		}
 		else if (ft_strnstr(data->split_content[i], "C ", 2))
@@ -104,6 +105,7 @@ static	bool	parse_ressources(t_data *data)
 			if (data->texture->ceiling_color != NULL)
 				return (fd_printf(2, ERR_DUPLICATE), false);
 			if (!validate_color_format(data->split_content[i] + 2))
+				return (false);
 			data->texture->ceiling_color = ft_strdup(data->split_content[i] + 2);
 		}
 		i++;

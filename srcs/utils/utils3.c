@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ucas <ucas@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 11:19:19 by ucas              #+#    #+#             */
-/*   Updated: 2025/06/23 11:21:11 by ucas             ###   ########.fr       */
+/*   Updated: 2025/06/23 11:42:53 by lmancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,23 +39,31 @@ static bool	count_commas(const char *line)
 
 static bool	validate_values(const char *line)
 {
-	int	i;
-	int	value;
+    int	i = 0;
+    int	value_count = 0;
 
-	i = 0;
-	while (line[i])
-	{
-		while (line[i] == ' ')
-			i++;
-		value = ft_atoi(&line[i]);
-		if (value < 0 || value > 255)
-			return (fd_printf(2, "Error\nInvalid color value: %s\n", line), false);
-		while (line[i] && line[i] != ',' && line[i] != ' ')
-			i++;
-		if (line[i] == ',')
-			i++;
-	}
-	return (true);
+    while (line[i])
+    {
+        while (line[i] == ' ')
+            i++;
+        if (line[i] == ',' || line[i] == '\0')
+            return (fd_printf(2, "Error\nInvalid color value: %s\n", line), false);
+        if (!ft_isdigit(line[i]))
+            return (fd_printf(2, "Error\nInvalid color value: %s\n", line), false);
+        int value = ft_atoi(&line[i]);
+        if (value < 0 || value > 255)
+            return (fd_printf(2, "Error\nInvalid color value: %s\n", line), false);
+        while (line[i] && ft_isdigit(line[i]))
+            i++;
+        value_count++;
+        while (line[i] == ' ')
+            i++;
+        if (line[i] == ',')
+            i++;
+    }
+    if (value_count != 3)
+        return (fd_printf(2, "Error\nInvalid color format: %s\n", line), false);
+    return (true);
 }
 
 bool	validate_color_format(const char *line)
