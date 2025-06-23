@@ -6,10 +6,9 @@
 /*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 11:22:51 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/06/23 12:39:50 by lmancho          ###   ########.fr       */
+/*   Updated: 2025/06/23 15:07:08 by lmancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../include/cub3d.h"
 
@@ -26,6 +25,17 @@ void	init_0(t_data *data, char *map_path)
 	data->content_of_filename = NULL;
 	data->img = NULL;
 	data->player = NULL;
+	data->player->x = 0;
+	data->player->y = 0;
+	data->player->speed = 2.0f;
+	data->player->is_moving = false;
+	data->player->angle = 0.0;
+	data->texture->ifloor = NULL;
+	data->texture->iplayer = NULL;
+	data->texture->iwall = NULL;
+	data->player = malloc(sizeof(t_player));
+	if (!data->player)
+		return (false);
 }
 
 int	main(int ac, char **av)

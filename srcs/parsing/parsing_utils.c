@@ -6,17 +6,11 @@
 /*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 12:59:18 by lmancho           #+#    #+#             */
-/*   Updated: 2025/06/23 14:56:49 by lmancho          ###   ########.fr       */
+/*   Updated: 2025/06/23 15:01:55 by lmancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
-// static void	check_fd_error(t_data *data)
-// {
-// 	if (data->fd < 0 || read(data->fd, 0, 0) < 0)
-// 		exit (fd_printf(2, "Error\nfd not working."));
-// }
 
 static void	allocate_and_initialize_copy_map(t_data *map)
 {

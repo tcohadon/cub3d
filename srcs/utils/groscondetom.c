@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_utils.c                                    :+:      :+:    :+:   */
+/*   groscondetom.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:30:40 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/06/06 13:41:22 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/06/23 15:02:52 by lmancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ bool	verif_ext(char *av)
 	while (*av)
 	{
 		if (*av == '.')
-			return(valid_ext(av));
+			return (valid_ext(av));
 		av--;
 	}
 	return (false);

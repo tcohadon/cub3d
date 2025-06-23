@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ucas <ucas@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 11:25:47 by lmancho           #+#    #+#             */
-/*   Updated: 2025/06/23 12:05:51 by ucas             ###   ########.fr       */
+/*   Updated: 2025/06/23 15:05:15 by lmancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,17 @@ bool	init_texture(t_data *data)
 
 	wall = mlx_load_png("srcs/img/wall.png");
 	if (!wall)
-		return(fd_printf(2, ERR_IMG), false);
+		return (fd_printf(2, ERR_IMG), false);
 	floor = mlx_load_png("srcs/img/floor.png");
 	if (!floor)
-		return(fd_printf(2, ERR_IMG), false);
+		return (fd_printf(2, ERR_IMG), false);
 	data->texture->player_texture = mlx_load_png("srcs/img/player.png");
 	data->texture->iwall = mlx_texture_to_image(data->mlx, wall);
 	data->texture->ifloor = mlx_texture_to_image(data->mlx, floor);
 	data->texture->ray_img = mlx_new_image(data->mlx, data->w * T_SIZE,
 			data->h * T_SIZE);
-	data->texture->iplayer = mlx_texture_to_image(data->mlx, data->texture->player_texture);
+	data->texture->iplayer = mlx_texture_to_image(data->mlx,
+		data->texture->player_texture);
 	mlx_resize_image(data->texture->iplayer, PLAYER_SIZE, PLAYER_SIZE);
 	mlx_image_to_window(data->mlx, data->texture->ray_img, 0, 0);
 	mlx_delete_texture(wall);
@@ -63,7 +64,7 @@ static int	parse_file(t_data *data)
 
 static	bool	parse_ressources(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (data->split_content[i])
@@ -129,17 +130,5 @@ int	init_data(t_data *data, char **av)
 	if (!parse_and_fill_map(data))
 		return (false);
 	debug_data(data);
-	data->texture->ifloor = NULL;
-	data->texture->iplayer = NULL;
-	data->texture->iwall = NULL;
-	data->player = malloc(sizeof(t_player));
-	if (!data->player)
-		return (false);
-	data->player->x = 0;
-	data->player->y = 0;
-	data->player->speed = 2.0f;
-	data->player->is_moving = false;
-	data->player->angle = 0.0;
 	return (1);
 }
-
