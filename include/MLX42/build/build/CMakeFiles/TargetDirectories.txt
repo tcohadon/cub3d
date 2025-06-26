@@ -1,7 +1,0 @@
-/home/lmancho/Desktop/42_school/Cube3D/cub3d/include/MLX42/build/build/CMakeFiles/mlx42.dir
-/home/lmancho/Desktop/42_school/Cube3D/cub3d/include/MLX42/build/build/CMakeFiles/edit_cache.dir
-/home/lmancho/Desktop/42_school/Cube3D/cub3d/include/MLX42/build/build/CMakeFiles/rebuild_cache.dir
-/home/lmancho/Desktop/42_school/Cube3D/cub3d/include/MLX42/build/build/CMakeFiles/list_install_components.dir
-/home/lmancho/Desktop/42_school/Cube3D/cub3d/include/MLX42/build/build/CMakeFiles/install.dir
-/home/lmancho/Desktop/42_school/Cube3D/cub3d/include/MLX42/build/build/CMakeFiles/install/local.dir
-/home/lmancho/Desktop/42_school/Cube3D/cub3d/include/MLX42/build/build/CMakeFiles/install/strip.dir

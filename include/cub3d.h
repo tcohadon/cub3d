@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ucas <ucas@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 11:11:05 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/06/23 11:28:30 by ucas             ###   ########.fr       */
+/*   Updated: 2025/06/26 10:12:23 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,12 @@
 
 # define T_SIZE 50
 # define PLAYER_SIZE 5
-# define PI 3.1415926535
+# define PI 3.14159265358979323846
 # define FOV 60.0
 # define NUM_RAYS 1000
+# define WIDTH 960
+# define HEIGHT 540
+# define PROJECTION 831.4
 
 typedef struct s_player
 {
@@ -53,6 +56,23 @@ typedef struct s_texture
 	mlx_image_t		*ray_img;
 }	t_texture;
 
+typedef struct s_dda
+{
+	double	x_start;
+	double	y_start;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	int	map_x;
+	int	map_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	int	hit_side;
+	int	hit_x;
+	int	hit_y;
+	int	step_x;
+	int	step_y;
+} t_dda;
+
 typedef struct s_data
 {
 	void		*mlx;
@@ -69,6 +89,7 @@ typedef struct s_data
 	mlx_image_t	*img;
 	t_texture	*texture;
 	t_player	*player;
+	t_dda		*dda;
 }	t_data;
 
 //Parsing
@@ -106,5 +127,6 @@ bool	init_texture(t_data *data);
 
 //render
 void	render_player(t_data *data);
+double	ray_cast(t_data *data, double angle);
 
 #endif
