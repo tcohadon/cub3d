@@ -6,7 +6,7 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 11:11:05 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/06/26 10:12:23 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/06/27 11:58:14 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,5 +128,6 @@ bool	init_texture(t_data *data);
 //render
 void	render_player(t_data *data);
 double	ray_cast(t_data *data, double angle);
+void	render(t_data *data);
 
 #endif

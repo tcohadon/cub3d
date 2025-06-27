@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ucas <ucas@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 11:25:47 by lmancho           #+#    #+#             */
-/*   Updated: 2025/06/23 12:05:51 by ucas             ###   ########.fr       */
+/*   Updated: 2025/06/27 13:24:25 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ bool	init_texture(t_data *data)
 	data->texture->player_texture = mlx_load_png("srcs/img/player.png");
 	data->texture->iwall = mlx_texture_to_image(data->mlx, wall);
 	data->texture->ifloor = mlx_texture_to_image(data->mlx, floor);
-	data->texture->ray_img = mlx_new_image(data->mlx, data->w * T_SIZE,
-			data->h * T_SIZE);
+	data->texture->ray_img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	data->texture->iplayer = mlx_texture_to_image(data->mlx, data->texture->player_texture);
 	mlx_resize_image(data->texture->iplayer, PLAYER_SIZE, PLAYER_SIZE);
 	mlx_image_to_window(data->mlx, data->texture->ray_img, 0, 0);
@@ -140,6 +139,9 @@ int	init_data(t_data *data, char **av)
 	data->player->speed = 2.0f;
 	data->player->is_moving = false;
 	data->player->angle = 0.0;
+	data->dda = malloc(sizeof(t_dda));
+	if (!data->dda)
+		return (false);
 	return (1);
 }
 

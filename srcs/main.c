@@ -6,7 +6,7 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 11:22:51 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/06/19 17:18:55 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/06/27 12:29:51 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	init_0(t_data *data, char *map_path)
 	data->texture = NULL;
 	data->content_of_filename = NULL;
 	data->img = NULL;
-
 }
 
 int	main(int ac, char **av)
@@ -46,7 +45,8 @@ int	main(int ac, char **av)
 		free_all(&data);
 		return (1);
 	}
-	data.mlx = mlx_init(data.w * T_SIZE, data.h * T_SIZE, "cub3d", false);
+	//data.mlx = mlx_init(data.w * T_SIZE, data.h * T_SIZE, "cub3d", false);
+	data.mlx = mlx_init(WIDTH,HEIGHT, "cub3d", false);
 	if (!data.mlx)
 		return (1);
 	if (!init_texture(&data))

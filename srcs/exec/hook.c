@@ -6,7 +6,7 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 15:26:26 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/06/19 16:04:55 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/06/27 12:07:52 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ void combined_hook(void *param)
 	data = (t_data *)param;
 	hooker(data);
 	clear_rays(data);
-	raycasting_hook(data);
+	render(data);
+	//raycasting_hook(data);
 }

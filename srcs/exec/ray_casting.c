@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ucas <ucas@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 15:27:14 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/06/23 11:03:01 by ucas             ###   ########.fr       */
+/*   Updated: 2025/06/27 13:24:53 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,7 @@ void	clear_rays(t_data *data)
 		return ;
 	if (data->texture->ray_img)
 		mlx_delete_image(data->mlx, data->texture->ray_img);
-	data->texture->ray_img = mlx_new_image(data->mlx, data->w * T_SIZE,
-			data->h * T_SIZE);
+	data->texture->ray_img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	mlx_image_to_window(data->mlx, data->texture->ray_img, 0, 0);
 }
 
