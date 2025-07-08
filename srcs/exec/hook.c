@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cohadontom <cohadontom@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 15:26:26 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/06/27 12:07:52 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/07/08 10:31:31 by cohadontom       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ void combined_hook(void *param)
 	hooker(data);
 	clear_rays(data);
 	render(data);
+	//minimap_hook(data);
 	//raycasting_hook(data);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cohadontom <cohadontom@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 13:00:21 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/06/27 12:14:36 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/07/07 11:57:12 by cohadontom       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,59 +14,100 @@
 
 static void	go_up(t_data *data)
 {
-	int	grid_x;
-	int	grid_y;
+	double	rad;
+	double	nx;
+	double	ny;
+	int		grid_x;
+	int		grid_y;
 
-	grid_x = (int)(data->player->x) / T_SIZE;
-	grid_y = (int)((data->player->y - PLAYER_SIZE / 2.5f)
-			- data->player->speed) / T_SIZE;
-	if (!(grid_x < 0 || grid_y < 0 || !data->map[grid_y]
+
+	rad = data->player->angle * PI / 180.0;
+	nx = data->player->x + cos(rad) * data->player->speed;
+	ny = data->player->y + sin(rad) * data->player->speed;
+	grid_x = (int)(nx) / T_SIZE;
+	grid_y = (int)(ny) / T_SIZE;
+	if (!(grid_x < 0 || grid_y < 0
+			|| !data->map[grid_y]
 			|| !data->map[grid_y][grid_x]
-		|| data->map[grid_y][grid_x] == '1'))
-		data->player->y -= data->player->speed;
+			|| data->map[grid_y][grid_x] == '1'))
+	{
+		data->player->x = nx;
+		data->player->y = ny;
+	}
 }
 
 static void	go_down(t_data *data)
 {
-	int	grid_x;
-	int	grid_y;
+	double	rad;
+	double	nx;
+	double	ny;
+	int		grid_x;
+	int		grid_y;
 
-	grid_x = (int)(data->player->x) / T_SIZE;
-	grid_y = (int)((data->player->y + PLAYER_SIZE / 2.5f)
-			+ data->player->speed) / T_SIZE;
-	if (!(grid_x < 0 || grid_y < 0 || !data->map[grid_y]
+
+	rad = (data->player->angle + 180.0) * PI / 180.0;
+	nx = data->player->x + cos(rad) * data->player->speed;
+	ny = data->player->y + sin(rad) * data->player->speed;
+	grid_x = (int)(nx) / T_SIZE;
+	grid_y = (int)(ny) / T_SIZE;
+	if (!(grid_x < 0 || grid_y < 0
+			|| !data->map[grid_y]
 			|| !data->map[grid_y][grid_x]
-		|| data->map[grid_y][grid_x] == '1'))
-		data->player->y += data->player->speed;
+			|| data->map[grid_y][grid_x] == '1'))
+	{
+		data->player->x = nx;
+		data->player->y = ny;
+	}
 }
 
 static void	go_left(t_data *data)
 {
-	int	grid_x;
-	int	grid_y;
+	double	rad;
+	double	nx;
+	double	ny;
+	int		grid_x;
+	int		grid_y;
 
-	grid_x = (int)((data->player->x - PLAYER_SIZE / 2.5f)
-			- data->player->speed) / T_SIZE;
-	grid_y = (int)(data->player->y) / T_SIZE;
-	if (!(grid_x < 0 || grid_y < 0 || !data->map[grid_y]
+
+	rad = (data->player->angle - 90.0) * PI / 180.0;
+	nx = data->player->x + cos(rad) * data->player->speed;
+	ny = data->player->y + sin(rad) * data->player->speed;
+	grid_x = (int)(nx) / T_SIZE;
+	grid_y = (int)(ny) / T_SIZE;
+	if (!(grid_x < 0 || grid_y < 0
+			|| !data->map[grid_y]
 			|| !data->map[grid_y][grid_x]
-		|| data->map[grid_y][grid_x] == '1'))
-		data->player->x -= data->player->speed;
+			|| data->map[grid_y][grid_x] == '1'))
+	{
+		data->player->x = nx;
+		data->player->y = ny;
+	}
 }
 
 static void	go_right(t_data *data)
 {
-	int	grid_x;
-	int	grid_y;
+	double	rad;
+	double	nx;
+	double	ny;
+	int		grid_x;
+	int		grid_y;
 
-	grid_x = (int)((data->player->x + PLAYER_SIZE / 2.5f)
-			+ data->player->speed) / T_SIZE;
-	grid_y = (int)(data->player->y) / T_SIZE;
-	if (!(grid_x < 0 || grid_y < 0 || !data->map[grid_y]
+
+	rad = (data->player->angle + 90.0) * PI / 180.0;
+	nx = data->player->x + cos(rad) * data->player->speed;
+	ny = data->player->y + sin(rad) * data->player->speed;
+	grid_x = (int)(nx) / T_SIZE;
+	grid_y = (int)(ny) / T_SIZE;
+	if (!(grid_x < 0 || grid_y < 0
+			|| !data->map[grid_y]
 			|| !data->map[grid_y][grid_x]
-		|| data->map[grid_y][grid_x] == '1'))
-		data->player->x += data->player->speed;
+			|| data->map[grid_y][grid_x] == '1'))
+	{
+		data->player->x = nx;
+		data->player->y = ny;
+	}
 }
+
 
 void	hooker(t_data *data)
 {

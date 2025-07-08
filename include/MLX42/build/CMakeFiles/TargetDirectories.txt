@@ -1,7 +1,7 @@
-/home/tcohadon/Desktop/gitrepo/cub3d-main-1/include/MLX42/build/CMakeFiles/mlx42.dir
-/home/tcohadon/Desktop/gitrepo/cub3d-main-1/include/MLX42/build/CMakeFiles/edit_cache.dir
-/home/tcohadon/Desktop/gitrepo/cub3d-main-1/include/MLX42/build/CMakeFiles/rebuild_cache.dir
-/home/tcohadon/Desktop/gitrepo/cub3d-main-1/include/MLX42/build/CMakeFiles/list_install_components.dir
-/home/tcohadon/Desktop/gitrepo/cub3d-main-1/include/MLX42/build/CMakeFiles/install.dir
-/home/tcohadon/Desktop/gitrepo/cub3d-main-1/include/MLX42/build/CMakeFiles/install/local.dir
-/home/tcohadon/Desktop/gitrepo/cub3d-main-1/include/MLX42/build/CMakeFiles/install/strip.dir
+/Users/cohadontom/Desktop/42/cub3d/include/MLX42/build/CMakeFiles/mlx42.dir
+/Users/cohadontom/Desktop/42/cub3d/include/MLX42/build/CMakeFiles/edit_cache.dir
+/Users/cohadontom/Desktop/42/cub3d/include/MLX42/build/CMakeFiles/rebuild_cache.dir
+/Users/cohadontom/Desktop/42/cub3d/include/MLX42/build/CMakeFiles/list_install_components.dir
+/Users/cohadontom/Desktop/42/cub3d/include/MLX42/build/CMakeFiles/install.dir
+/Users/cohadontom/Desktop/42/cub3d/include/MLX42/build/CMakeFiles/install/local.dir
+/Users/cohadontom/Desktop/42/cub3d/include/MLX42/build/CMakeFiles/install/strip.dir

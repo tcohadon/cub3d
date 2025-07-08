@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cohadontom <cohadontom@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 11:11:05 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/06/27 11:58:14 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/07/08 10:53:49 by cohadontom       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,15 @@
 # define WIDTH 960
 # define HEIGHT 540
 # define PROJECTION 831.4
+# define MINIMAP_TILE 8
+# define MINIMAP_PSIZE 4
 
 typedef struct s_player
 {
 	float	x;
 	float	y;
+	float	mini_x;
+	float	mini_y;
 	float target_x;
 	float target_y;
 	float speed;
@@ -130,4 +134,6 @@ void	render_player(t_data *data);
 double	ray_cast(t_data *data, double angle);
 void	render(t_data *data);
 
+//minimap
+void	minimap_hook(t_data *data);
 #endif

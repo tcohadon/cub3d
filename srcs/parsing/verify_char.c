@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verify_char.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
+/*   By: cohadontom <cohadontom@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 12:37:50 by lmancho           #+#    #+#             */
-/*   Updated: 2025/06/18 13:22:42 by lmancho          ###   ########.fr       */
+/*   Updated: 2025/07/07 11:43:46 by cohadontom       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static bool	is_valid_char(char c)
 {
-    return (c == '0' || c == '1' || c == ' ' || c == 'N' || c == 'S'
-        || c == 'E' || c == 'W');
+	return (c == '0' || c == '1' || c == ' ' || c == 'N' || c == 'S'
+		|| c == 'E' || c == 'W');
 }
 
 static bool	check_map_chars(t_data *game)

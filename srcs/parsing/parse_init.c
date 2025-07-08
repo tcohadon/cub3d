@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cohadontom <cohadontom@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 11:25:47 by lmancho           #+#    #+#             */
-/*   Updated: 2025/06/27 13:24:25 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/07/08 10:29:29 by cohadontom       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,8 @@ int	init_data(t_data *data, char **av)
 		return (false);
 	data->player->x = 0;
 	data->player->y = 0;
+	data->player->mini_x = 0;
+	data->player->mini_y = 0;
 	data->player->speed = 2.0f;
 	data->player->is_moving = false;
 	data->player->angle = 0.0;

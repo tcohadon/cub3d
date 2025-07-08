@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cohadontom <cohadontom@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 15:48:00 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/06/27 13:37:30 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/07/08 10:39:55 by cohadontom       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,11 @@ static void	init_player_pos(t_data *data, int x, int y, char angle)
 	px = tile_px + (T_SIZE - PLAYER_SIZE) / 2;
 	py = tile_py + (T_SIZE - PLAYER_SIZE) / 2;
 	mlx_image_to_window(data->mlx, data->texture->ifloor, tile_px, tile_py);
+	mlx_image_to_window(data->mlx, data->texture->iplayer, px, py);
 	data->player->x = px + PLAYER_SIZE / 2;
 	data->player->y = py + PLAYER_SIZE / 2;
+	data->player->mini_x = data->player->x;
+	data->player->mini_y = data->player->y;
 	if (angle == 'N')
 		data->player->angle = 270.0;
 	else if (angle == 'S')
@@ -60,16 +63,16 @@ void	render_map(t_data *data)
 		x = -1;
 		while (data->copy_map[y][++x])
 		{
-			image = NULL;
+ 			image = NULL;
 			if (data->copy_map[y][x] == '1')
 				image = data->texture->iwall;
 			else if (data->copy_map[y][x] == '0')
 				image = data->texture->ifloor;
-			else if (data->copy_map[y][x] == 'N' || data->copy_map[y][x] == 'S' ||
+			if (data->copy_map[y][x] == 'N' || data->copy_map[y][x] == 'S' ||
 				data->copy_map[y][x] == 'E' || data->copy_map[y][x] == 'W')
 				init_player_pos(data, x, y, data->copy_map[y][x]);
-			//if (image)
-			//	mlx_image_to_window(data->mlx, image, x * T_SIZE, y * T_SIZE);
+			if (image)
+				mlx_image_to_window(data->mlx, image, x , y);
 		}
 	}
 	render_player(data);
