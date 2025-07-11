@@ -6,7 +6,7 @@
 /*   By: ucas <ucas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 11:11:05 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/06/23 11:28:30 by ucas             ###   ########.fr       */
+/*   Updated: 2025/07/11 09:16:51 by ucas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ bool	verif_ext(char *av);
 bool	verify_map(t_data *data);
 void	render_map(t_data *data);
 bool	validate_color_format(const char *line);
+bool	check_space_map(t_data *data);
 //Utils
 bool	is_empty_line(char *line);
 void	free_all(t_data *data);
