@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ucas <ucas@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 12:59:18 by lmancho           #+#    #+#             */
-/*   Updated: 2025/06/23 15:01:55 by lmancho          ###   ########.fr       */
+/*   Updated: 2025/07/01 10:03:48 by ucas             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,34 @@ void	finalmap_allocation(t_data *map)
 {
 	map_allocation(map);
 	allocate_and_initialize_copy_map(map);
+}
+
+bool	check_space_map(t_data *data)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (data->map[y])
+	{
+		x = 0;
+		while (data->map[y][x])
+		{
+			if (data->map[y][x] == '0' || data->map[y][x] == 'S' 
+				|| data->map[y][x] == 'E' || data->map[y][x] == 'N'
+				|| data->map[y][x] == 'W')
+			{
+				if (y == 0 || y == data->h - 1 || x == 0 || x == data-> w - 1 
+					|| data->map[y - 1][x] == ' ' || data->map[y + 1][x] == ' '
+					|| data->map[y][x - 1] == ' ' || data->map[y][x + 1] == ' ')
+				{
+					printf("Error at position (%d, %d): %c\n", y, x, data->map[y][x]);
+					return (fd_printf(2, ERR_SPACE), false);
+				}
+			}
+			x++;
+		}
+		y++;
+	}
+	return (true);
 }
