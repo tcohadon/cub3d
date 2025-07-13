@@ -6,7 +6,7 @@
 /*   By: cohadontom <cohadontom@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 11:22:51 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/06/30 11:21:19 by cohadontom       ###   ########.fr       */
+/*   Updated: 2025/07/11 11:34:44 by cohadontom       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	init_0(t_data *data, char *map_path)
 	data->texture = NULL;
 	data->content_of_filename = NULL;
 	data->img = NULL;
+	data->mini_offset_x = 0;
+	data->mini_offset_y = 0;
 }
 
 int	main(int ac, char **av)
@@ -55,6 +57,7 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	render_map(&data);
+	init_minimap(&data);
 	mlx_loop_hook(data.mlx, &combined_hook, &data);
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);

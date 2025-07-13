@@ -6,23 +6,28 @@
 /*   By: cohadontom <cohadontom@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 15:48:00 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/07/08 10:39:55 by cohadontom       ###   ########.fr       */
+/*   Updated: 2025/07/11 10:27:47 by cohadontom       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	render_player_minimap(t_data *data)
+/* void render_player_minimap(t_data *data)
 {
-	int	px;
-	int	py;
-
-	px = (int)data->player->x - PLAYER_SIZE / 2;
-	py = (int)data->player->y - PLAYER_SIZE / 2;
-	data->texture->iplayer->instances[0].x = px;
-	data->texture->iplayer->instances[0].y = py;
-
-}
+    if (!data->texture->imini_player)
+        return;
+        
+    // Calculer la position dans la minimap en fonction de la position réelle du joueur
+    float scale = (float)MINIMAP_TILE / T_SIZE;  // Rapport d'échelle entre jeu et minimap
+    
+    // Position du joueur dans la minimap
+    int px = 10 + (int)(data->player->x * scale) - MINIMAP_PSIZE/2;
+    int py = 10 + (int)(data->player->y * scale) - MINIMAP_PSIZE/2;
+    
+    // Déplacer l'instance du joueur dans la minimap
+    data->texture->imini_player->instances[0].x = px;
+    data->texture->imini_player->instances[0].y = py;
+} */
 
 static void	init_player_pos(t_data *data, int x, int y, char angle)
 {
@@ -155,7 +160,7 @@ void	render(t_data *data)
         // Protection contre les murs trop grands
         if (wall_height > HEIGHT * 5)
             wall_height = HEIGHT * 5;
-		printf("Ray %d: angle=%f, wall_dist=%f, wall_height=%d\n", coll, ray_angle, wall_dist, wall_height);
+		//printf("Ray %d: angle=%f, wall_dist=%f, wall_height=%d\n", coll, ray_angle, wall_dist, wall_height);
 		render_wall(data, coll, wall_height);
 	}
 }

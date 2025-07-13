@@ -6,7 +6,7 @@
 /*   By: cohadontom <cohadontom@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 11:11:05 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/07/08 10:53:49 by cohadontom       ###   ########.fr       */
+/*   Updated: 2025/07/11 11:34:09 by cohadontom       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ typedef struct s_texture
 	mlx_image_t		*iwall;
 	mlx_texture_t	*player_texture;
 	mlx_image_t		*ray_img;
+    mlx_image_t      *iminimap_bg;
+    mlx_image_t      *imini_player;
 }	t_texture;
 
 typedef struct s_dda
@@ -94,6 +96,8 @@ typedef struct s_data
 	t_texture	*texture;
 	t_player	*player;
 	t_dda		*dda;
+	int mini_offset_x;
+	int mini_offset_y;
 }	t_data;
 
 //Parsing
@@ -136,4 +140,5 @@ void	render(t_data *data);
 
 //minimap
 void	minimap_hook(t_data *data);
+void init_minimap(t_data *data);
 #endif
