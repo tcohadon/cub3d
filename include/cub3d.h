@@ -6,7 +6,7 @@
 /*   By: cohadontom <cohadontom@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 11:11:05 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/07/11 11:34:09 by cohadontom       ###   ########.fr       */
+/*   Updated: 2025/07/14 12:16:32 by cohadontom       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,5 +140,5 @@ void	render(t_data *data);
 
 //minimap
 void	minimap_hook(t_data *data);
-void init_minimap(t_data *data);
+void init_minimap(t_data *data, int y);
 #endif

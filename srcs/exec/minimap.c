@@ -6,7 +6,7 @@
 /*   By: cohadontom <cohadontom@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 11:59:04 by cohadontom        #+#    #+#             */
-/*   Updated: 2025/07/13 12:34:26 by cohadontom       ###   ########.fr       */
+/*   Updated: 2025/07/14 12:22:02 by cohadontom       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,44 +14,15 @@
 
 #include "../../include/cub3d.h"
 
-void init_minimap(t_data *data)
+static void	init_miniplayer(t_data *data)
 {
-	int map_w = data->w * MINIMAP_TILE;
-	int map_h = data->h * MINIMAP_TILE;
-	int	y;
-	int	x;
-	uint32_t	col;
-	uint32_t	*px;
 	int			i;
-	int	xx;
-	int	yy;
-	y = -1;
-	data->texture->imini_player = NULL;
-	data->texture->iminimap_bg = NULL;
-	data->texture->iminimap_bg = mlx_new_image(data->mlx, map_w, map_h);
-	uint32_t *bg = (uint32_t *)data->texture->iminimap_bg->pixels;
-	while (++y < data->h)
-	{
-		x = -1;
-		while (++x < data->w)
-		{
-			if (data->map[y][x] == '1')
-				col = 0xFFFFFFFF;
-			else
-				col = 0xFFAAAAAA;
-			yy = -1;
-			while (++yy < MINIMAP_TILE)
-			{
-				xx = -1;
-				while (++xx < MINIMAP_TILE)
-					bg[(y * MINIMAP_TILE + yy) * map_w + (x * MINIMAP_TILE + xx)] = col;
-			}
-		}
-	}
+	uint32_t	*px;
+
 	mlx_image_to_window(data->mlx, data->texture->iminimap_bg,
-				data->mini_offset_x, data->mini_offset_y);
+		data->mini_offset_x, data->mini_offset_y);
 	data->texture->imini_player = mlx_new_image(data->mlx,
-		MINIMAP_PSIZE, MINIMAP_PSIZE);
+			MINIMAP_PSIZE, MINIMAP_PSIZE);
 	px = (uint32_t *)data->texture->imini_player->pixels;
 	i = -1;
 	while (++i < MINIMAP_PSIZE * MINIMAP_PSIZE)
@@ -62,16 +33,54 @@ void init_minimap(t_data *data)
 		data->mini_offset_y);
 }
 
+void	init_minimap(t_data *data, int y)
+{
+	int			x;
+	uint32_t	col;
+	int			xx;
+	int			yy;
+	uint32_t	*bg;
+
+	y = -1;
+	data->texture->imini_player = NULL;
+	data->texture->iminimap_bg = NULL;
+	data->texture->iminimap_bg = mlx_new_image(data->mlx, data->w * MINIMAP_TILE, data->h * MINIMAP_TILE);
+	bg = (uint32_t *)data->texture->iminimap_bg->pixels;
+	while (++y < data->h)
+	{
+		x = -1;
+		while (++x < data->w)
+		{
+			if (data->map[y][x] == '1')
+				col = 0xFF0000FF;
+			else
+				col = 0xFFFFFFFF;
+			yy = -1;
+			while (++yy < MINIMAP_TILE)
+			{
+				xx = -1;
+				while (++xx < MINIMAP_TILE)
+					bg[(y * MINIMAP_TILE + yy) * data->w * MINIMAP_TILE + (x * MINIMAP_TILE + xx)] = col;
+			}
+		}
+	}
+	init_miniplayer(data);
+}
+
 void render_player_minimap(t_data *data)
 {
-    if (!data->texture->imini_player)
-        return;
-    float scale = (float)MINIMAP_TILE / T_SIZE;
-    int px = data->mini_offset_x + (int)(data->player->x * scale);
-    int py = data->mini_offset_y + (int)(data->player->y * scale);
-    if (data->texture->imini_player->count > 0)
-    {
-        data->texture->imini_player->instances[0].x = px;
-        data->texture->imini_player->instances[0].y = py;
-    }
+	float	scale;
+	int		px;
+	int		py;
+	
+	if (!data->texture->imini_player)
+		return ;
+	scale = (float)MINIMAP_TILE / T_SIZE;
+	px = data->mini_offset_x + (int)(data->player->x * scale);
+	py = data->mini_offset_y + (int)(data->player->y * scale);
+	if (data->texture->imini_player->count > 0)
+	{
+		data->texture->imini_player->instances[0].x = px;
+		data->texture->imini_player->instances[0].y = py;
+	}
 }

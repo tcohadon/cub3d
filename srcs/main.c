@@ -6,7 +6,7 @@
 /*   By: cohadontom <cohadontom@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 11:22:51 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/07/11 11:34:44 by cohadontom       ###   ########.fr       */
+/*   Updated: 2025/07/14 12:16:39 by cohadontom       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	render_map(&data);
-	init_minimap(&data);
+	init_minimap(&data, -1);
 	mlx_loop_hook(data.mlx, &combined_hook, &data);
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);
