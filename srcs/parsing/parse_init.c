@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cohadontom <cohadontom@student.42.fr>      +#+  +:+       +#+        */
+/*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 11:25:47 by lmancho           #+#    #+#             */
-/*   Updated: 2025/07/08 10:29:29 by cohadontom       ###   ########.fr       */
+/*   Updated: 2025/07/20 16:28:35 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,13 @@ bool	init_texture(t_data *data)
 	data->texture->ifloor = mlx_texture_to_image(data->mlx, floor);
 	data->texture->ray_img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	data->texture->iplayer = mlx_texture_to_image(data->mlx, data->texture->player_texture);
+	data->texture->north_tex = mlx_load_png(data->texture->no_tex);
+	data->texture->south_tex = mlx_load_png(data->texture->so_tex);
+	data->texture->west_tex = mlx_load_png(data->texture->we_tex);
+	data->texture->east_tex = mlx_load_png(data->texture->ea_tex);
+	if (!data->texture->north_tex || !data->texture->south_tex ||
+		!data->texture->west_tex || !data->texture->east_tex)
+		return (fd_printf(2, ERR_IMG), false);
 	mlx_resize_image(data->texture->iplayer, PLAYER_SIZE, PLAYER_SIZE);
 	mlx_image_to_window(data->mlx, data->texture->ray_img, 0, 0);
 	mlx_delete_texture(wall);
@@ -144,6 +151,7 @@ int	init_data(t_data *data, char **av)
 	data->dda = malloc(sizeof(t_dda));
 	if (!data->dda)
 		return (false);
+	ft_memset(data->dda, 0, sizeof(t_dda));
 	return (1);
 }
 

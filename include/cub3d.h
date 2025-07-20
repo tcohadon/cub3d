@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cohadontom <cohadontom@student.42.fr>      +#+  +:+       +#+        */
+/*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 11:11:05 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/07/14 12:16:32 by cohadontom       ###   ########.fr       */
+/*   Updated: 2025/07/20 16:23:58 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,12 @@ typedef struct s_texture
 	mlx_image_t		*iwall;
 	mlx_texture_t	*player_texture;
 	mlx_image_t		*ray_img;
-    mlx_image_t      *iminimap_bg;
-    mlx_image_t      *imini_player;
+	mlx_image_t		*iminimap_bg;
+	mlx_image_t		*imini_player;
+	mlx_texture_t	*north_tex;
+	mlx_texture_t	*south_tex;
+	mlx_texture_t	*west_tex;
+	mlx_texture_t	*east_tex;
 }	t_texture;
 
 typedef struct s_dda
@@ -77,6 +81,8 @@ typedef struct s_dda
 	int	hit_y;
 	int	step_x;
 	int	step_y;
+	double wall_dist;
+
 } t_dda;
 
 typedef struct s_data

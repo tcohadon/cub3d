@@ -3,31 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cohadontom <cohadontom@student.42.fr>      +#+  +:+       +#+        */
+/*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 15:48:00 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/07/11 10:27:47 by cohadontom       ###   ########.fr       */
+/*   Updated: 2025/07/20 16:39:26 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-/* void render_player_minimap(t_data *data)
-{
-    if (!data->texture->imini_player)
-        return;
-        
-    // Calculer la position dans la minimap en fonction de la position réelle du joueur
-    float scale = (float)MINIMAP_TILE / T_SIZE;  // Rapport d'échelle entre jeu et minimap
-    
-    // Position du joueur dans la minimap
-    int px = 10 + (int)(data->player->x * scale) - MINIMAP_PSIZE/2;
-    int py = 10 + (int)(data->player->y * scale) - MINIMAP_PSIZE/2;
-    
-    // Déplacer l'instance du joueur dans la minimap
-    data->texture->imini_player->instances[0].x = px;
-    data->texture->imini_player->instances[0].y = py;
-} */
+
 
 static void	init_player_pos(t_data *data, int x, int y, char angle)
 {
@@ -87,49 +72,117 @@ void	render_player(t_data *data)
 {
 	if (!data->player->x || !data->player->y)
 		return ;
-//	mlx_image_to_window(data->mlx, data->texture->iplayer, data->player->x, data->player->y);
 	data->player->x +=  PLAYER_SIZE / 2;
 	data->player->y += PLAYER_SIZE / 2;
 }
-
-static void	render_wall(t_data *data, int coll, int w_height)
+static void render_wall(t_data *data, int coll, int w_height)
 {
-	int start_y;      // Point de départ du mur sur l'écran
-	int end_y;        // Point de fin du mur sur l'écran
-	int y;            // Position actuelle en Y lors du dessin
-	uint64_t color;   // Couleur du pixel à dessiner
-	// Centrer le mur verticalement (il commence à mi-hauteur - wall_height/2)
-	start_y = (HEIGHT - w_height) / 2;
-	if (start_y < 0)
-		start_y = 0;
-// Le mur se termine à mi-hauteur + wall_height/2
-	end_y = (HEIGHT + w_height) / 2;
-	if (end_y >= HEIGHT)
-		end_y = HEIGHT - 1;
-// Dessiner le plafond (tout ce qui est au-dessus du mur)
-	y = 0;
-	while (y < start_y)
-	{
-		mlx_put_pixel(data->texture->ray_img, coll, y, 0xFFFFFFFF);
-		y++;
-	}
-	// Dessiner le mur (avec une couleur différente selon le côté)
-	while (y < end_y)
-	{
-		// Couleur différente selon le côté du mur touché
-		if (data->dda->hit_side == 0)
-			color = 0xFFFF0000; // Rouge pour murs verticaux (E/W)
-		else
-			color = 0x00000FFF; // Rouge foncé pour murs horizontaux (N/S)
-		mlx_put_pixel(data->texture->ray_img , coll, y, color);
-		y++;
-	}
-	// Dessiner le sol (tout ce qui est en-dessous du mur)
-	while (y < HEIGHT)
-	{
-		mlx_put_pixel(data->texture->ray_img, coll, y, 0xAA3456F); // Couleur du sol
-		y++;
-	}
+    int start_y;
+    int end_y;
+    int y;
+    mlx_texture_t *tex;
+    double wall_x;
+    int tex_x;
+
+    // Déterminer quelle texture utiliser en fonction de l'orientation du mur
+    if (data->dda->hit_side == 0) {
+        // Mur vertical (E/W)
+        if (data->dda->ray_dir_x > 0)
+            tex = data->texture->east_tex;
+        else
+            tex = data->texture->west_tex;
+
+        // Calculer la coordonnée X exacte du point d'impact
+        wall_x = data->player->y + data->dda->wall_dist * data->dda->ray_dir_y;
+    } else {
+        // Mur horizontal (N/S)
+        if (data->dda->ray_dir_y > 0)
+            tex = data->texture->south_tex;
+        else
+            tex = data->texture->north_tex;
+
+        // Calculer la coordonnée X exacte du point d'impact
+        wall_x = data->player->x + data->dda->wall_dist * data->dda->ray_dir_x;
+    }
+
+    // Normaliser wall_x à [0,1] en prenant le module
+    wall_x = fmod(wall_x, T_SIZE) / T_SIZE;
+    if (wall_x < 0)
+        wall_x += 1.0;
+
+    // Calculer la coordonnée X de la texture
+    tex_x = (int)(wall_x * (int)tex->width);
+    if (tex_x < 0 || tex_x >= (int)tex->width)
+        tex_x = 0;  // Éviter les dépassements
+
+    // Inverser la coordonnée X si nécessaire
+    if ((data->dda->hit_side == 0 && data->dda->ray_dir_x < 0) ||
+        (data->dda->hit_side == 1 && data->dda->ray_dir_y < 0))
+        tex_x = (int)tex->width - tex_x - 1;
+
+    // Calculer la position de début et de fin du mur sur l'écran
+    start_y = (HEIGHT - w_height) / 2;
+    if (start_y < 0)
+        start_y = 0;
+
+    end_y = (HEIGHT + w_height) / 2;
+    if (end_y >= HEIGHT)
+        end_y = HEIGHT - 1;
+
+    // Dessiner le plafond en BLEU
+    y = 0;
+    while (y < start_y) {
+        mlx_put_pixel(data->texture->ray_img, coll, y, 0xFF0000FF); // Bleu
+        y++;
+    }
+
+    // Dessiner le mur texturé
+    double step = (double)(int)tex->height / w_height;
+    double tex_pos = 0;
+
+    // Si le mur est plus grand que l'écran, ajuster la position de départ dans la texture
+    if (w_height > HEIGHT)
+        tex_pos = (w_height - HEIGHT) / 2.0 * step;
+    else
+        tex_pos = 0;
+
+    while (y < end_y) {
+        int tex_y = (int)tex_pos;
+
+        // S'assurer que tex_y est dans les limites
+        if (tex_y >= (int)tex->height)
+            tex_y = (int)tex->height - 1;
+
+        tex_pos += step;
+
+        // Vérification des limites pour éviter les accès hors tableau
+        if (tex_y >= 0 && tex_y < (int)tex->height && tex_x >= 0 && tex_x < (int)tex->width) {
+            // Accès aux pixels avec gestion du format RGBA
+            int pixel_index = (tex_y * (int)tex->width + tex_x) * 4;
+            uint8_t r = tex->pixels[pixel_index + 0];
+            uint8_t g = tex->pixels[pixel_index + 1];
+            uint8_t b = tex->pixels[pixel_index + 2];
+            uint8_t a = tex->pixels[pixel_index + 3];
+
+            uint32_t color = (r << 24) | (g << 16) | (b << 8) | a;
+
+            // Assombrir les murs horizontaux pour l'effet 3D
+            if (data->dda->hit_side == 1)
+                color = (color >> 1) & 0x7F7F7F7F;
+
+            mlx_put_pixel(data->texture->ray_img, coll, y, color);
+        } else {
+            // Pixel hors limites, utiliser une couleur de secours
+            mlx_put_pixel(data->texture->ray_img, coll, y, 0xFFFF00FF); // Magenta en cas d'erreur
+        }
+        y++;
+    }
+
+    // Dessiner le sol en VERT
+    while (y < HEIGHT) {
+        mlx_put_pixel(data->texture->ray_img, coll, y, 0xFF00FF00); // Vert
+        y++;
+    }
 }
 
 void	render(t_data *data)
@@ -148,18 +201,16 @@ void	render(t_data *data)
 		if (ray_angle >= 360)
 			ray_angle -= 360;
 		wall_dist = ray_cast(data, ray_angle);
+		data->dda->wall_dist = wall_dist;
 		angle_rad = (ray_angle - data->player->angle) * PI / 180.0;
 		wall_dist = wall_dist * cos(angle_rad);
-        if (wall_dist < 0.1)
-            wall_dist = 0.1;
-
-        // Calcul de la hauteur du mur
+		if (wall_dist < 0.1)
+			wall_dist = 0.1;
 		double ratio = (double) T_SIZE / wall_dist;
-        wall_height = (int)(ratio * PROJECTION);
-
-        // Protection contre les murs trop grands
-        if (wall_height > HEIGHT * 5)
-            wall_height = HEIGHT * 5;
+		wall_height = (int)(ratio * PROJECTION);
+		// Protection contre les murs trop grands
+		if (wall_height > HEIGHT * 5)
+			wall_height = HEIGHT * 5;
 		//printf("Ray %d: angle=%f, wall_dist=%f, wall_height=%d\n", coll, ray_angle, wall_dist, wall_height);
 		render_wall(data, coll, wall_height);
 	}
