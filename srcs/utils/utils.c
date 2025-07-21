@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ucas <ucas@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 13:19:45 by lmancho           #+#    #+#             */
-/*   Updated: 2025/07/01 09:54:48 by ucas             ###   ########.fr       */
+/*   Updated: 2025/07/21 14:18:45 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,25 @@ void	free_all(t_data *data)
 			mlx_delete_image(data->mlx, data->texture->ifloor);
 		if (data->texture->iplayer)
 			mlx_delete_image(data->mlx, data->texture->iplayer);
+		if (data->texture->north_tex)
+			mlx_delete_texture(data->texture->north_tex);
+		if (data->texture->south_tex)
+			mlx_delete_texture(data->texture->south_tex);
+		if (data->texture->west_tex)
+			mlx_delete_texture(data->texture->west_tex);
+		if (data->texture->east_tex)
+			mlx_delete_texture(data->texture->east_tex);
 		free(data->texture);
 	}
 	if (data->player)
 	{
 		free(data->player);
 		data->player = NULL;
+	}
+	if (data->dda)
+	{
+		free(data->dda);
+		data->dda = NULL;
 	}
 }
 

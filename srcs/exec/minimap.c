@@ -6,7 +6,7 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 11:59:04 by cohadontom        #+#    #+#             */
-/*   Updated: 2025/07/21 13:24:26 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/07/21 14:12:30 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,21 +66,3 @@ void	init_minimap(t_data *data, int y)
 	}
 	init_miniplayer(data);
 }
-
-/* void render_player_minimap(t_data *data)
-{
-	float	scale;
-	int		px;
-	int		py;
-
-	if (!data->texture->imini_player)
-		return ;
-	scale = (float)MINIMAP_TILE / T_SIZE;
-	px = data->mini_offset_x + (int)(data->player->x * scale);
-	py = data->mini_offset_y + (int)(data->player->y * scale);
-	if (data->texture->imini_player->count > 0)
-	{
-		data->texture->imini_player->instances[0].x = px;
-		data->texture->imini_player->instances[0].y = py;
-	}
-} */
