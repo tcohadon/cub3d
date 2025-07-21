@@ -6,7 +6,7 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 15:26:26 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/07/21 13:15:26 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/07/21 13:25:58 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,32 @@ void	handle_rotation(t_data *data)
 	}
 }
 
+static void render_minimap_on_image(t_data *data)
+{
+    // 1) fond
+    for (int y = 0; y < data->h; y++)
+        for (int x = 0; x < data->w; x++)
+        {
+            uint32_t col = (data->map[y][x] == '1') ? 0xFFFFFFFF : 0xFFAAAAAA;
+            for (int yy = 0; yy < MINIMAP_TILE; yy++)
+                for (int xx = 0; xx < MINIMAP_TILE; xx++)
+                    mlx_put_pixel(data->texture->ray_img,
+                        data->mini_offset_x + x * MINIMAP_TILE + xx,
+                        data->mini_offset_y + y * MINIMAP_TILE + yy,
+                        col);
+        }
+    // 2) joueur
+    float scale = (float)MINIMAP_TILE / T_SIZE;
+    int px = data->mini_offset_x + (int)(data->player->x * scale);
+    int py = data->mini_offset_y + (int)(data->player->y * scale);
+    for (int yy = 0; yy < MINIMAP_PSIZE; yy++)
+        for (int xx = 0; xx < MINIMAP_PSIZE; xx++)
+            mlx_put_pixel(data->texture->ray_img, px + xx, py + yy, 0xFF0000FF);
+}
+
 void combined_hook(void *param)
 {
-	t_data	*data;
+	t_data *data;
 
 	data = (t_data *)param;
 	hooker(data);
@@ -38,7 +61,7 @@ void combined_hook(void *param)
 	render(data);
 	render_minimap_on_image(data);
 	//render_map(data);
-		render_player_minimap(data);
+		//render_player_minimap(data);
 	//minimap_hook(data);
 	//raycasting_hook(data);
 }

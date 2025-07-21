@@ -2,7 +2,7 @@ NAME       = cub3d
 CC         = cc
 SRC        = srcs/main.c \
              srcs/utils/utils.c \
-             srcs/parsing/parse_args.c \
+             srcs/parsing/parse_arg.c \
              srcs/parsing/parse_init.c \
              srcs/parsing/parse_map.c \
              srcs/parsing/parsing_utils.c \

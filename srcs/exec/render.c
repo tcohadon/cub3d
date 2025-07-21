@@ -6,7 +6,7 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 15:48:00 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/07/21 13:16:25 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/07/21 13:25:31 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	render_map(t_data *data)
 				mlx_image_to_window(data->mlx, image, x, y);
 		}
 	}
-	render_player(data);
+//	render_player(data);
 }
 
 void	render_player(t_data *data)

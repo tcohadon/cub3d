@@ -6,7 +6,7 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 11:11:05 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/07/21 13:14:27 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/07/21 13:22:35 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,5 +148,4 @@ void	render(t_data *data);
 //minimap
 void	minimap_hook(t_data *data);
 void init_minimap(t_data *data, int y);
-bool	check_space_map(t_data *data);
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cohadontom <cohadontom@student.42.fr>      +#+  +:+       +#+        */
+/*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 11:59:04 by cohadontom        #+#    #+#             */
-/*   Updated: 2025/07/14 12:22:02 by cohadontom       ###   ########.fr       */
+/*   Updated: 2025/07/21 13:24:26 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,12 @@ void	init_minimap(t_data *data, int y)
 	init_miniplayer(data);
 }
 
-void render_player_minimap(t_data *data)
+/* void render_player_minimap(t_data *data)
 {
 	float	scale;
 	int		px;
 	int		py;
-	
+
 	if (!data->texture->imini_player)
 		return ;
 	scale = (float)MINIMAP_TILE / T_SIZE;
@@ -83,4 +83,4 @@ void render_player_minimap(t_data *data)
 		data->texture->imini_player->instances[0].x = px;
 		data->texture->imini_player->instances[0].y = py;
 	}
-}
+} */
