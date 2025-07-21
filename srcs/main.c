@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cohadontom <cohadontom@student.42.fr>      +#+  +:+       +#+        */
+/*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 11:22:51 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/07/14 12:16:39 by cohadontom       ###   ########.fr       */
+/*   Updated: 2025/07/21 13:03:46 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ int	main(int ac, char **av)
 		free_all(&data);
 		return (1);
 	}
-	//data.mlx = mlx_init(data.w * T_SIZE, data.h * T_SIZE, "cub3d", false);
 	data.mlx = mlx_init(WIDTH,HEIGHT, "cub3d", false);
 	if (!data.mlx)
 		return (1);

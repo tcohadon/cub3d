@@ -6,7 +6,7 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 13:51:45 by lmancho           #+#    #+#             */
-/*   Updated: 2025/06/20 11:17:02 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/07/21 13:07:10 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ bool	parse_and_fill_map(t_data *data)
 	finalmap_allocation(data);
 	fill_maps_from_split(data, map_start);
 	if (!verify_map(data))
+		return (false);
+	if (!check_space_map(data))
 		return (false);
 	return (true);
 }

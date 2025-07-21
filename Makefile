@@ -14,7 +14,7 @@ SRC        = srcs/main.c \
              srcs/exec/render.c \
              srcs/utils/utils3.c \
              srcs/exec/dda.c \
-			 srcs/exec/minimap.c
+             srcs/exec/minimap.c
 
 OBJ_DIR    = obj
 OBJ        = $(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
@@ -24,19 +24,9 @@ MLX_PATH   = include/MLX42
 MLX_LIB    = $(MLX_PATH)/build/libmlx42.a
 LIBFT_LIB  = $(LIBFT_PATH)/libft.a
 
-# détecte automatiquement le préfix Homebrew
-HOMEBREW_PREFIX := $(shell brew --prefix)
-
-CFLAGS    = -Wall -Wextra -Werror -g -fsanitize=address \
-            -I$(HOMEBREW_PREFIX)/include
-LDFLAGS   = -L$(HOMEBREW_PREFIX)/lib \
-            -lglfw \
-            -framework Cocoa \
-            -framework OpenGL \
-            -framework IOKit \
-            -ldl \
-            -lm \
-            -pthread
+# Sur Linux, on n'utilise pas Homebrew, on peut donc supprimer la détection automatique
+CFLAGS    = -Wall -Wextra -Werror -g -fsanitize=address
+LDFLAGS   = -lglfw -lX11 -lXrandr -lXi -ldl -lm -pthread
 
 # compile chaque .c
 $(OBJ_DIR)/%.o: %.c
