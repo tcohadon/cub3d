@@ -6,22 +6,12 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 15:48:00 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/07/21 14:37:51 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/07/21 14:57:21 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	render_player_minimap(t_data *data)
-{
-	int	px;
-	int	py;
-
-	px = (int)data->player->x - PLAYER_SIZE / 2;
-	py = (int)data->player->y - PLAYER_SIZE / 2;
-	data->texture->iplayer->instances[0].x = px;
-	data->texture->iplayer->instances[0].y = py;
-}
 
 static void	init_player_pos(t_data *data, int x, int y, char angle)
 {

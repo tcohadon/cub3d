@@ -6,7 +6,7 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 11:11:05 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/07/21 13:22:35 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/07/21 14:57:23 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,6 @@ void	finalmap_allocation(t_data *map);
 
 //movement
 void	hooker(t_data *data);
-void	render_player_minimap(t_data *data);
 void	handle_rotation(t_data *data);
 
 
