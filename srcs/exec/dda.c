@@ -6,7 +6,7 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 15:01:39 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/07/20 16:26:46 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/07/21 14:44:18 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,13 @@ void	init_dda(t_data *data, double angle)
 {
 	if (!data)
 		return ;
-	 // point de depart du rayon
 	data->dda->x_start = data->player->x;
 	data->dda->y_start = data->player->y;
-	// angle du rayon
 	data->dda->ray_dir_x = cos(angle * PI / 180.0);
 	data->dda->ray_dir_y = sin(angle * PI / 180.0);
-	// case dans laquelle le joueur se situe
 	data->dda->map_x = (int)(data->dda->x_start / T_SIZE);
 	data->dda->map_y = (int)(data->dda->y_start / T_SIZE);
 	data->dda->delta_dist_x = fabs(1.0 / data->dda->ray_dir_x);
-		// calcule de la valeur absolu pour eviter les angles negatifs
 	data->dda->delta_dist_y = fabs(1.0 / data->dda->ray_dir_y);
 }
 
@@ -35,38 +31,37 @@ static double	ray_check(t_data *data, int side)
 	double	wall_dist;
 
 	if (side == 0)
-		wall_dist =(data->dda->map_x - data->dda->x_start / T_SIZE +
-			(1 - data->dda->step_x) / 2) / data->dda->ray_dir_x;
+		wall_dist = (data->dda->map_x - data->dda->x_start / T_SIZE
+				+ (1 - data->dda->step_x) / 2) / data->dda->ray_dir_x;
 	else
-		wall_dist = (data->dda->map_y - data->dda->y_start / T_SIZE +
-			(1 - data->dda->step_y) / 2) / data->dda->ray_dir_y;
+		wall_dist = (data->dda->map_y - data->dda->y_start / T_SIZE
+				+ (1 - data->dda->step_y) / 2) / data->dda->ray_dir_y;
 	data->dda->hit_side = side;
 	data->dda->hit_x = data->dda->map_x;
 	data->dda->hit_y = data->dda->map_y;
 	return (wall_dist * T_SIZE);
 }
-static double ray_dist(t_data *data, double side_dist_x, double side_dist_y)
+
+static double	ray_dist(t_data *data, double side_dist_x, double side_dist_y)
 {
 	bool	hit;
-	int	side;
+	int		side;
 
 	hit = false;
-	while(!hit)
+	while (!hit)
 	{
 		if (side_dist_x < side_dist_y)
 		{
 			side_dist_x += data->dda->delta_dist_x;
 			data->dda->map_x += data->dda->step_x;
-			side = 0;  // Touché un mur vertical
+			side = 0;
 		}
 		else
 		{
 			side_dist_y += data->dda->delta_dist_y;
 			data->dda->map_y += data->dda->step_y;
-			side = 1;  // Touché un mur horizontal
+			side = 1;
 		}
-
-		// Vérifier si on a touché un mur
 		if (data->copy_map[data->dda->map_y][data->dda->map_x] == '1')
 			hit = true;
 	}
@@ -75,8 +70,8 @@ static double ray_dist(t_data *data, double side_dist_x, double side_dist_y)
 
 double	ray_cast(t_data *data, double angle)
 {
-	double side_dist_x;
-	double side_dist_y;
+	double	side_dist_x;
+	double	side_dist_y;
 
 	init_dda(data, angle);
 	if (data->dda->ray_dir_x < 0)

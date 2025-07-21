@@ -6,7 +6,7 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 15:26:26 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/07/21 14:12:20 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/07/21 14:48:34 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,37 +28,51 @@ void	handle_rotation(t_data *data)
 	}
 }
 
-static void render_minimap_on_image(t_data *data)
+static void	render_minimap_on_image(t_data *data)
 {
-    // 1) fond
-    for (int y = 0; y < data->h; y++)
-        for (int x = 0; x < data->w; x++)
-        {
-            uint32_t col = (data->map[y][x] == '1') ? 0xFFFFFFFF : 0xFFAAAAAA;
-            for (int yy = 0; yy < MINIMAP_TILE; yy++)
-                for (int xx = 0; xx < MINIMAP_TILE; xx++)
-                    mlx_put_pixel(data->texture->ray_img,
-                        data->mini_offset_x + x * MINIMAP_TILE + xx,
-                        data->mini_offset_y + y * MINIMAP_TILE + yy,
-                        col);
-        }
-    // 2) joueur
-    float scale = (float)MINIMAP_TILE / T_SIZE;
-    int px = data->mini_offset_x + (int)(data->player->x * scale);
-    int py = data->mini_offset_y + (int)(data->player->y * scale);
-    for (int yy = 0; yy < MINIMAP_PSIZE; yy++)
-        for (int xx = 0; xx < MINIMAP_PSIZE; xx++)
-            mlx_put_pixel(data->texture->ray_img, px + xx, py + yy, 0xFF0000FF);
+	int			y;
+	int			x;
+	uint32_t	col;
+	float		scale;
+	int			px;
+	int			py;
+
+	y = -1;
+	while (++y < data->h)
+	{
+		x = -1;
+		while (++x < data->w)
+		{
+			if (data->map[y][x] == '1')
+			{
+				col = 0xFFFFFFFF;
+			}
+			else
+			{
+				col = 0xFFAAAAAA;
+			}
+			for (int yy = 0; yy < MINIMAP_TILE; yy++)
+				for (int xx = 0; xx < MINIMAP_TILE; xx++)
+					mlx_put_pixel(data->texture->ray_img, data->mini_offset_x
+						+ x * MINIMAP_TILE + xx, data->mini_offset_y + y
+						* MINIMAP_TILE + yy, col);
+		}
+	}
+	scale = (float)MINIMAP_TILE / T_SIZE;
+	px = data->mini_offset_x + (int)(data->player->x * scale);
+	py = data->mini_offset_y + (int)(data->player->y * scale);
+	for (int yy = 0; yy < MINIMAP_PSIZE; yy++)
+		for (int xx = 0; xx < MINIMAP_PSIZE; xx++)
+			mlx_put_pixel(data->texture->ray_img, px + xx, py + yy, 0xFF0000FF);
 }
 
-void combined_hook(void *param)
+void	combined_hook(void *param)
 {
-	t_data *data;
+	t_data	*data;
 
 	data = (t_data *)param;
 	hooker(data);
 	clear_rays(data);
 	render(data);
 	render_minimap_on_image(data);
-
 }

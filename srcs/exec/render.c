@@ -6,7 +6,7 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 15:48:00 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/07/21 13:25:31 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/07/21 14:37:51 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ void	render_map(t_data *data)
 				mlx_image_to_window(data->mlx, image, x, y);
 		}
 	}
-//	render_player(data);
 }
 
 void	render_player(t_data *data)
@@ -143,12 +142,9 @@ static void	render_wall(t_data *data, int coll, int w_height)
 	if (end_y >= HEIGHT)
 		end_y = HEIGHT - 1;
 	// Dessiner le plafond en BLEU
-	y = 0;
-	while (y < start_y)
-	{
-		mlx_put_pixel(data->texture->ray_img, coll, y, 0xFF0000FF); // Bleu
-		y++;
-	}
+	y = -1;
+	while (++y < start_y)
+		mlx_put_pixel(data->texture->ray_img, coll, y, 0xFFFFF90); // Bleu
 	// Dessiner le mur texturé
 	step = (double)(int)tex->height / w_height;
 	tex_pos = 0;
@@ -157,7 +153,7 @@ static void	render_wall(t_data *data, int coll, int w_height)
 		tex_pos = (w_height - HEIGHT) / 2.0 * step;
 	else
 		tex_pos = 0;
-	while (y < end_y)
+	while (y++ < end_y)
 	{
 		tex_y = (int)tex_pos;
 		// S'assurer que tex_y est dans les limites
@@ -175,25 +171,11 @@ static void	render_wall(t_data *data, int coll, int w_height)
 			b = tex->pixels[pixel_index + 2];
 			a = tex->pixels[pixel_index + 3];
 			color = (r << 24) | (g << 16) | (b << 8) | a;
-			// Assombrir les murs horizontaux pour l'effet 3D
-			if (data->dda->hit_side == 1)
-				color = (color >> 1) & 0x7F7F7F7F;
 			mlx_put_pixel(data->texture->ray_img, coll, y, color);
 		}
-		else
-		{
-			// Pixel hors limites, utiliser une couleur de secours
-			mlx_put_pixel(data->texture->ray_img, coll, y, 0xFFFF00FF);
-				// Magenta en cas d'erreur
-		}
-		y++;
 	}
-	// Dessiner le sol en VERT
-	while (y < HEIGHT)
-	{
-		mlx_put_pixel(data->texture->ray_img, coll, y, 0xFF00FF00); // Vert
-		y++;
-	}
+	while (y++ < HEIGHT)
+		mlx_put_pixel(data->texture->ray_img, coll, y, 0xFFF0AAA); // Vert
 }
 
 void	render(t_data *data)
@@ -221,10 +203,6 @@ void	render(t_data *data)
 			wall_dist = 0.1;
 		ratio = (double)T_SIZE / wall_dist;
 		wall_height = (int)(ratio * PROJECTION);
-		// Protection contre les murs trop grands
-		if (wall_height > HEIGHT * 5)
-			wall_height = HEIGHT * 5;
-		// printf("Ray %d: angle=%f, wall_dist=%f, wall_height=%d\n", coll,
 		render_wall(data, coll, wall_height);
 	}
 }
