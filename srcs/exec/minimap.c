@@ -6,11 +6,9 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 11:59:04 by cohadontom        #+#    #+#             */
-/*   Updated: 2025/07/21 14:12:30 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/07/21 15:47:58 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-// Remplacer TOUT le contenu de minimap.c par ceci :
 
 #include "../../include/cub3d.h"
 
