@@ -6,7 +6,7 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 15:27:14 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/07/21 13:15:34 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/07/21 15:38:42 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,15 @@ static void	cast_loop(t_data *data, float raydir_x, float raydir_y)
 {
 	float	ray_pos_x;
 	float	ray_pos_y;
-	//float	distance;
 	int		map_x;
 	int		map_y;
 
 	ray_pos_y = data->player->y;
 	ray_pos_x = data->player->x;
-	//distance = 0;
 	while (1)
 	{
 		ray_pos_x += raydir_x * 3.0;
 		ray_pos_y += raydir_y * 3.0;
-		//distance += 3.0;
 		map_x = (int)(ray_pos_x / T_SIZE);
 		map_y = (int)(ray_pos_y / T_SIZE);
 		if (map_y < 0 || map_x < 0 || map_y >= (int)map_height(data->map)

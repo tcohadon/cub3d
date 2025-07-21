@@ -14,7 +14,8 @@ SRC        = srcs/main.c \
              srcs/exec/render.c \
              srcs/utils/utils3.c \
              srcs/exec/dda.c \
-             srcs/exec/minimap.c
+             srcs/exec/minimap.c \
+             srcs/utils/hitbox.c
 
 OBJ_DIR    = obj
 OBJ        = $(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))

@@ -6,7 +6,7 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 11:11:05 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/07/21 14:57:23 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/07/21 15:43:44 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,4 +147,9 @@ void	render(t_data *data);
 //minimap
 void	minimap_hook(t_data *data);
 void init_minimap(t_data *data, int y);
+
+//hitbox
+bool	check_hitbox_collision(t_data *data, double x, double y,
+	double hitbox_rad);
+bool	would_collide(t_data *data, double x, double y);
 #endif
