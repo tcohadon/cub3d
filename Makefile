@@ -1,60 +1,62 @@
-NAME = cub3d
+NAME       = cub3d
+CC         = cc
+SRC        = srcs/main.c \
+             srcs/utils/utils.c \
+             srcs/parsing/parse_args.c \
+             srcs/parsing/parse_init.c \
+             srcs/parsing/parse_map.c \
+             srcs/parsing/parsing_utils.c \
+             srcs/parsing/verify_char.c \
+             srcs/utils/utils2.c \
+             srcs/exec/move_player.c \
+             srcs/exec/ray_casting.c \
+             srcs/exec/hook.c \
+             srcs/exec/render.c \
+             srcs/utils/utils3.c \
+             srcs/exec/dda.c \
+             srcs/exec/minimap.c
 
-# Lib
-MLX_PATH = ./include/MLX42/build/
-MLX_NAME = libmlx42.a
-MLX = $(addprefix $(MLX_PATH), $(MLX_NAME))
-LIBFT_PATH = ./include/libft/
-LIBFT_NAME = libft.a
-LIBFT = $(addprefix $(LIBFT_PATH), $(LIBFT_NAME))
+OBJ_DIR    = obj
+OBJ        = $(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
 
-# Sources
-SRC = srcs/main.c srcs/utils/utils.c srcs/parsing/parse_arg.c srcs/parsing/parse_init.c srcs/parsing/parse_map.c srcs/parsing/parsing_utils.c srcs/parsing/verify_char.c srcs/utils/utils2.c srcs/exec/move_player.c srcs/exec/ray_casting.c srcs/exec/hook.c srcs/exec/render.c srcs/utils/utils3.c
-OBJ_DIR = obj
-OBJ := $(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
+LIBFT_PATH = include/libft
+MLX_PATH   = include/MLX42
+MLX_LIB    = $(MLX_PATH)/build/libmlx42.a
+LIBFT_LIB  = $(LIBFT_PATH)/libft.a
 
-# Flags
-FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+# Sur Linux, on n'utilise pas Homebrew, on peut donc supprimer la détection automatique
+CFLAGS    = -Wall -Wextra -Werror -g -fsanitize=address
+LDFLAGS   = -lglfw -lX11 -lXrandr -lXi -ldl -lm -pthread
 
-# Loading bar setup
-TOTAL_FILES := $(words $(SRC))
-CURRENT_FILE := 0
-BAR_LENGTH := 40
-
-# Loading bar function
-define update_loading_bar
-	@$(eval CURRENT_FILE=$(shell echo $$(($(CURRENT_FILE) + 1))))
-	@$(eval PERCENTAGE=$(shell echo $$(($(CURRENT_FILE) * 100 / $(TOTAL_FILES)))))
-	@$(eval PROGRESS=$(shell echo $$(($(CURRENT_FILE) * $(BAR_LENGTH) / $(TOTAL_FILES)))))
-	@printf "\r%-100s" " "
-	@printf "\r[%-$(BAR_LENGTH)s] %3d%% (%d/%d) $<" "$$(printf '%0.s#' $$(seq 1 $(PROGRESS)))" $(PERCENTAGE) $(CURRENT_FILE) $(TOTAL_FILES)
-endef
-
-# Règles de compilation
+# compile chaque .c
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
-	$(call update_loading_bar)
-	@cc $(FLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 all: $(NAME)
 
-$(LIBFT):
-	@make --no-print-directory -C $(LIBFT_PATH)
-	@cmake $(MLX_PATH) -B $(MLX_PATH)/build && make -C $(MLX_PATH)/build -j4
+# build libft et mlx42
+$(LIBFT_LIB):
+	@make -C $(LIBFT_PATH)
+$(MLX_LIB):
+	@cmake $(MLX_PATH) -B $(MLX_PATH)/build
+	@make -C $(MLX_PATH)/build
 
-$(NAME): $(LIBFT) $(MLX) $(OBJ)
-	@echo ""  # New line after loading bar
-	@cc $(FLAGS) $(OBJ) $(LIBFT) $(MLX) -lglfw -ldl -lm -pthread -o $(NAME)
-	@echo "Compilation de $(NAME) réussie !"
+# édition de liens
+$(NAME): $(LIBFT_LIB) $(MLX_LIB) $(OBJ)
+	@echo
+	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT_LIB) $(MLX_LIB) $(LDFLAGS) -o $(NAME)
+	@echo "Compilation réussie : $(NAME)"
 
 clean:
-	@make --no-print-directory clean -C $(LIBFT_PATH)
+	@make -C $(LIBFT_PATH) clean
 	@rm -rf $(OBJ_DIR)
-	@echo "Directory cleaned !"
+	@echo "obj/ supprimé"
 
 fclean: clean
-	@make --no-print-directory fclean -C $(LIBFT_PATH)
-	@rm -rf $(NAME)
+	@make -C $(LIBFT_PATH) fclean
+	@rm -f $(NAME)
+	@echo "$(NAME) supprimé"
 
 re: fclean all
 

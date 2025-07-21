@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 15:26:26 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/06/23 12:49:11 by lmancho          ###   ########.fr       */
+/*   Updated: 2025/07/21 13:15:26 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,17 @@ void	handle_rotation(t_data *data)
 	}
 }
 
-void	combined_hook(void *param)
+void combined_hook(void *param)
 {
 	t_data	*data;
 
 	data = (t_data *)param;
 	hooker(data);
 	clear_rays(data);
-	raycasting_hook(data);
+	render(data);
+	render_minimap_on_image(data);
+	//render_map(data);
+		render_player_minimap(data);
+	//minimap_hook(data);
+	//raycasting_hook(data);
 }

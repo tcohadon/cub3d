@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ucas <ucas@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 12:59:18 by lmancho           #+#    #+#             */
-/*   Updated: 2025/07/01 10:03:48 by ucas             ###   ########.fr       */
+/*   Updated: 2025/07/21 13:17:14 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,11 @@ bool	check_space_map(t_data *data)
 		x = 0;
 		while (data->map[y][x])
 		{
-			if (data->map[y][x] == '0' || data->map[y][x] == 'S' 
+			if (data->map[y][x] == '0' || data->map[y][x] == 'S'
 				|| data->map[y][x] == 'E' || data->map[y][x] == 'N'
 				|| data->map[y][x] == 'W')
 			{
-				if (y == 0 || y == data->h - 1 || x == 0 || x == data-> w - 1 
+				if (y == 0 || y == data->h - 1 || x == 0 || x == data-> w - 1
 					|| data->map[y - 1][x] == ' ' || data->map[y + 1][x] == ' '
 					|| data->map[y][x - 1] == ' ' || data->map[y][x + 1] == ' ')
 				{

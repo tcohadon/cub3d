@@ -6,7 +6,7 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:26:37 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/06/06 14:09:13 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/07/20 16:14:11 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,5 @@ bool	parsing(int ac, char **av)
 		return (fd_printf(2,ERR_EXT), false);
 	if (!file_exist(av[1]))
 		return (fd_printf(2, ERR_FILE), false);
-	//if (!valid_file(av[1]));
 	return (true);
 }

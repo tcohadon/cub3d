@@ -57,10 +57,17 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
+<<<<<<< HEAD
 CMAKE_SOURCE_DIR = /home/ucas/cub3d/include/MLX42
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /home/ucas/cub3d/include/MLX42/build
+=======
+CMAKE_SOURCE_DIR = /home/tcohadon/Desktop/gitrepo/cub3d-main-1/include/MLX42
+
+# The top-level build directory on which CMake was run.
+CMAKE_BINARY_DIR = /home/tcohadon/Desktop/gitrepo/cub3d-main-1/include/MLX42/build
+>>>>>>> Tom
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -132,9 +139,15 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
+<<<<<<< HEAD
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ucas/cub3d/include/MLX42/build/CMakeFiles /home/ucas/cub3d/include/MLX42/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ucas/cub3d/include/MLX42/build/CMakeFiles 0
+=======
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/tcohadon/Desktop/gitrepo/cub3d-main-1/include/MLX42/build/CMakeFiles /home/tcohadon/Desktop/gitrepo/cub3d-main-1/include/MLX42/build//CMakeFiles/progress.marks
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/tcohadon/Desktop/gitrepo/cub3d-main-1/include/MLX42/build/CMakeFiles 0
+>>>>>>> Tom
 .PHONY : all
 
 # The main clean target

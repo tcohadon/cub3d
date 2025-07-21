@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 11:25:47 by lmancho           #+#    #+#             */
-/*   Updated: 2025/06/23 15:05:15 by lmancho          ###   ########.fr       */
+/*   Updated: 2025/07/21 13:16:52 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,15 @@ bool	init_texture(t_data *data)
 	data->texture->player_texture = mlx_load_png("srcs/img/player.png");
 	data->texture->iwall = mlx_texture_to_image(data->mlx, wall);
 	data->texture->ifloor = mlx_texture_to_image(data->mlx, floor);
-	data->texture->ray_img = mlx_new_image(data->mlx, data->w * T_SIZE,
-			data->h * T_SIZE);
-	data->texture->iplayer = mlx_texture_to_image(data->mlx,
-		data->texture->player_texture);
+	data->texture->ray_img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+	data->texture->iplayer = mlx_texture_to_image(data->mlx, data->texture->player_texture);
+	data->texture->north_tex = mlx_load_png(data->texture->no_tex);
+	data->texture->south_tex = mlx_load_png(data->texture->so_tex);
+	data->texture->west_tex = mlx_load_png(data->texture->we_tex);
+	data->texture->east_tex = mlx_load_png(data->texture->ea_tex);
+	if (!data->texture->north_tex || !data->texture->south_tex ||
+		!data->texture->west_tex || !data->texture->east_tex)
+		return (fd_printf(2, ERR_IMG), false);
 	mlx_resize_image(data->texture->iplayer, PLAYER_SIZE, PLAYER_SIZE);
 	mlx_image_to_window(data->mlx, data->texture->ray_img, 0, 0);
 	mlx_delete_texture(wall);
@@ -130,5 +135,22 @@ int	init_data(t_data *data, char **av)
 	if (!parse_and_fill_map(data))
 		return (false);
 	debug_data(data);
+	data->texture->ifloor = NULL;
+	data->texture->iplayer = NULL;
+	data->texture->iwall = NULL;
+	data->player = malloc(sizeof(t_player));
+	if (!data->player)
+		return (false);
+	data->player->x = 0;
+	data->player->y = 0;
+	data->player->mini_x = 0;
+	data->player->mini_y = 0;
+	data->player->speed = 2.0f;
+	data->player->is_moving = false;
+	data->player->angle = 0.0;
+	data->dda = malloc(sizeof(t_dda));
+	if (!data->dda)
+		return (false);
+	ft_memset(data->dda, 0, sizeof(t_dda));
 	return (1);
 }

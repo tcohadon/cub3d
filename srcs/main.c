@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ucas <ucas@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 11:22:51 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/07/01 09:58:54 by ucas             ###   ########.fr       */
+/*   Updated: 2025/07/21 13:17:22 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,30 +16,18 @@
 
 void	init_0(t_data *data, char *map_path)
 {
-    data->fd = -1;
-    data->path = map_path;
-    data->h = 0;
-    data->w = 0;
-    data->map = NULL;
-    data->copy_map = NULL;
-    data->split_content = NULL;
-    data->texture = NULL;
-    data->content_of_filename = NULL;
-    data->img = NULL;
-    data->player = malloc(sizeof(t_player));
-    if (!data->player)
-        return ;
-    data->player->x = 0;
-    data->player->y = 0;
-    data->player->speed = 2.0f;
-    data->player->is_moving = false;
-    data->player->angle = 0.0;
-    data->texture = malloc(sizeof(t_texture));
-    if (!data->texture)
-        return ;
-    data->texture->ifloor = NULL;
-    data->texture->iplayer = NULL;
-    data->texture->iwall = NULL;
+	data->fd = -1;
+	data->path = map_path;
+	data->h = 0;
+	data->w = 0;
+	data->map = NULL;
+	data->copy_map = NULL;
+	data->split_content = NULL;
+	data->texture = NULL;
+	data->content_of_filename = NULL;
+	data->img = NULL;
+	data->mini_offset_x = 0;
+	data->mini_offset_y = 0;
 }
 
 int	main(int ac, char **av)
@@ -60,7 +48,7 @@ int	main(int ac, char **av)
 		free_all(&data);
 		return (1);
 	}
-	data.mlx = mlx_init(data.w * T_SIZE, data.h * T_SIZE, "cub3d", false);
+	data.mlx = mlx_init(WIDTH,HEIGHT, "cub3d", false);
 	if (!data.mlx)
 		return (1);
 	if (!init_texture(&data))
@@ -69,6 +57,7 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	render_map(&data);
+	init_minimap(&data, -1);
 	mlx_loop_hook(data.mlx, &combined_hook, &data);
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);

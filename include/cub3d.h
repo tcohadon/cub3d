@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ucas <ucas@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 11:11:05 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/07/11 09:16:51 by ucas             ###   ########.fr       */
+/*   Updated: 2025/07/21 13:14:27 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,21 @@
 
 # define T_SIZE 50
 # define PLAYER_SIZE 5
-# define PI 3.1415926535
+# define PI 3.14159265358979323846
 # define FOV 60.0
 # define NUM_RAYS 1000
+# define WIDTH 960
+# define HEIGHT 540
+# define PROJECTION 831.4
+# define MINIMAP_TILE 8
+# define MINIMAP_PSIZE 4
 
 typedef struct s_player
 {
 	float	x;
 	float	y;
+	float	mini_x;
+	float	mini_y;
 	float target_x;
 	float target_y;
 	float speed;
@@ -51,7 +58,32 @@ typedef struct s_texture
 	mlx_image_t		*iwall;
 	mlx_texture_t	*player_texture;
 	mlx_image_t		*ray_img;
+	mlx_image_t		*iminimap_bg;
+	mlx_image_t		*imini_player;
+	mlx_texture_t	*north_tex;
+	mlx_texture_t	*south_tex;
+	mlx_texture_t	*west_tex;
+	mlx_texture_t	*east_tex;
 }	t_texture;
+
+typedef struct s_dda
+{
+	double	x_start;
+	double	y_start;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	int	map_x;
+	int	map_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	int	hit_side;
+	int	hit_x;
+	int	hit_y;
+	int	step_x;
+	int	step_y;
+	double wall_dist;
+
+} t_dda;
 
 typedef struct s_data
 {
@@ -69,6 +101,9 @@ typedef struct s_data
 	mlx_image_t	*img;
 	t_texture	*texture;
 	t_player	*player;
+	t_dda		*dda;
+	int mini_offset_x;
+	int mini_offset_y;
 }	t_data;
 
 //Parsing
@@ -107,5 +142,11 @@ bool	init_texture(t_data *data);
 
 //render
 void	render_player(t_data *data);
+double	ray_cast(t_data *data, double angle);
+void	render(t_data *data);
 
+//minimap
+void	minimap_hook(t_data *data);
+void init_minimap(t_data *data, int y);
+bool	check_space_map(t_data *data);
 #endif
