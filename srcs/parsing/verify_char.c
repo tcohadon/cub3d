@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verify_char.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cohadontom <cohadontom@student.42.fr>      +#+  +:+       +#+        */
+/*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 12:37:50 by lmancho           #+#    #+#             */
-/*   Updated: 2025/07/07 11:43:46 by cohadontom       ###   ########.fr       */
+/*   Updated: 2025/07/23 12:18:08 by lmancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static bool	check_map_border_top(t_data *data)
 	while (data->map[0][i])
 	{
 		if (data->map[0][i] != ' ' && data->map[0][i] != '1')
-			err_msg(ERR_TOPWALL, false);
+			return (fd_printf(2, ERR_TOPWALL, 1), false);
 		i++;	
 	}
 	last = data->h - 1;
@@ -71,7 +71,7 @@ static bool	check_map_border_top(t_data *data)
 	while (data->map[last][i])
 	{
 		if (data->map[last][i] != ' ' && data->map[last][i] != '1')
-			err_msg(ERR_BOTTOMWALL, false);
+			return (fd_printf(2, ERR_BOTTOMWALL, 1), false);
 		i++;
 	}
 	return (true);
@@ -89,7 +89,7 @@ static bool	check_map_lr(t_data *data)
 		while (data->map[x][y] && data->map[x][y] == ' ')
 			y++;
 		if (data->map[x][y] != '1')
-			err_msg(ERR_LEFTWALL, false);
+			return (fd_printf(2, ERR_LEFTWALL, 1), false);
 		x++;
 	}
 	x = 0;
@@ -101,7 +101,7 @@ static bool	check_map_lr(t_data *data)
 		while (data->map && data->map[x][y] == ' ')
 			y--;
 		if (data->map[x][y] != '1')
-			err_msg(ERR_RIGHTWALL, false);
+			return (fd_printf(2, ERR_RIGHTWALL, 1), false);
 		x++;
 	}
 	return (true);

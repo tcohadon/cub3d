@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 11:25:47 by lmancho           #+#    #+#             */
-/*   Updated: 2025/07/21 13:16:52 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/07/23 12:14:11 by lmancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ bool	init_texture(t_data *data)
 
 	wall = mlx_load_png("srcs/img/wall.png");
 	if (!wall)
-		return (fd_printf(2, ERR_IMG), false);
+		return (false, fd_printf(2, ERR_IMG, 1));
 	floor = mlx_load_png("srcs/img/floor.png");
 	if (!floor)
-		return (fd_printf(2, ERR_IMG), false);
+		return (false, fd_printf(2, ERR_IMG, 1));
 	data->texture->player_texture = mlx_load_png("srcs/img/player.png");
 	data->texture->iwall = mlx_texture_to_image(data->mlx, wall);
 	data->texture->ifloor = mlx_texture_to_image(data->mlx, floor);
@@ -36,7 +36,7 @@ bool	init_texture(t_data *data)
 	data->texture->east_tex = mlx_load_png(data->texture->ea_tex);
 	if (!data->texture->north_tex || !data->texture->south_tex ||
 		!data->texture->west_tex || !data->texture->east_tex)
-		return (fd_printf(2, ERR_IMG), false);
+		return (false, fd_printf(2, ERR_IMG, 1));
 	mlx_resize_image(data->texture->iplayer, PLAYER_SIZE, PLAYER_SIZE);
 	mlx_image_to_window(data->mlx, data->texture->ray_img, 0, 0);
 	mlx_delete_texture(wall);
@@ -125,7 +125,8 @@ int	init_data(t_data *data, char **av)
 	data->texture = ft_calloc(1, sizeof(t_texture));
 	if (!data->texture)
 		return (fd_printf(2, ERR_ALLOC), 0);
-	parse_file(data);
+	if (!parse_file(data))
+		return (false);
 	if (!parse_ressources(data))
 		return (false);
 	if (!data->texture->no_tex || !data->texture->so_tex ||
@@ -138,9 +139,12 @@ int	init_data(t_data *data, char **av)
 	data->texture->ifloor = NULL;
 	data->texture->iplayer = NULL;
 	data->texture->iwall = NULL;
-	data->player = malloc(sizeof(t_player));
 	if (!data->player)
-		return (false);
+	{
+		data->player = malloc(sizeof(t_player));
+		if (!data->player)
+			return (fd_printf(2, ERR_ALLOC), 0);
+	}
 	data->player->x = 0;
 	data->player->y = 0;
 	data->player->mini_x = 0;

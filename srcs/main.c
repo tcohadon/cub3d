@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 11:22:51 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/07/21 13:17:22 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/07/23 11:50:43 by lmancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	init_0(t_data *data, char *map_path)
 	data->content_of_filename = NULL;
 	data->img = NULL;
 	data->mini_offset_x = 0;
+	data->player = NULL;
 	data->mini_offset_y = 0;
 }
 
@@ -37,6 +38,7 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		return (fd_printf(2, ERR_ARG), 1);
+	ft_memset(&data, 0, sizeof(t_data));
 	init_0(&data, av[1]);
 	if (!parsing(ac, av))
 	{

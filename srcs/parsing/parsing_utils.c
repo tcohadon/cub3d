@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 12:59:18 by lmancho           #+#    #+#             */
-/*   Updated: 2025/07/21 13:17:14 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/07/23 11:39:19 by lmancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ bool	check_space_map(t_data *data)
 					|| data->map[y - 1][x] == ' ' || data->map[y + 1][x] == ' '
 					|| data->map[y][x - 1] == ' ' || data->map[y][x + 1] == ' ')
 				{
-					printf("Error at position (%d, %d): %c\n", y, x, data->map[y][x]);
 					return (fd_printf(2, ERR_SPACE), false);
 				}
 			}
