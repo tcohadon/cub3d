@@ -6,7 +6,7 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 14:19:07 by lmancho           #+#    #+#             */
-/*   Updated: 2025/07/26 16:26:42 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/07/26 16:34:03 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ char	*ft_tab_to_hex(char **tab)
 	if (!color_tab[2])
 		return (NULL);
 	color_tab[3] = NULL;
+	free_tab(tab);
 	res = (ft_join_tab(color_tab));
 	if (!res)
 		return (NULL);
@@ -150,8 +151,5 @@ bool	parse_color(t_data *data)
 		return (false);
 	data->texture->ceiling_hex = ft_hex_to_uint32(hex_ceiling);
 	data->texture->floor_hex = ft_hex_to_uint32(hex_floor);
-	printf("floor str : %s\nceiling str: %s\n", hex_floor, hex_ceiling);
-	printf("floor: %u\nceiling: %u\n", data->texture->floor_hex,
-		data->texture->ceiling_hex);
-	return (true);
+	return (free(hex_ceiling), free(hex_floor), true);
 }
