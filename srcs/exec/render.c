@@ -6,7 +6,7 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 15:48:00 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/07/21 14:57:21 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/07/26 16:29:34 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ static void	init_player_pos(t_data *data, int x, int y, char angle)
 	tile_py = y * T_SIZE;
 	px = tile_px + (T_SIZE - PLAYER_SIZE) / 2;
 	py = tile_py + (T_SIZE - PLAYER_SIZE) / 2;
-	mlx_image_to_window(data->mlx, data->texture->ifloor, tile_px, tile_py);
-	mlx_image_to_window(data->mlx, data->texture->iplayer, px, py);
 	data->player->x = px + PLAYER_SIZE / 2;
 	data->player->y = py + PLAYER_SIZE / 2;
 	data->player->mini_x = data->player->x;
@@ -44,7 +42,6 @@ void	render_map(t_data *data)
 {
 	int			x;
 	int			y;
-	mlx_image_t	*image;
 
 	y = -1;
 	while (data->copy_map[++y])
@@ -52,16 +49,9 @@ void	render_map(t_data *data)
 		x = -1;
 		while (data->copy_map[y][++x])
 		{
-			image = NULL;
-			if (data->copy_map[y][x] == '1')
-				image = data->texture->iwall;
-			else if (data->copy_map[y][x] == '0')
-				image = data->texture->ifloor;
 			if (data->copy_map[y][x] == 'N' || data->copy_map[y][x] == 'S'
 				|| data->copy_map[y][x] == 'E' || data->copy_map[y][x] == 'W')
 				init_player_pos(data, x, y, data->copy_map[y][x]);
-			if (image)
-				mlx_image_to_window(data->mlx, image, x, y);
 		}
 	}
 }
@@ -134,7 +124,7 @@ static void	render_wall(t_data *data, int coll, int w_height)
 	// Dessiner le plafond en BLEU
 	y = -1;
 	while (++y < start_y)
-		mlx_put_pixel(data->texture->ray_img, coll, y, 0xFFFFF90); // Bleu
+		mlx_put_pixel(data->texture->ray_img, coll, y, data->texture->ceiling_hex); // Bleu
 	// Dessiner le mur texturé
 	step = (double)(int)tex->height / w_height;
 	tex_pos = 0;
@@ -165,7 +155,7 @@ static void	render_wall(t_data *data, int coll, int w_height)
 		}
 	}
 	while (y++ < HEIGHT)
-		mlx_put_pixel(data->texture->ray_img, coll, y, 0xFFF0AAA); // Vert
+		mlx_put_pixel(data->texture->ray_img, coll, y, data->texture->floor_hex);
 }
 
 void	render(t_data *data)

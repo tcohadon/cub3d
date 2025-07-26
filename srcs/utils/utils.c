@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 13:19:45 by lmancho           #+#    #+#             */
-/*   Updated: 2025/07/23 11:54:25 by lmancho          ###   ########.fr       */
+/*   Updated: 2025/07/26 15:45:38 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,6 @@ void	free_all(t_data *data)
 		free(data->texture->ea_tex);
 		free(data->texture->floor_color);
 		free(data->texture->ceiling_color);
-		if (data->texture->player_texture)
-			mlx_delete_texture(data->texture->player_texture);
-		if (data->texture->iwall)
-			mlx_delete_image(data->mlx, data->texture->iwall);
-		if (data->texture->ifloor)
-			mlx_delete_image(data->mlx, data->texture->ifloor);
-		if (data->texture->iplayer)
-			mlx_delete_image(data->mlx, data->texture->iplayer);
 		if (data->texture->north_tex)
 			mlx_delete_texture(data->texture->north_tex);
 		if (data->texture->south_tex)

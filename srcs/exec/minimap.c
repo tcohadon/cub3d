@@ -6,13 +6,13 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 11:59:04 by cohadontom        #+#    #+#             */
-/*   Updated: 2025/07/21 15:47:58 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/07/26 15:23:09 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-static void	init_miniplayer(t_data *data)
+/* static void	init_miniplayer(t_data *data)
 {
 	int			i;
 	uint32_t	*px;
@@ -63,4 +63,4 @@ void	init_minimap(t_data *data, int y)
 		}
 	}
 	init_miniplayer(data);
-}
+} */

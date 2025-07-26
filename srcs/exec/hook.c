@@ -6,7 +6,7 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 15:26:26 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/07/21 15:00:32 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/07/26 12:14:59 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	handle_rotation(t_data *data)
 	}
 }
 
-static void	render_player_minimap(t_data *data)
+/*  static void	render_player_minimap(t_data *data)
 {
 	int	px;
 	int	py;
@@ -48,7 +48,7 @@ static void	render_player_minimap(t_data *data)
 	}
 }
 
-static void	render_minimap_on_image(t_data *data)
+ static void	render_minimap_on_image(t_data *data)
 {
 	int			y;
 	int			x;
@@ -78,7 +78,7 @@ static void	render_minimap_on_image(t_data *data)
 		}
 	}
 	render_player_minimap(data);
-}
+} */
 
 void	combined_hook(void *param)
 {
@@ -88,5 +88,5 @@ void	combined_hook(void *param)
 	hooker(data);
 	clear_rays(data);
 	render(data);
-	render_minimap_on_image(data);
+	//render_minimap_on_image(data);
 }

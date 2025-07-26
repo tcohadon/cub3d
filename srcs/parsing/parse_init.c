@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 11:25:47 by lmancho           #+#    #+#             */
-/*   Updated: 2025/07/23 12:14:11 by lmancho          ###   ########.fr       */
+/*   Updated: 2025/07/26 16:03:20 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,7 @@
 
 bool	init_texture(t_data *data)
 {
-	mlx_texture_t	*wall;
-	mlx_texture_t	*floor;
-
-	wall = mlx_load_png("srcs/img/wall.png");
-	if (!wall)
-		return (false, fd_printf(2, ERR_IMG, 1));
-	floor = mlx_load_png("srcs/img/floor.png");
-	if (!floor)
-		return (false, fd_printf(2, ERR_IMG, 1));
-	data->texture->player_texture = mlx_load_png("srcs/img/player.png");
-	data->texture->iwall = mlx_texture_to_image(data->mlx, wall);
-	data->texture->ifloor = mlx_texture_to_image(data->mlx, floor);
 	data->texture->ray_img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-	data->texture->iplayer = mlx_texture_to_image(data->mlx, data->texture->player_texture);
 	data->texture->north_tex = mlx_load_png(data->texture->no_tex);
 	data->texture->south_tex = mlx_load_png(data->texture->so_tex);
 	data->texture->west_tex = mlx_load_png(data->texture->we_tex);
@@ -37,10 +24,6 @@ bool	init_texture(t_data *data)
 	if (!data->texture->north_tex || !data->texture->south_tex ||
 		!data->texture->west_tex || !data->texture->east_tex)
 		return (false, fd_printf(2, ERR_IMG, 1));
-	mlx_resize_image(data->texture->iplayer, PLAYER_SIZE, PLAYER_SIZE);
-	mlx_image_to_window(data->mlx, data->texture->ray_img, 0, 0);
-	mlx_delete_texture(wall);
-	mlx_delete_texture(floor);
 	return (true);
 }
 
@@ -135,10 +118,7 @@ int	init_data(t_data *data, char **av)
 		return (fd_printf(2, ERR_TEXTURES), false);
 	if (!parse_and_fill_map(data))
 		return (false);
-	debug_data(data);
-	data->texture->ifloor = NULL;
-	data->texture->iplayer = NULL;
-	data->texture->iwall = NULL;
+	//debug_data(data);
 	if (!data->player)
 	{
 		data->player = malloc(sizeof(t_player));

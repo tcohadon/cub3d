@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cohadontom <cohadontom@student.42.fr>      +#+  +:+       +#+        */
+/*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 11:22:51 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/07/25 19:07:26 by cohadontom       ###   ########.fr       */
+/*   Updated: 2025/07/26 15:26:46 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,13 @@ int	main(int ac, char **av)
 	data.mlx = mlx_init(WIDTH,HEIGHT, "cub3d", false);
 	if (!data.mlx)
 		return (1);
-	if (!init_texture(&data))
+	if (!init_texture(&data) ||!parse_color(&data))
 	{
 		free_all(&data);
 		return (1);
 	}
 	render_map(&data);
-	init_minimap(&data, -1);
+	//init_minimap(&data, -1);
 	mlx_loop_hook(data.mlx, &combined_hook, &data);
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);

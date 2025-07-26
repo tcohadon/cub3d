@@ -6,7 +6,7 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 11:11:05 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/07/21 15:43:44 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/07/26 15:42:03 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,9 @@ typedef struct s_texture
 	char			*ea_tex;
 	char			*floor_color;
 	char			*ceiling_color;
-	mlx_image_t		*ifloor;
-	mlx_image_t		*iplayer;
-	mlx_image_t		*iwall;
-	mlx_texture_t	*player_texture;
+	uint32_t		floor_hex;
+	uint32_t		ceiling_hex;
 	mlx_image_t		*ray_img;
-	mlx_image_t		*iminimap_bg;
-	mlx_image_t		*imini_player;
 	mlx_texture_t	*north_tex;
 	mlx_texture_t	*south_tex;
 	mlx_texture_t	*west_tex;
@@ -114,11 +110,14 @@ bool	verify_map(t_data *data);
 void	render_map(t_data *data);
 bool	validate_color_format(const char *line);
 bool	check_space_map(t_data *data);
+bool	parse_color(t_data *data);
+
 //Utils
 bool	is_empty_line(char *line);
 void	free_all(t_data *data);
 void	debug_data(t_data *data);
 void	err_msg(char *str, int code);
+void	free_tab(char **tab);
 
 //Init
 int		init_data(t_data *data, char **av);
