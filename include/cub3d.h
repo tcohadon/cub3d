@@ -117,6 +117,8 @@ bool	is_empty_line(char *line);
 void	free_all(t_data *data);
 void	debug_data(t_data *data);
 void	err_msg(char *str, int code);
+bool	is_valid_png(const char *filename);
+bool validate_resources(t_data *data);
 void	free_tab(char **tab);
 
 //Init

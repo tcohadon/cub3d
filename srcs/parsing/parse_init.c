@@ -23,7 +23,7 @@ bool	init_texture(t_data *data)
 	data->texture->east_tex = mlx_load_png(data->texture->ea_tex);
 	if (!data->texture->north_tex || !data->texture->south_tex ||
 		!data->texture->west_tex || !data->texture->east_tex)
-		return (false, fd_printf(2, ERR_IMG, 1));
+		return (fd_printf(2, ERR_IMG, 1), false);
 	return (true);
 }
 
@@ -111,6 +111,8 @@ int	init_data(t_data *data, char **av)
 	if (!parse_file(data))
 		return (false);
 	if (!parse_ressources(data))
+		return (false);
+	if (!validate_resources(data))
 		return (false);
 	if (!data->texture->no_tex || !data->texture->so_tex ||
 		!data->texture->we_tex || !data->texture->ea_tex ||

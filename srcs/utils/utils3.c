@@ -74,3 +74,13 @@ bool	validate_color_format(const char *line)
 		return (false);
 	return (true);
 }
+
+bool validate_resources(t_data *data)
+{
+	if (!is_valid_png(data->texture->no_tex) ||
+		!is_valid_png(data->texture->so_tex) ||
+		!is_valid_png(data->texture->we_tex) ||
+		!is_valid_png(data->texture->ea_tex))
+		return (false);
+	return (true);
+}

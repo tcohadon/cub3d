@@ -101,3 +101,18 @@ void	debug_data(t_data *data)
     else
         printf("texture: NULL\n");
 }
+
+bool is_valid_png(const char *filename)
+{
+	const char *ext;
+	int fd;
+
+	ext = ft_strchr(filename, '.');
+	if (!ext || ft_strcmp(ext, ".png") != 0)
+		return (fd_printf(2, "Invalid file extension for: %s\n", filename), false);
+	fd = open(filename, O_RDONLY);
+	if (fd < 0)
+		return (fd_printf(2, "Cannot open file: %s\n", filename), false);
+	close(fd);
+	return (true);
+}
