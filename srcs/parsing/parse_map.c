@@ -62,33 +62,33 @@ static int	max_map_width(char **split_content, int start, int end)
 	return (max);
 }
 
-static void    fill_maps_from_split(t_data *data, int map_start)
+static void	fill_maps_from_split(t_data *data, int map_start)
 {
-    int i;
-    int j;
+	int	i;
+	int	j;
 
-    i = 0;
-    while (i < data->h)
-    {
-        j = 0;
-        while (data->split_content[map_start + i][j])
-        {
-            data->map[i][j] = data->split_content[map_start + i][j];
-            data->copy_map[i][j] = data->split_content[map_start + i][j];
-            j++;
-        }
-        while (j < data->w)
-        {
-            data->map[i][j] = ' ';
-            data->copy_map[i][j] = ' ';
-            j++;
-        }
-        data->map[i][j] = '\0';
-        data->copy_map[i][j] = '\0';
-        i++;
-    }
-    data->map[data->h] = NULL;
-    data->copy_map[data->h] = NULL;
+	i = 0;
+	while (i < data->h)
+	{
+		j = 0;
+		while (data->split_content[map_start + i][j])
+		{
+			data->map[i][j] = data->split_content[map_start + i][j];
+			data->copy_map[i][j] = data->split_content[map_start + i][j];
+			j++;
+		}
+		while (j < data->w)
+		{
+			data->map[i][j] = ' ';
+			data->copy_map[i][j] = ' ';
+			j++;
+		}
+		data->map[i][j] = '\0';
+		data->copy_map[i][j] = '\0';
+		i++;
+	}
+	data->map[data->h] = NULL;
+	data->copy_map[data->h] = NULL;
 }
 
 bool	parse_and_fill_map(t_data *data)

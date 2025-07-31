@@ -23,9 +23,6 @@ static bool	valid_ext(char *av)
 
 bool	verif_ext(char *av)
 {
-	int	i;
-
-	i = 0;
 	if (!av)
 		return (false);
 	av += ft_strlen(av) - 1;
@@ -36,4 +33,28 @@ bool	verif_ext(char *av)
 		av--;
 	}
 	return (false);
+}
+
+bool	parse_texture(char *line, char **texture, const char *prefix)
+{
+	if (*texture != NULL)
+		return (fd_printf(2, ERR_DUPLICATE), false);
+	*texture = ft_strdup(line + ft_strlen(prefix));
+	return (*texture != NULL);
+}
+
+bool	parse_colorutils(char *line, char **color, const char *prefix)
+{
+	if (*color != NULL)
+		return (fd_printf(2, ERR_DUPLICATE), false);
+	if (!validate_color_format(line + ft_strlen(prefix)))
+		return (false);
+	*color = ft_strdup(line + ft_strlen(prefix));
+	return (*color != NULL);
+}
+
+bool	is_valid_char(char c)
+{
+	return (c == '0' || c == '1' || c == ' ' || c == 'N' || c == 'S'
+		|| c == 'E' || c == 'W');
 }

@@ -12,41 +12,43 @@
 
 #include "../../include/cub3d.h"
 
-static bool	is_valid_char(char c)
-{
-	return (c == '0' || c == '1' || c == ' ' || c == 'N' || c == 'S'
-		|| c == 'E' || c == 'W');
-}
-
-static bool	check_map_chars(t_data *game)
+static bool	validate_map_chars(t_data *game, int *player, int *walkable)
 {
 	int	i;
 	int	j;
-	int	player;
-	int	walkable;
 
-	walkable = 0;
 	i = 0;
-	player = 0;
 	while (game->map[i])
 	{
 		j = 0;
 		while (game->map[i][j])
 		{
 			if (!is_valid_char(game->map[i][j]))
-				return (fd_printf(2, "Error\nInvalid character in map\n"), false);
+				return (fd_printf(2, ERR_INVALID, 1), false);
 			if (game->map[i][j] == 'N' || game->map[i][j] == 'S'
 				|| game->map[i][j] == 'E' || game->map[i][j] == 'W')
 			{
-				walkable++;
-				player++;
+				(*walkable)++;
+				(*player)++;
 			}
 			else if (game->map[i][j] == '0')
-				walkable++;
+				(*walkable)++;
 			j++;
 		}
 		i++;
 	}
+	return (true);
+}
+
+static bool	check_map_chars(t_data *game)
+{
+	int	player;
+	int	walkable;
+
+	player = 0;
+	walkable = 0;
+	if (!validate_map_chars(game, &player, &walkable))
+		return (false);
 	if (player != 1)
 		return (fd_printf(2, ERR_PLAYER), false);
 	if (walkable == 0)
@@ -56,15 +58,15 @@ static bool	check_map_chars(t_data *game)
 
 static bool	check_map_border_top(t_data *data)
 {
-	int i;
-	int last;
+	int	i;
+	int	last;
 
 	i = 0;
 	while (data->map[0][i])
 	{
 		if (data->map[0][i] != ' ' && data->map[0][i] != '1')
 			return (fd_printf(2, ERR_TOPWALL, 1), false);
-		i++;	
+		i++;
 	}
 	last = data->h - 1;
 	i = 0;
@@ -80,7 +82,7 @@ static bool	check_map_border_top(t_data *data)
 static bool	check_map_lr(t_data *data)
 {
 	int	x;
-	int y;
+	int	y;
 
 	x = 0;
 	while (data->map[x])
@@ -90,11 +92,6 @@ static bool	check_map_lr(t_data *data)
 			y++;
 		if (data->map[x][y] != '1')
 			return (fd_printf(2, ERR_LEFTWALL, 1), false);
-		x++;
-	}
-	x = 0;
-	while (data->map[x])
-	{
 		y = 0;
 		while (data->map[x][y + 1])
 			y++;
@@ -109,11 +106,11 @@ static bool	check_map_lr(t_data *data)
 
 bool	verify_map(t_data *data)
 {
-    if (!check_map_border_top(data))
-        return (false);
-    if (!check_map_lr(data))
-        return false;
-    if (!check_map_chars(data))
-        return false;
-    return true;
+	if (!check_map_border_top(data))
+		return (false);
+	if (!check_map_lr(data))
+		return (false);
+	if (!check_map_chars(data))
+		return (false);
+	return (true);
 }

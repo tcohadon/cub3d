@@ -12,29 +12,6 @@
 
 #include "../../include/cub3d.h"
 
-static bool	valid_ext(char *av)
-{
-	if (ft_strlen(av) != 4)
-		return (false);
-	if (!ft_strcmp(av, ".cub"))
-		return (true);
-	return (false);
-}
-
-bool	verif_ext(char *av)
-{
-	if (!av)
-		return (false);
-	av += ft_strlen(av) - 1;
-	while (*av)
-	{
-		if (*av == '.')
-			return (valid_ext(av));
-		av--;
-	}
-	return (false);
-}
-
 void	err_msg(char *str, int code)
 {
 	fd_printf(2, "%s\n", str);

@@ -9,6 +9,7 @@ SRC        = srcs/main.c \
              srcs/parsing/verify_char.c \
              srcs/utils/utils2.c \
              srcs/exec/move_player.c \
+             srcs/utils/groscondetom.c \
              srcs/exec/ray_casting.c \
              srcs/exec/hook.c \
              srcs/exec/render.c \

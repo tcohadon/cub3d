@@ -115,15 +115,19 @@ bool	parse_color(t_data *data);
 //Utils
 bool	is_empty_line(char *line);
 void	free_all(t_data *data);
+bool	is_valid_char(char c);
 void	debug_data(t_data *data);
+bool	handle_line(t_data *data, char *line);
 void	err_msg(char *str, int code);
+bool	parse_texture(char *line, char **texture, const char *prefix);
+bool	parse_colorutils(char *line, char **color, const char *prefix);
 bool	is_valid_png(const char *filename);
 bool validate_resources(t_data *data);
 void	free_tab(char **tab);
 
 //Init
 int		init_data(t_data *data, char **av);
-void	finalmap_allocation(t_data *map);
+bool	finalmap_allocation(t_data *map);
 
 //movement
 void	hooker(t_data *data);

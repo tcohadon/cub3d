@@ -10,11 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #ifndef ERROR_H
 # define ERROR_H
 
 # define ERR_ARG "Error\nBad arguments"
+# define ERR_INVALID "Error\nInvalid character in map"
+# define ERR_INITTEX "Error\nTexture is not initialized"
 # define ERR_EXT "Error\nInvalid extension"
 # define ERR_FILE "Error\nFile does not exist or you dont have permission"
 # define ERR_ALLOC "Error\nMemory allocation failed"

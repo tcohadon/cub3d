@@ -12,20 +12,20 @@
 
 #include "../../include/cub3d.h"
 
-static void	allocate_and_initialize_copy_map(t_data *map)
+static bool	allocate_and_initialize_copy_map(t_data *map)
 {
 	int	i;
 	int	j;
 
 	map->copy_map = (char **)malloc(sizeof(char *) * (map->h + 1));
 	if (!map->copy_map)
-		exit (fd_printf(2, "Error\nFailed to allocate memory."));
+		return (fd_printf(2, ERR_ALLOC, 1), false);
 	i = 0;
 	while (i < map->h)
 	{
 		map->copy_map[i] = (char *)malloc(sizeof(char) * (map->w + 1));
 		if (!map->copy_map[i])
-			exit (fd_printf(2,"Error\nFailed to allocate memory."));
+			return (fd_printf(2, ERR_ALLOC, 1), false);
 		j = 0;
 		while (j < map->w)
 		{
@@ -36,38 +36,46 @@ static void	allocate_and_initialize_copy_map(t_data *map)
 		i++;
 	}
 	map->copy_map[i] = NULL;
+	return (true);
 }
 
-static void	map_allocation(t_data *map)
+static bool	map_allocation(t_data *map)
 {
 	int	i;
 	int	j;
 
 	map->map = (char **)malloc(sizeof(char *) * (map->h + 1));
 	if (!map->map)
-		exit (fd_printf(2, "Error\nFailed to allocate memory."));
+		return (fd_printf(2, ERR_ALLOC, 1), false);
 	i = 0;
 	while (i < map->h)
 	{
 		map->map[i] = (char *)malloc(sizeof(char) * (map->w + 1));
 		if (!map->map[i])
-			exit (fd_printf(2, "Error\nFailed to allocate memory."));
+			return (fd_printf(2, ERR_ALLOC, 1), false);
 		j = 0;
 		while (j < map->w)
-		{
-			//map->map[i][j] = '';
 			j++;
-		}
 		map->map[i][j] = '\0';
 		i++;
 	}
 	map->map[i] = NULL;
+	return (true);
 }
 
-void	finalmap_allocation(t_data *map)
+bool	finalmap_allocation(t_data *map)
 {
-	map_allocation(map);
-	allocate_and_initialize_copy_map(map);
+	if (!map_allocation(map))
+	{
+		free_all(map);
+		return (false);
+	}
+	if (!allocate_and_initialize_copy_map(map))
+	{
+		free_all(map);
+		return (false);
+	}
+	return (true);
 }
 
 bool	check_space_map(t_data *data)

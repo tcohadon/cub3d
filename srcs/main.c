@@ -10,14 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../include/cub3d.h"
 
-
-void	init_0(t_data *data, char *map_path)
+static void	init_1(t_data *data)
 {
-	data->fd = -1;
-	data->path = map_path;
 	data->h = 0;
 	data->w = 0;
 	data->map = NULL;
@@ -31,29 +27,57 @@ void	init_0(t_data *data, char *map_path)
 	data->mini_offset_y = 0;
 }
 
+bool	init_0(t_data *data, char *map_path)
+{
+	data->fd = -1;
+	data->path = map_path;
+	init_1(data);
+	if (!data->player)
+	{
+		data->player = malloc(sizeof(t_player));
+		if (!data->player)
+			return (fd_printf(2, ERR_ALLOC), false);
+	}
+	data->player->x = 0;
+	data->player->y = 0;
+	data->player->mini_x = 0;
+	data->player->mini_y = 0;
+	data->player->speed = 2.0f;
+	data->player->is_moving = false;
+	data->player->angle = 0.0;
+	return (true);
+}
+
+static bool	parsing_space(int ac, char **av, t_data *data)
+{
+	if (!parsing(ac, av))
+	{
+		free_all(data);
+		return (false);
+	}
+	if (!init_data(data, av))
+	{
+		free_all(data);
+		return (false);
+	}
+	return (true);
+}
+
 int	main(int ac, char **av)
 {
-	t_data data;
-	(void)av;
+	t_data	data;
 
+	(void)av;
 	if (ac != 2)
 		return (fd_printf(2, ERR_ARG), 1);
 	ft_memset(&data, 0, sizeof(t_data));
-	init_0(&data, av[1]);
-	if (!parsing(ac, av))
-	{
+	if (!init_0(&data, av[1]))
 		free_all(&data);
-		return (1);
-	}
-	if (!init_data(&data, av))
-	{
-		free_all(&data);
-		return (1);
-	}
-	data.mlx = mlx_init(WIDTH,HEIGHT, "cub3d", false);
+	parsing_space(ac, av, &data);
+	data.mlx = mlx_init(WIDTH, HEIGHT, "cub3d", false);
 	if (!data.mlx)
 		return (1);
-	if (!init_texture(&data) ||!parse_color(&data))
+	if (!init_texture(&data) || !parse_color(&data))
 	{
 		free_all(&data);
 		return (1);

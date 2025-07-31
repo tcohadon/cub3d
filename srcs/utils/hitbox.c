@@ -36,3 +36,20 @@ bool	check_hitbox_collision(t_data *data, double x, double y,
 		|| would_collide(data, x + hitbox_rad * 0.7, y - hitbox_rad * 0.7)
 		|| would_collide(data, x - hitbox_rad * 0.7, y - hitbox_rad * 0.7));
 }
+
+bool	handle_line(t_data *data, char *line)
+{
+	if (ft_strnstr(line, "NO ", 3))
+		return (parse_texture(line, &data->texture->no_tex, "NO "));
+	else if (ft_strnstr(line, "SO ", 3))
+		return (parse_texture(line, &data->texture->so_tex, "SO "));
+	else if (ft_strnstr(line, "WE ", 3))
+		return (parse_texture(line, &data->texture->we_tex, "WE "));
+	else if (ft_strnstr(line, "EA ", 3))
+		return (parse_texture(line, &data->texture->ea_tex, "EA "));
+	else if (ft_strnstr(line, "F ", 2))
+		return (parse_colorutils(line, &data->texture->floor_color, "F "));
+	else if (ft_strnstr(line, "C ", 2))
+		return (parse_colorutils(line, &data->texture->ceiling_color, "C "));
+	return (true);
+}
