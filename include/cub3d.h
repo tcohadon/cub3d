@@ -6,7 +6,7 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 11:11:05 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/08/01 03:46:21 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/08/01 18:33:19 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,12 @@ typedef struct s_player
 	float	y;
 	float	mini_x;
 	float	mini_y;
-	float target_x;
-	float target_y;
-	float speed;
-	bool is_moving;
-	float angle;
-} t_player;
-
+	float	target_x;
+	float	target_y;
+	float	speed;
+	bool	is_moving;
+	float	angle;
+}	t_player;
 
 typedef struct s_texture
 {
@@ -68,18 +67,18 @@ typedef struct s_dda
 	double	y_start;
 	double	ray_dir_x;
 	double	ray_dir_y;
-	int	map_x;
-	int	map_y;
+	int		map_x;
+	int		map_y;
 	double	delta_dist_x;
 	double	delta_dist_y;
-	int	hit_side;
-	int	hit_x;
-	int	hit_y;
-	int	step_x;
-	int	step_y;
-	double wall_dist;
+	int		hit_side;
+	int		hit_x;
+	int		hit_y;
+	int		step_x;
+	int		step_y;
+	double	wall_dist;
 
-} t_dda;
+}	t_dda;
 
 typedef struct s_data
 {
@@ -98,83 +97,76 @@ typedef struct s_data
 	t_texture	*texture;
 	t_player	*player;
 	t_dda		*dda;
-	int mini_offset_x;
-	int mini_offset_y;
+	int			mini_offset_x;
+	int			mini_offset_y;
 }	t_data;
 
 typedef struct s_wall_tex_params
 {
-	mlx_texture_t *tex;
-	int tex_x;
-	int coll;
-	int w_height;
-	int start_y;
-	int end_y;
-	double step;
-	double tex_pos;
-} t_wall_tex_params;
+	mlx_texture_t	*tex;
+	int				tex_x;
+	int				coll;
+	int				w_height;
+	int				start_y;
+	int				end_y;
+	double			step;
+	double			tex_pos;
+}	t_wall_tex_params;
 
 //Parsing
-bool	parsing(int ac, char **av);
-bool	parse_and_fill_map(t_data *data);
-bool	verif_ext(char *av);
-bool	verify_map(t_data *data);
-void	init_player(t_data *data);
-bool	validate_color_format(const char *line);
-bool	check_space_map(t_data *data);
-bool	parse_color(t_data *data);
+bool			parsing(int ac, char **av);
+bool			parse_and_fill_map(t_data *data);
+bool			verif_ext(char *av);
+bool			verify_map(t_data *data);
+void			init_player(t_data *data);
+bool			validate_color_format(const char *line);
+bool			check_space_map(t_data *data);
+bool			parse_color(t_data *data);
 
 //Utils
-bool	is_empty_line(char *line);
-void	free_all(t_data *data);
-bool	validate_values(const char *line);
-bool	is_valid_char(char c);
-void	debug_data(t_data *data);
-bool	handle_line(t_data *data, char *line);
-void	err_msg(char *str, int code);
-bool	parse_texture(char *line, char **texture, const char *prefix);
-bool	parse_colorutils(char *line, char **color, const char *prefix);
-bool	is_valid_png(const char *filename);
-bool validate_resources(t_data *data);
-void	free_tab(char **tab);
+bool			is_empty_line(char *line);
+void			free_all(t_data *data);
+bool			validate_values(const char *line);
+bool			is_valid_char(char c);
+bool			handle_line(t_data *data, char *line);
+bool			parse_texture(char *line, char **texture, const char *prefix);
+bool			parse_colorutils(char *line, char **color, const char *prefix);
+bool			is_valid_png(const char *filename);
+bool			validate_resources(t_data *data);
+void			free_tab(char **tab);
 
 //Init
-int		init_data(t_data *data, char **av);
-bool	finalmap_allocation(t_data *map);
+int				init_data(t_data *data, char **av);
+bool			finalmap_allocation(t_data *map);
 
 //movement
-void	hooker(t_data *data);
-void	handle_rotation(t_data *data);
-
+void			hooker(t_data *data);
+void			handle_rotation(t_data *data);
 
 //raycasting
-void	raycasting_hook(t_data *data);
-void	clear_rays(t_data *data);
+void			raycasting_hook(t_data *data);
+void			clear_rays(t_data *data);
 
 //parsing
-bool	parsing(int ac, char **av);
-bool	verif_ext(char *av);
-bool	init_texture(t_data *data);
+bool			parsing(int ac, char **av);
+bool			verif_ext(char *av);
+bool			init_texture(t_data *data);
 
 //render
-double	ray_cast(t_data *data, double angle);
-void	render(t_data *data);
-void	calc_ray_params(t_data *data, int coll, double *ray_angle
-	, int *wall_height);
-int	get_start_y(int w_height);
-int	get_end_y(int w_height);
+double			ray_cast(t_data *data, double angle);
+void			render(t_data *data);
+
+int				get_start_y(int w_height);
+int				get_end_y(int w_height);
 mlx_texture_t	*choose_texture(t_data *data, double *wall_x);
-int	get_tex_x(t_data *data, mlx_texture_t *tex, double wall_x);
-void	fill_wall_params(t_data *data, t_wall_tex_params *params, int coll
-	, int w_height);
-uint32_t	get_texture_pixel(mlx_texture_t *tex, int x, int y);
-
-//minimap
-void	minimap_hook(t_data *data);
-void init_minimap(t_data *data, int y);
-
+int				get_tex_x(t_data *data, mlx_texture_t *tex, double wall_x);
+uint32_t		get_texture_pixel(mlx_texture_t *tex, int x, int y);
+void			calc_ray_params(t_data *data, int coll, double *ray_angle,
+					int *wall_height);
+void			fill_wall_params(t_data *data, t_wall_tex_params *params,
+					int coll, int w_height);
 //hitbox
-bool	check_hitbox_collision(t_data *data, double x, double y,
-	double hitbox_rad);
-bool	would_collide(t_data *data, double x, double y);
+bool			check_hitbox_collision(t_data *data, double x, double y,
+					double hitbox_rad);
+bool			would_collide(t_data *data, double x, double y);
 #endif

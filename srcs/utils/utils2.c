@@ -6,17 +6,11 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 14:19:07 by lmancho           #+#    #+#             */
-/*   Updated: 2025/07/26 16:34:03 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/08/01 18:24:41 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
-void	err_msg(char *str, int code)
-{
-	fd_printf(2, "%s\n", str);
-	exit(code);
-}
 
 uint32_t	ft_hex_to_uint32(const char *str)
 {

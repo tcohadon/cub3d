@@ -6,7 +6,7 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 11:25:47 by lmancho           #+#    #+#             */
-/*   Updated: 2025/08/01 03:53:30 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/08/01 18:24:19 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,11 @@ int	init_data(t_data *data, char **av)
 	if (!parse_ressources(data))
 		return (false);
 	if (!validate_resources(data))
+		return (false);
 	if (!data->texture->no_tex || !data->texture->so_tex
-			|| !data->texture->we_tex || !data->texture->ea_tex
-			|| !data->texture->floor_color || !data->texture->ceiling_color)
-			return (fd_printf(2, ERR_TEXTURES), false);
+		|| !data->texture->we_tex || !data->texture->ea_tex
+		|| !data->texture->floor_color || !data->texture->ceiling_color)
+		return (fd_printf(2, ERR_TEXTURES), false);
 	if (!parse_and_fill_map(data))
 		return (false);
 	data->dda = malloc(sizeof(t_dda));
