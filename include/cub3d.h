@@ -6,7 +6,7 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 11:11:05 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/07/26 15:42:03 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/08/01 03:46:21 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,12 +102,24 @@ typedef struct s_data
 	int mini_offset_y;
 }	t_data;
 
+typedef struct s_wall_tex_params
+{
+	mlx_texture_t *tex;
+	int tex_x;
+	int coll;
+	int w_height;
+	int start_y;
+	int end_y;
+	double step;
+	double tex_pos;
+} t_wall_tex_params;
+
 //Parsing
 bool	parsing(int ac, char **av);
 bool	parse_and_fill_map(t_data *data);
 bool	verif_ext(char *av);
 bool	verify_map(t_data *data);
-void	render_map(t_data *data);
+void	init_player(t_data *data);
 bool	validate_color_format(const char *line);
 bool	check_space_map(t_data *data);
 bool	parse_color(t_data *data);
@@ -141,13 +153,20 @@ void	clear_rays(t_data *data);
 //parsing
 bool	parsing(int ac, char **av);
 bool	verif_ext(char *av);
-void combined_hook(void *param);
 bool	init_texture(t_data *data);
 
 //render
-void	render_player(t_data *data);
 double	ray_cast(t_data *data, double angle);
 void	render(t_data *data);
+void	calc_ray_params(t_data *data, int coll, double *ray_angle
+	, int *wall_height);
+int	get_start_y(int w_height);
+int	get_end_y(int w_height);
+mlx_texture_t	*choose_texture(t_data *data, double *wall_x);
+int	get_tex_x(t_data *data, mlx_texture_t *tex, double wall_x);
+void	fill_wall_params(t_data *data, t_wall_tex_params *params, int coll
+	, int w_height);
+uint32_t	get_texture_pixel(mlx_texture_t *tex, int x, int y);
 
 //minimap
 void	minimap_hook(t_data *data);

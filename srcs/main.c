@@ -6,11 +6,21 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 11:22:51 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/07/26 15:26:46 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/08/01 03:46:11 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+static void	combined_hook(void *param)
+{
+	t_data	*data;
+
+	data = (t_data *)param;
+	hooker(data);
+	clear_rays(data);
+	render(data);
+}
 
 static void	init_1(t_data *data)
 {
@@ -82,7 +92,7 @@ int	main(int ac, char **av)
 		free_all(&data);
 		return (1);
 	}
-	render_map(&data);
+	init_player(&data);
 	//init_minimap(&data, -1);
 	mlx_loop_hook(data.mlx, &combined_hook, &data);
 	mlx_loop(data.mlx);

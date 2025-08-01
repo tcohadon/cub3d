@@ -11,12 +11,13 @@ SRC        = srcs/main.c \
              srcs/exec/move_player.c \
              srcs/utils/groscondetom.c \
              srcs/exec/ray_casting.c \
-             srcs/exec/hook.c \
              srcs/exec/render.c \
              srcs/utils/utils3.c \
              srcs/exec/dda.c \
-             srcs/exec/minimap.c \
-             srcs/utils/hitbox.c
+             srcs/utils/hitbox.c \
+             srcs/utils/render_utils.c \
+             srcs/utils/render_utils2.c \
+             srcs/utils/player_pos_init.c
 
 OBJ_DIR    = obj
 OBJ        = $(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))

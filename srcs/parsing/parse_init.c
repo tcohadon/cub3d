@@ -6,7 +6,7 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 11:25:47 by lmancho           #+#    #+#             */
-/*   Updated: 2025/07/26 16:03:20 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/08/01 03:53:30 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,22 @@ static int	parse_file(t_data *data)
 		return (fd_printf(2, ERR_SPLIT), 0);
 	return (1);
 }
-
+bool handle_line(t_data *data, char *line)
+{
+	if (ft_strnstr(line, "NO ", 3))
+		return (parse_texture(line, &data->texture->no_tex, "NO "));
+	else if (ft_strnstr(line, "SO ", 3))
+		return (parse_texture(line, &data->texture->so_tex, "SO "));
+	else if (ft_strnstr(line, "WE ", 3))
+		return (parse_texture(line, &data->texture->we_tex, "WE "));
+	else if (ft_strnstr(line, "EA ", 3))
+		return (parse_texture(line, &data->texture->ea_tex, "EA "));
+	else if (ft_strnstr(line, "F ", 2))
+		return (parse_colorutils(line, &data->texture->floor_color, "F "));
+	else if (ft_strnstr(line, "C ", 2))
+		return (parse_colorutils(line, &data->texture->ceiling_color, "C "));
+	return (true);
+}
 static bool	parse_ressources(t_data *data)
 {
 	int	i;

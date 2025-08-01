@@ -6,7 +6,7 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 15:01:39 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/07/21 14:44:18 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/08/01 03:33:29 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,25 @@ static double	ray_dist(t_data *data, double side_dist_x, double side_dist_y)
 	return (ray_check(data, side));
 }
 
+static double	dist_y(t_data *data)
+{
+	double	side_dist_y;
+
+	if (data->dda->ray_dir_y < 0)
+	{
+		data->dda->step_y = -1;
+		side_dist_y = (data->dda->y_start / T_SIZE - data->dda->map_y)
+			* data->dda->delta_dist_y;
+	}
+	else
+	{
+		data->dda->step_y = 1;
+		side_dist_y = (data->dda->map_y + 1.0 - data->dda->y_start / T_SIZE)
+			* data->dda->delta_dist_y;
+	}
+	return (side_dist_y);
+}
+
 double	ray_cast(t_data *data, double angle)
 {
 	double	side_dist_x;
@@ -86,17 +105,6 @@ double	ray_cast(t_data *data, double angle)
 		side_dist_x = (data->dda->map_x + 1.0 - data->dda->x_start / T_SIZE)
 			* data->dda->delta_dist_x;
 	}
-	if (data->dda->ray_dir_y < 0)
-	{
-		data->dda->step_y = -1;
-		side_dist_y = (data->dda->y_start / T_SIZE - data->dda->map_y)
-			* data->dda->delta_dist_y;
-	}
-	else
-	{
-		data->dda->step_y = 1;
-		side_dist_y = (data->dda->map_y + 1.0 - data->dda->y_start / T_SIZE)
-			* data->dda->delta_dist_y;
-	}
+	side_dist_y = dist_y(data);
 	return (ray_dist(data, side_dist_x, side_dist_y));
 }
