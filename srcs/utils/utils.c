@@ -43,6 +43,27 @@ void	free_tab(char **tab)
 	free(tab);
 }
 
+void	free_textures(t_texture *texture)
+{
+	if (!texture)
+		return ;
+	free(texture->no_tex);
+	free(texture->so_tex);
+	free(texture->we_tex);
+	free(texture->ea_tex);
+	free(texture->floor_color);
+	free(texture->ceiling_color);
+	if (texture->north_tex)
+		mlx_delete_texture(texture->north_tex);
+	if (texture->south_tex)
+		mlx_delete_texture(texture->south_tex);
+	if (texture->west_tex)
+		mlx_delete_texture(texture->west_tex);
+	if (texture->east_tex)
+		mlx_delete_texture(texture->east_tex);
+	free(texture);
+}
+
 void	free_all(t_data *data)
 {
 	free_tab(data->map);
@@ -50,23 +71,7 @@ void	free_all(t_data *data)
 	free_tab(data->split_content);
 	free(data->content_of_filename);
 	if (data->texture)
-	{
-		free(data->texture->no_tex);
-		free(data->texture->so_tex);
-		free(data->texture->we_tex);
-		free(data->texture->ea_tex);
-		free(data->texture->floor_color);
-		free(data->texture->ceiling_color);
-		if (data->texture->north_tex)
-			mlx_delete_texture(data->texture->north_tex);
-		if (data->texture->south_tex)
-			mlx_delete_texture(data->texture->south_tex);
-		if (data->texture->west_tex)
-			mlx_delete_texture(data->texture->west_tex);
-		if (data->texture->east_tex)
-			mlx_delete_texture(data->texture->east_tex);
-		free(data->texture);
-	}
+		free_textures(data->texture);
 	if (data->player)
 	{
 		free(data->player);
@@ -79,37 +84,14 @@ void	free_all(t_data *data)
 	}
 }
 
-void	debug_data(t_data *data)
+bool	is_valid_png(const char *filename)
 {
-    printf("filename: %s\n", data->filename);
-    printf("fd: %d\n", data->fd);
-    printf("size_of_filename: %zu\n", data->size_of_filename);
-    printf("content_of_filename: %s\n", data->content_of_filename ? "OK" : "NULL");
-    printf("split_content: %s\n", data->split_content ? "OK" : "NULL");
-    printf("h: %d, w: %d\n", data->h, data->w);
-    printf("map: %s\n", data->map ? "OK" : "NULL");
-    printf("copy_map: %s\n", data->copy_map ? "OK" : "NULL");
-    if (data->texture)
-    {
-        printf("no_tex: %s\n", data->texture->no_tex);
-        printf("so_tex: %s\n", data->texture->so_tex);
-        printf("we_tex: %s\n", data->texture->we_tex);
-        printf("ea_tex: %s\n", data->texture->ea_tex);
-        printf("floor_color: %s\n", data->texture->floor_color);
-        printf("ceiling_color: %s\n", data->texture->ceiling_color);
-    }
-    else
-        printf("texture: NULL\n");
-}
-
-bool is_valid_png(const char *filename)
-{
-	const char *ext;
-	int fd;
+	const char	*ext;
+	int			fd;
 
 	ext = ft_strchr(filename, '.');
 	if (!ext || ft_strcmp(ext, ".png") != 0)
-		return (fd_printf(2, "Invalid file extension for: %s\n", filename), false);
+		return (fd_printf(2, "%s: %s\n", ERR_EXT, filename), false);
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return (fd_printf(2, "Cannot open file: %s\n", filename), false);

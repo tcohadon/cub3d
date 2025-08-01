@@ -12,7 +12,7 @@
 
 #include "../../include/cub3d.h"
 
-bool file_exist(char *file)
+bool	file_exist(char *file)
 {
 	int	fd;
 
@@ -26,9 +26,9 @@ bool file_exist(char *file)
 bool	parsing(int ac, char **av)
 {
 	if (ac != 2)
-		return(fd_printf(2, ERR_ARG), false);
+		return (fd_printf(2, ERR_ARG), false);
 	if (!verif_ext(av[1]))
-		return (fd_printf(2,ERR_EXT), false);
+		return (fd_printf(2, ERR_EXT), false);
 	if (!file_exist(av[1]))
 		return (fd_printf(2, ERR_FILE), false);
 	return (true);

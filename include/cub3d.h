@@ -127,6 +127,7 @@ bool	parse_color(t_data *data);
 //Utils
 bool	is_empty_line(char *line);
 void	free_all(t_data *data);
+bool	validate_values(const char *line);
 bool	is_valid_char(char c);
 void	debug_data(t_data *data);
 bool	handle_line(t_data *data, char *line);

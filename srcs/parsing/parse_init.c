@@ -49,7 +49,8 @@ static int	parse_file(t_data *data)
 		return (fd_printf(2, ERR_SPLIT), 0);
 	return (1);
 }
-bool handle_line(t_data *data, char *line)
+
+bool	handle_line(t_data *data, char *line)
 {
 	if (ft_strnstr(line, "NO ", 3))
 		return (parse_texture(line, &data->texture->no_tex, "NO "));
@@ -65,6 +66,7 @@ bool handle_line(t_data *data, char *line)
 		return (parse_colorutils(line, &data->texture->ceiling_color, "C "));
 	return (true);
 }
+
 static bool	parse_ressources(t_data *data)
 {
 	int	i;
@@ -90,10 +92,10 @@ int	init_data(t_data *data, char **av)
 	if (!parse_ressources(data))
 		return (false);
 	if (!validate_resources(data))
-	if (!data->texture->no_tex || !data->texture->so_tex ||
-		!data->texture->we_tex || !data->texture->ea_tex ||
-		!data->texture->floor_color || !data->texture->ceiling_color)
-		return (fd_printf(2, ERR_TEXTURES), false);
+	if (!data->texture->no_tex || !data->texture->so_tex
+			|| !data->texture->we_tex || !data->texture->ea_tex
+			|| !data->texture->floor_color || !data->texture->ceiling_color)
+			return (fd_printf(2, ERR_TEXTURES), false);
 	if (!parse_and_fill_map(data))
 		return (false);
 	data->dda = malloc(sizeof(t_dda));
