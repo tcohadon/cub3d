@@ -6,7 +6,7 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 13:19:45 by lmancho           #+#    #+#             */
-/*   Updated: 2025/07/26 15:45:38 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/08/01 23:03:54 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,25 +43,25 @@ void	free_tab(char **tab)
 	free(tab);
 }
 
-void	free_textures(t_texture *texture)
+void	free_textures(t_data *data)
 {
-	if (!texture)
+	if (!data->texture)
 		return ;
-	free(texture->no_tex);
-	free(texture->so_tex);
-	free(texture->we_tex);
-	free(texture->ea_tex);
-	free(texture->floor_color);
-	free(texture->ceiling_color);
-	if (texture->north_tex)
-		mlx_delete_texture(texture->north_tex);
-	if (texture->south_tex)
-		mlx_delete_texture(texture->south_tex);
-	if (texture->west_tex)
-		mlx_delete_texture(texture->west_tex);
-	if (texture->east_tex)
-		mlx_delete_texture(texture->east_tex);
-	free(texture);
+	free(data->texture->no_tex);
+	free(data->texture->so_tex);
+	free(data->texture->we_tex);
+	free(data->texture->ea_tex);
+	free(data->texture->floor_color);
+	free(data->texture->ceiling_color);
+	if (data->texture->north_tex)
+		mlx_delete_texture(data->texture->north_tex);
+	if (data->texture->south_tex)
+		mlx_delete_texture(data->texture->south_tex);
+	if (data->texture->west_tex)
+		mlx_delete_texture(data->texture->west_tex);
+	if (data->texture->east_tex)
+		mlx_delete_texture(data->texture->east_tex);
+	free(data->texture);
 }
 
 void	free_all(t_data *data)
@@ -71,7 +71,7 @@ void	free_all(t_data *data)
 	free_tab(data->split_content);
 	free(data->content_of_filename);
 	if (data->texture)
-		free_textures(data->texture);
+		free_textures(data);
 	if (data->player)
 	{
 		free(data->player);

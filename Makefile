@@ -10,7 +10,6 @@ SRC        = srcs/main.c \
              srcs/utils/utils2.c \
              srcs/exec/move_player.c \
              srcs/utils/groscondetom.c \
-             srcs/exec/ray_casting.c \
              srcs/exec/render.c \
              srcs/utils/utils3.c \
              srcs/utils/utils4.c \

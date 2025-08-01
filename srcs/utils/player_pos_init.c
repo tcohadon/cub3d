@@ -6,7 +6,7 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 01:25:44 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/08/01 03:55:44 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/08/01 19:47:35 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ static void	init_player_pos(t_data *data, int x, int y, char angle)
 	py = tile_py + (T_SIZE - PLAYER_SIZE) / 2;
 	data->player->x = px + PLAYER_SIZE / 2;
 	data->player->y = py + PLAYER_SIZE / 2;
-	data->player->mini_x = data->player->x;
-	data->player->mini_y = data->player->y;
 	if (angle == 'N')
 		data->player->angle = 270.0;
 	else if (angle == 'S')

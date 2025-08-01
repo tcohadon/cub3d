@@ -6,7 +6,7 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 11:11:05 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/08/01 18:33:19 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/08/01 23:02:44 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # define PLAYER_SIZE 5
 # define PI 3.14159265358979323846
 # define FOV 60.0
-# define NUM_RAYS 1000
 # define WIDTH 960
 # define HEIGHT 540
 # define PROJECTION 831.4
@@ -35,10 +34,6 @@ typedef struct s_player
 {
 	float	x;
 	float	y;
-	float	mini_x;
-	float	mini_y;
-	float	target_x;
-	float	target_y;
 	float	speed;
 	bool	is_moving;
 	float	angle;
@@ -97,8 +92,6 @@ typedef struct s_data
 	t_texture	*texture;
 	t_player	*player;
 	t_dda		*dda;
-	int			mini_offset_x;
-	int			mini_offset_y;
 }	t_data;
 
 typedef struct s_wall_tex_params
@@ -142,10 +135,6 @@ bool			finalmap_allocation(t_data *map);
 //movement
 void			hooker(t_data *data);
 void			handle_rotation(t_data *data);
-
-//raycasting
-void			raycasting_hook(t_data *data);
-void			clear_rays(t_data *data);
 
 //parsing
 bool			parsing(int ac, char **av);

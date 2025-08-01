@@ -6,7 +6,7 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 15:48:00 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/08/01 02:27:49 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/08/01 22:23:24 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,15 @@ static void	draw_wall_tex_line(t_data *data, t_wall_tex_params *params, int y,
 
 static void	draw_wall_tex(t_data *data, t_wall_tex_params *params)
 {
-	double	step;
-	double	tex_pos;
-	int		y;
-	int		tex_y;
+	int	y;
+	int	tex_y;
+	int	y_pos;
 
-	step = (double)params->tex->height / params->w_height;
-	tex_pos = 0;
-	if (params->w_height > HEIGHT)
-		tex_pos = ((params->w_height - HEIGHT) / 2.0) * step;
 	y = params->start_y - 1;
 	while (++y < params->end_y)
 	{
-		tex_y = (int)tex_pos;
-		if (tex_y >= (int)params->tex->height)
-			tex_y = (int)params->tex->height - 1;
-		tex_pos += step;
+		y_pos = y - (HEIGHT - params->w_height) / 2;
+		tex_y = (int)(((double)y_pos / params->w_height) * params->tex->height);
 		draw_wall_tex_line(data, params, y, tex_y);
 	}
 }
@@ -61,7 +54,7 @@ static void	render_wall(t_data *data, int coll, int w_height)
 	draw_wall_tex(data, &params);
 	y_floor = params.end_y;
 	while (++y_floor < HEIGHT)
-		mlx_put_pixel(data->texture->ray_img, coll, y,
+		mlx_put_pixel(data->texture->ray_img, coll, y_floor,
 			data->texture->floor_hex);
 }
 
@@ -71,6 +64,12 @@ void	render(t_data *data)
 	double	ray_angle;
 	int		wall_height;
 
+	if (!data || !data->mlx || !data->texture)
+		return ;
+	if (data->texture->ray_img)
+		mlx_delete_image(data->mlx, data->texture->ray_img);
+	data->texture->ray_img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
+	mlx_image_to_window(data->mlx, data->texture->ray_img, 0, 0);
 	coll = -1;
 	while (++coll < WIDTH)
 	{

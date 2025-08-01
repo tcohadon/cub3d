@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 11:48:59 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/07/23 11:53:26 by lmancho          ###   ########.fr       */
+/*   Updated: 2025/08/01 20:02:33 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # define ERR_ALLOC "Error\nMemory allocation failed"
 # define ERR_SPLIT "Error\nFile is empty or split failed"
 # define ERR_TOPWALL "Erorr\nMap is not closed on the top"
-# define ERR_PLAYER "Error\nThere must be only one player"
+# define ERR_PLAYER "Error\nThere must be one and only one player"
 # define ERR_WALKABLE "Error\nThere must be at least one walkable tile"
 # define ERR_DUPLICATE "Error\nDuplicate texture"
 # define ERR_BOTTOMWALL "Error\nWrong order or map is not closed on the bottom"
