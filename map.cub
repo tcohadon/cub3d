@@ -1,9 +1,9 @@
-NO srcs/img/dbz.png
-SO srcs/img/dbz.png
-WE srcs/img/dbz.png
-EA srcs/img/dbz.png
+NO srcs/img/NORTH.png
+SO srcs/img/SOUTH.png
+WE srcs/img/WEST.png
+EA srcs/img/EAST.png
 
-F 200,200,200
+F 0,0,0
 C 200,200,200
 
 1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111

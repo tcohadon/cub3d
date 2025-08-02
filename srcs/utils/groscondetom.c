@@ -45,11 +45,16 @@ bool	parse_texture(char *line, char **texture, const char *prefix)
 
 bool	parse_colorutils(char *line, char **color, const char *prefix)
 {
+	int	i;
+
+	i = ft_strlen(prefix);
+	while (line[i] && ft_isspace(line[i]))
+		i++;
 	if (*color != NULL)
 		return (fd_printf(2, ERR_DUPLICATE), false);
-	if (!validate_color_format(line + ft_strlen(prefix)))
+	if (!validate_color_format(&line[i]))
 		return (false);
-	*color = ft_strdup(line + ft_strlen(prefix));
+	*color = ft_strdup(&line[i]);
 	return (*color != NULL);
 }
 
