@@ -52,6 +52,8 @@ static int	parse_file(t_data *data)
 
 bool	handle_line(t_data *data, char *line)
 {
+	if (is_empty_line(line))
+		return (true);
 	if (ft_strnstr(line, "NO ", 3))
 		return (parse_texture(line, &data->texture->no_tex, "NO "));
 	else if (ft_strnstr(line, "SO ", 3))
@@ -64,7 +66,9 @@ bool	handle_line(t_data *data, char *line)
 		return (parse_colorutils(line, &data->texture->floor_color, "F "));
 	else if (ft_strnstr(line, "C ", 2))
 		return (parse_colorutils(line, &data->texture->ceiling_color, "C "));
-	return (true);
+	else if (line[0] == '1')
+		return (true);
+	return (fd_printf(2, "Error\nUnexpected line: %s\n", line), false);
 }
 
 static bool	parse_ressources(t_data *data)
