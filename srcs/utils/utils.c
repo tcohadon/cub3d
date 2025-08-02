@@ -6,26 +6,24 @@
 /*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 13:19:45 by lmancho           #+#    #+#             */
-/*   Updated: 2025/08/02 12:09:17 by lmancho          ###   ########.fr       */
+/*   Updated: 2025/08/02 15:48:28 by lmancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-bool	is_empty_line(char *line)
+bool	is_empty_line(const char *line)
 {
-	int	i;
-
-	if (!line)
-		return (true);
-	i = 0;
-	while (line[i])
-	{
-		if (!ft_isspace(line[i]))
-			return (false);
-		i++;
-	}
-	return (true);
+    int i = 0;
+    if (!line)
+        return true;
+    while (line[i])
+    {
+        if (line[i] != ' ' && line[i] != '\t' && line[i] != '\n')
+            return false;
+        i++;
+    }
+    return true;
 }
 
 void	free_tab(char **tab)

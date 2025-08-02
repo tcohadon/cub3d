@@ -6,7 +6,7 @@
 /*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 11:25:47 by lmancho           #+#    #+#             */
-/*   Updated: 2025/08/02 12:10:16 by lmancho          ###   ########.fr       */
+/*   Updated: 2025/08/02 16:12:01 by lmancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int	parse_file(t_data *data)
 	read(data->fd, data->content_of_filename, data->size_of_filename);
 	data->content_of_filename[data->size_of_filename] = '\0';
 	close(data->fd);
-	data->split_content = ft_split(data->content_of_filename, '\n');
+	data->split_content = split_keep_empty(data->content_of_filename, '\n');
 	if (!data->split_content || !data->split_content[0])
 		return (fd_printf(2, ERR_SPLIT), 0);
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 11:11:05 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/08/02 12:09:39 by lmancho          ###   ########.fr       */
+/*   Updated: 2025/08/02 16:13:17 by lmancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "libft/libft.h"
 # include "MLX42/include/MLX42/MLX42.h"
 # include "error.h"
+# include <string.h>
 
 # define T_SIZE 50
 # define PLAYER_SIZE 5
@@ -117,9 +118,10 @@ bool			check_space_map(t_data *data);
 bool			parse_color(t_data *data);
 
 //Utils
-bool			is_empty_line(char *line);
+bool			is_empty_line(const char *line);
 void			free_all(t_data *data);
 int				ft_isspace(int c);
+char **split_keep_empty(const char *str, char sep);
 bool			validate_values(const char *line);
 bool			is_valid_char(char c);
 bool			handle_line(t_data *data, char *line);
