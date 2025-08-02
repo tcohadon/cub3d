@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 11:25:47 by lmancho           #+#    #+#             */
-/*   Updated: 2025/08/01 18:24:19 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/08/02 12:10:16 by lmancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,13 @@ static int	parse_file(t_data *data)
 
 bool	handle_line(t_data *data, char *line)
 {
+	int	i;
+
+	i = 0;
 	if (is_empty_line(line))
 		return (true);
+	while (line[i] && ft_isspace(line[i]))
+		i++;
 	if (ft_strnstr(line, "NO ", 3))
 		return (parse_texture(line, &data->texture->no_tex, "NO "));
 	else if (ft_strnstr(line, "SO ", 3))
@@ -66,7 +71,7 @@ bool	handle_line(t_data *data, char *line)
 		return (parse_colorutils(line, &data->texture->floor_color, "F "));
 	else if (ft_strnstr(line, "C ", 2))
 		return (parse_colorutils(line, &data->texture->ceiling_color, "C "));
-	else if (line[0] == '1')
+	else if (line[i] == '1')
 		return (true);
 	return (fd_printf(2, "Error\nUnexpected line: %s\n", line), false);
 }

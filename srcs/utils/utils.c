@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 13:19:45 by lmancho           #+#    #+#             */
-/*   Updated: 2025/08/01 23:03:54 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/08/02 12:09:17 by lmancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ bool	is_empty_line(char *line)
 	i = 0;
 	while (line[i])
 	{
-		if (line[i] != ' ')
+		if (!ft_isspace(line[i]))
 			return (false);
 		i++;
 	}

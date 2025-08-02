@@ -6,7 +6,7 @@
 /*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 11:19:19 by ucas              #+#    #+#             */
-/*   Updated: 2025/06/23 12:49:44 by lmancho          ###   ########.fr       */
+/*   Updated: 2025/08/02 12:08:38 by lmancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 static bool	is_valid_character(char c)
 {
 	return ((c >= '0' && c <= '9') || c == ',' || c == ' ');
+}
+
+int	ft_isspace(int c)
+{
+	return (c == ' ' || c == '\t' || c == '\n'
+		|| c == '\v' || c == '\f' || c == '\r');
 }
 
 static bool	count_commas(const char *line)
