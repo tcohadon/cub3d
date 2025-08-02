@@ -6,7 +6,7 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 13:00:21 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/07/21 15:43:15 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/08/02 12:57:03 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	hooker(t_data *data)
 		exit(0);
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT_SHIFT))
-		data->player->speed = 3.0f;
+		data->player->speed = 4.0f;
 	else
 		data->player->speed = 2.0f;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_W))

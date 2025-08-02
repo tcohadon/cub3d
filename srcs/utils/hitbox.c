@@ -6,7 +6,7 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 15:42:35 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/08/01 03:53:40 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/08/02 13:00:33 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ bool	check_hitbox_collision(t_data *data, double x, double y,
 		||would_collide(data, x - hitbox_rad, y)
 		|| would_collide(data, x, y + hitbox_rad)
 		|| would_collide(data, x, y - hitbox_rad)
-		|| would_collide(data, x + hitbox_rad * 0.7, y + hitbox_rad * 0.7)
-		|| would_collide(data, x - hitbox_rad * 0.7, y + hitbox_rad * 0.7)
-		|| would_collide(data, x + hitbox_rad * 0.7, y - hitbox_rad * 0.7)
-		|| would_collide(data, x - hitbox_rad * 0.7, y - hitbox_rad * 0.7));
+		|| would_collide(data, x + hitbox_rad * 0.8, y + hitbox_rad * 0.8)
+		|| would_collide(data, x - hitbox_rad * 0.8, y + hitbox_rad * 0.8)
+		|| would_collide(data, x + hitbox_rad * 0.8, y - hitbox_rad * 0.8)
+		|| would_collide(data, x - hitbox_rad * 0.8, y - hitbox_rad * 0.8));
 }
