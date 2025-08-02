@@ -6,7 +6,7 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 11:11:05 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/08/01 23:02:44 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/08/02 11:29:34 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ typedef struct s_dda
 	int		hit_y;
 	int		step_x;
 	int		step_y;
-	double	wall_dist;
+	double	perp;
 
 }	t_dda;
 

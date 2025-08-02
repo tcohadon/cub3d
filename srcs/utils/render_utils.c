@@ -6,7 +6,7 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 01:22:40 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/08/01 03:55:47 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/08/02 11:29:34 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	calc_ray_params(t_data *data, int coll, double *ray_angle
 	if (*ray_angle >= 360)
 		*ray_angle -= 360;
 	dist = ray_cast(data, *ray_angle);
-	data->dda->wall_dist = dist;
+	data->dda->perp = dist;
 	angle_rad = (*ray_angle - data->player->angle) * PI / 180.0;
 	dist = dist * cos(angle_rad);
 	if (dist < 0.1)
@@ -64,7 +64,7 @@ mlx_texture_t	*choose_texture(t_data *data, double *wall_x)
 			tex = data->texture->east_tex;
 		else
 			tex = data->texture->west_tex;
-		*wall_x = data->player->y + data->dda->wall_dist * data->dda->ray_dir_y;
+		*wall_x = data->player->y + data->dda->perp * data->dda->ray_dir_y;
 	}
 	else
 	{
@@ -72,7 +72,7 @@ mlx_texture_t	*choose_texture(t_data *data, double *wall_x)
 			tex = data->texture->south_tex;
 		else
 			tex = data->texture->north_tex;
-		*wall_x = data->player->x + data->dda->wall_dist * data->dda->ray_dir_x;
+		*wall_x = data->player->x + data->dda->perp * data->dda->ray_dir_x;
 	}
 	return (tex);
 }

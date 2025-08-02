@@ -6,7 +6,7 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 15:01:39 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/08/01 03:33:29 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/08/02 11:29:34 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,18 @@ void	init_dda(t_data *data, double angle)
 
 static double	ray_check(t_data *data, int side)
 {
-	double	wall_dist;
+	double	perp;
 
 	if (side == 0)
-		wall_dist = (data->dda->map_x - data->dda->x_start / T_SIZE
+		perp = (data->dda->map_x - data->dda->x_start / T_SIZE
 				+ (1 - data->dda->step_x) / 2) / data->dda->ray_dir_x;
 	else
-		wall_dist = (data->dda->map_y - data->dda->y_start / T_SIZE
+		perp = (data->dda->map_y - data->dda->y_start / T_SIZE
 				+ (1 - data->dda->step_y) / 2) / data->dda->ray_dir_y;
 	data->dda->hit_side = side;
 	data->dda->hit_x = data->dda->map_x;
 	data->dda->hit_y = data->dda->map_y;
-	return (wall_dist * T_SIZE);
+	return (perp * T_SIZE);
 }
 
 static double	ray_dist(t_data *data, double side_dist_x, double side_dist_y)

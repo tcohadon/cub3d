@@ -6,7 +6,7 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 14:19:07 by lmancho           #+#    #+#             */
-/*   Updated: 2025/08/01 18:24:41 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/08/02 11:52:43 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ char	*ft_join_tab(char **tab)
 	free(tmp);
 	tmp = ft_strjoin(res, tab[2]);
 	free(res);
-	res = ft_strdup(tmp);
+	res = ft_strjoin(tmp, "FF");
 	free(tmp);
 	free_tab(tab);
 	return (res);
