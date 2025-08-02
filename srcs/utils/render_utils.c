@@ -6,7 +6,7 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 01:22:40 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/08/02 11:29:34 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/08/02 14:38:44 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	get_tex_x(t_data *data, mlx_texture_t *tex, double wall_x)
 	if (tex_x < 0 || tex_x >= (int)tex->width)
 		tex_x = 0;
 	if ((data->dda->hit_side == 0 && data->dda->ray_dir_x < 0)
-		|| (data->dda->hit_side == 1 && data->dda->ray_dir_y < 0))
+		|| (data->dda->hit_side == 1 && data->dda->ray_dir_y > 0))
 		tex_x = (int)tex->width - tex_x - 1;
 	return (tex_x);
 }

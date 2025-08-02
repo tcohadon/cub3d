@@ -1,4 +1,4 @@
-NAME       = cub3d
+NAME       = cub3D
 CC         = cc
 SRC        = srcs/main.c \
              srcs/utils/utils.c \
