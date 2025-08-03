@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils4.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/01 18:18:15 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/08/02 17:41:05 by lmancho          ###   ########.fr       */
+/*   Updated: 2025/08/03 12:45:10 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,17 +52,44 @@ bool	validate_values(const char *line)
 	return (true);
 }
 
-char	*trim_spaces(char *str)
+char	*trim_cpy(char *str, int j)
 {
+	int		i;
 	char	*end;
 
-	while (*str && ft_isspace(*str))
-		str++;
-	if (*str == '\0')
-		return (str);
-	end = str + ft_strlen(str) - 1;
-	while (end > str && ft_isspace(*end))
-		end--;
-	*(end + 1) = '\0';
-	return (str);
+	end = malloc(sizeof(char) * j + 1);
+	if (!end)
+		return (NULL);
+	j = 0;
+	i = -1;
+	while (str[++i])
+	{
+		if (!ft_isspace(str[i]))
+		{
+			end[j] = str[i];
+			j++;
+		}
+	}
+	end[j] = '\0';
+	return (end);
+}
+
+char	*trim_spaces(char *str)
+{
+	int	i;
+	int	j;
+
+	if (!str)
+		return (NULL);
+	i = -1;
+	j = 0;
+	while (str[++i])
+	{
+		if (!ft_isspace(str[i]))
+			j++;
+	}
+	i = -1;
+	if (j == 0)
+		return (NULL);
+	return (trim_cpy(str, j));
 }

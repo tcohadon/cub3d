@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   groscondetom.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:30:40 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/06/23 15:02:52 by lmancho          ###   ########.fr       */
+/*   Updated: 2025/08/03 12:36:59 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ bool	parse_texture(char *line, char **texture, const char *prefix)
 	if (*texture != NULL)
 		return (fd_printf(2, ERR_DUPLICATE), false);
 	*texture = ft_strdup(line + ft_strlen(prefix));
-	return (*texture != NULL);
+	return (free(line), *texture != NULL);
 }
 
 bool	parse_colorutils(char *line, char **color, const char *prefix)
@@ -55,7 +55,7 @@ bool	parse_colorutils(char *line, char **color, const char *prefix)
 	if (!validate_color_format(&line[i]))
 		return (false);
 	*color = ft_strdup(&line[i]);
-	return (*color != NULL);
+	return (free(line), *color != NULL);
 }
 
 bool	is_valid_char(char c)

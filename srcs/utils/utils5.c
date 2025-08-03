@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils5.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/03 12:45:27 by tcohadon          #+#    #+#             */
+/*   Updated: 2025/08/03 12:45:38 by tcohadon         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/cub3d.h"
 
 static char	*alloc_segment(const char *str, int start, int end)
@@ -60,7 +72,6 @@ static void	fill_split(char **result, const char *str, char sep)
 	}
 	result[idx] = NULL;
 }
-
 
 char	**split_keep_empty(const char *str, char sep)
 {

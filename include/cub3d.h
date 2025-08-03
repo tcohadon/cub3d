@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 11:11:05 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/08/02 16:13:17 by lmancho          ###   ########.fr       */
+/*   Updated: 2025/08/03 12:45:56 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ bool			parse_color(t_data *data);
 bool			is_empty_line(const char *line);
 void			free_all(t_data *data);
 int				ft_isspace(int c);
-char			 **split_keep_empty(const char *str, char sep);
+char			**split_keep_empty(const char *str, char sep);
 bool			validate_values(const char *line);
 char			*trim_spaces(char *str);
 bool			is_valid_char(char c);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 11:25:47 by lmancho           #+#    #+#             */
-/*   Updated: 2025/08/02 16:12:01 by lmancho          ###   ########.fr       */
+/*   Updated: 2025/08/03 13:10:16 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,24 +57,25 @@ bool	handle_line(t_data *data, char *line)
 	i = 0;
 	line = trim_spaces(line);
 	if (is_empty_line(line))
-		return (true);
+		return (free(line), true);
 	while (line[i] && ft_isspace(line[i]))
 		i++;
-	if (ft_strnstr(line, "NO ", 3))
-		return (parse_texture(line, &data->texture->no_tex, "NO "));
-	else if (ft_strnstr(line, "SO ", 3))
-		return (parse_texture(line, &data->texture->so_tex, "SO "));
-	else if (ft_strnstr(line, "WE ", 3))
-		return (parse_texture(line, &data->texture->we_tex, "WE "));
-	else if (ft_strnstr(line, "EA ", 3))
-		return (parse_texture(line, &data->texture->ea_tex, "EA "));
-	else if (ft_strnstr(line, "F ", 2))
-		return (parse_colorutils(line, &data->texture->floor_color, "F "));
-	else if (ft_strnstr(line, "C ", 2))
-		return (parse_colorutils(line, &data->texture->ceiling_color, "C "));
+	printf("%s\n", line);
+	if (ft_strnstr(line, "NO", 2))
+		return (parse_texture(line, &data->texture->no_tex, "NO"));
+	else if (ft_strnstr(line, "SO", 2))
+		return (parse_texture(line, &data->texture->so_tex, "SO"));
+	else if (ft_strnstr(line, "WE", 2))
+		return (parse_texture(line, &data->texture->we_tex, "WE"));
+	else if (ft_strnstr(line, "EA", 2))
+		return (parse_texture(line, &data->texture->ea_tex, "EA"));
+	else if (ft_strnstr(line, "F", 1))
+		return (parse_colorutils(line, &data->texture->floor_color, "F"));
+	else if (ft_strnstr(line, "C", 1))
+		return (parse_colorutils(line, &data->texture->ceiling_color, "C"));
 	else if (line[i] == '1')
-		return (true);
-	return (fd_printf(2, "Error\nUnexpected line: %s\n", line), false);
+		return (free(line), true);
+	return (fd_printf(2, ERR_UNEX, line), free(line), false);
 }
 
 static bool	parse_ressources(t_data *data)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 13:19:45 by lmancho           #+#    #+#             */
-/*   Updated: 2025/08/02 15:48:28 by lmancho          ###   ########.fr       */
+/*   Updated: 2025/08/03 12:08:51 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,18 @@
 
 bool	is_empty_line(const char *line)
 {
-    int i = 0;
-    if (!line)
-        return true;
-    while (line[i])
-    {
-        if (line[i] != ' ' && line[i] != '\t' && line[i] != '\n')
-            return false;
-        i++;
-    }
-    return true;
+	int	i;
+
+	i = 0;
+	if (!line)
+		return (true);
+	while (line[i])
+	{
+		if (line[i] != ' ' && line[i] != '\t' && line[i] != '\n')
+			return (false);
+		i++;
+	}
+	return (true);
 }
 
 void	free_tab(char **tab)
@@ -92,7 +94,7 @@ bool	is_valid_png(const char *filename)
 		return (fd_printf(2, "%s: %s\n", ERR_EXT, filename), false);
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		return (fd_printf(2, "Cannot open file: %s\n", filename), false);
+		return (fd_printf(2, "Cannot open file: {%s}\n", filename), false);
 	close(fd);
 	return (true);
 }
