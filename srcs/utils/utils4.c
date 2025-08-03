@@ -52,76 +52,17 @@ bool	validate_values(const char *line)
 	return (true);
 }
 
-static char	*alloc_segment(const char *str, int start, int end)
+char	*trim_spaces(char *str)
 {
-	char	*dst;
-	int		j;
+	char	*end;
 
-	dst = malloc(end - start + 1);
-	if (!dst)
-		return (NULL);
-	j = 0;
-	while (start < end)
-	{
-		dst[j] = str[start];
-		j++;
-		start++;
-	}
-	dst[j] = '\0';
-	return (dst);
-}
-
-static int	count_separators(const char *str, char sep)
-{
-	int	count;
-	int	i;
-
-	count = 1;
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == sep)
-			count++;
-		i++;
-	}
-	return (count);
-}
-
-static void	fill_split(char **result, const char *str, char sep)
-{
-	int	i;
-	int	start;
-	int	idx;
-
-	start = 0;
-	idx = 0;
-	i = 0;
-	while (1)
-	{
-		if (str[i] == sep || str[i] == '\0')
-		{
-			result[idx] = alloc_segment(str, start, i);
-			if (!result[idx])
-				return ;
-			idx++;
-			start = i + 1;
-			if (str[i] == '\0')
-				break ;
-		}
-		i++;
-	}
-	result[idx] = NULL;
-}
-
-char	**split_keep_empty(const char *str, char sep)
-{
-	int		count;
-	char	**result;
-
-	count = count_separators(str, sep);
-	result = malloc(sizeof(char *) * (count + 1));
-	if (!result)
-		return (NULL);
-	fill_split(result, str, sep);
-	return (result);
+	while (*str && ft_isspace(*str))
+		str++;
+	if (*str == '\0')
+		return (str);
+	end = str + ft_strlen(str) - 1;
+	while (end > str && ft_isspace(*end))
+		end--;
+	*(end + 1) = '\0';
+	return (str);
 }

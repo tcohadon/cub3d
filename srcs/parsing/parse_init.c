@@ -55,6 +55,7 @@ bool	handle_line(t_data *data, char *line)
 	int	i;
 
 	i = 0;
+	line = trim_spaces(line);
 	if (is_empty_line(line))
 		return (true);
 	while (line[i] && ft_isspace(line[i]))

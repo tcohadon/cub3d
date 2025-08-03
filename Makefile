@@ -13,6 +13,7 @@ SRC        = srcs/main.c \
              srcs/exec/render.c \
              srcs/utils/utils3.c \
              srcs/utils/utils4.c \
+             srcs/utils/utils5.c \
              srcs/exec/dda.c \
              srcs/utils/hitbox.c \
              srcs/utils/render_utils.c \
