@@ -6,7 +6,7 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 13:19:45 by lmancho           #+#    #+#             */
-/*   Updated: 2025/08/03 12:08:51 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/08/05 16:26:08 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ bool	is_valid_png(const char *filename)
 	const char	*ext;
 	int			fd;
 
+	if (!filename)
+		return (fd_printf(2, "Error\nmissing texture\n"), false);
 	ext = ft_strchr(filename, '.');
 	if (!ext || ft_strcmp(ext, ".png") != 0)
 		return (fd_printf(2, "%s: %s\n", ERR_EXT, filename), false);
