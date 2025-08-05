@@ -6,7 +6,7 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 11:11:05 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/08/03 12:45:56 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/08/05 14:33:35 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@
 # define WIDTH 960
 # define HEIGHT 540
 # define PROJECTION 831.4
-# define MINIMAP_TILE 8
-# define MINIMAP_PSIZE 4
 
 typedef struct s_player
 {
