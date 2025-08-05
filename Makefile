@@ -28,25 +28,21 @@ MLX_PATH   = include/MLX42
 MLX_LIB    = $(MLX_PATH)/build/libmlx42.a
 LIBFT_LIB  = $(LIBFT_PATH)/libft.a
 
-# Sur Linux, on n'utilise pas Homebrew, on peut donc supprimer la détection automatique
 CFLAGS    = -Wall -Wextra -Werror -g -fsanitize=address
 LDFLAGS   = -lglfw -lX11 -lXrandr -lXi -ldl -lm -pthread
 
-# compile chaque .c
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 all: $(NAME)
 
-# build libft et mlx42
 $(LIBFT_LIB):
 	@make -C $(LIBFT_PATH)
 $(MLX_LIB):
 	@cmake $(MLX_PATH) -B $(MLX_PATH)/build
 	@make -C $(MLX_PATH)/build
 
-# édition de liens
 $(NAME): $(LIBFT_LIB) $(MLX_LIB) $(OBJ)
 	@echo
 	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT_LIB) $(MLX_LIB) $(LDFLAGS) -o $(NAME)
