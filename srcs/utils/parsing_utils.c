@@ -6,7 +6,7 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:30:40 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/08/03 12:36:59 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/08/05 15:03:32 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ bool	parse_colorutils(char *line, char **color, const char *prefix)
 	if (*color != NULL)
 		return (fd_printf(2, ERR_DUPLICATE), false);
 	if (!validate_color_format(&line[i]))
-		return (false);
+		return (free(line), false);
 	*color = ft_strdup(&line[i]);
 	return (free(line), *color != NULL);
 }

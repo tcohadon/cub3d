@@ -6,7 +6,7 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 11:25:47 by lmancho           #+#    #+#             */
-/*   Updated: 2025/08/03 13:10:16 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/08/05 15:04:26 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ bool	handle_line(t_data *data, char *line)
 		return (free(line), true);
 	while (line[i] && ft_isspace(line[i]))
 		i++;
-	printf("%s\n", line);
 	if (ft_strnstr(line, "NO", 2))
 		return (parse_texture(line, &data->texture->no_tex, "NO"));
 	else if (ft_strnstr(line, "SO", 2))
