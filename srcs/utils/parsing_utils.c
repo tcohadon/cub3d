@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   groscondetom.c                                     :+:      :+:    :+:   */
+/*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:30:40 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/08/05 15:03:32 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/08/11 10:37:14 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ bool	verif_ext(char *av)
 bool	parse_texture(char *line, char **texture, const char *prefix)
 {
 	if (*texture != NULL)
-		return (fd_printf(2, ERR_DUPLICATE), false);
+		return (free(line), fd_printf(2, ERR_DUPLICATE), false);
 	*texture = ft_strdup(line + ft_strlen(prefix));
 	return (free(line), *texture != NULL);
 }
@@ -51,7 +51,7 @@ bool	parse_colorutils(char *line, char **color, const char *prefix)
 	while (line[i] && ft_isspace(line[i]))
 		i++;
 	if (*color != NULL)
-		return (fd_printf(2, ERR_DUPLICATE), false);
+		return (free(line), fd_printf(2, ERR_DUPLICATE), false);
 	if (!validate_color_format(&line[i]))
 		return (free(line), false);
 	*color = ft_strdup(&line[i]);
