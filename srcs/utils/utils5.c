@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils5.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lmancho <lmancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 12:45:27 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/08/03 12:45:38 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/08/11 11:59:31 by lmancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,22 @@ char	**split_keep_empty(const char *str, char sep)
 		return (NULL);
 	fill_split(result, str, sep);
 	return (result);
+}
+
+char	*ft_strncpy(char *dest, const char *src, size_t n)
+{
+    size_t	i;
+
+    i = 0;
+    while (i < n && src[i])
+    {
+        dest[i] = src[i];
+        i++;
+    }
+    while (i < n)
+    {
+        dest[i] = '\0';
+        i++;
+    }
+    return (dest);
 }

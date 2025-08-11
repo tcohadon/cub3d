@@ -3,7 +3,7 @@ SO srcs/img/SOUTH.png
 WE srcs/img/WEST.png
 EA srcs/img/EAST.png
 
-        F            000, 200,000
+F 000,200,000
 C 000,000,255
 
 111111111111
