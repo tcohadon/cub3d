@@ -6,7 +6,7 @@
 /*   By: tcohadon <tcohadon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 11:48:59 by tcohadon          #+#    #+#             */
-/*   Updated: 2025/08/03 12:50:15 by tcohadon         ###   ########.fr       */
+/*   Updated: 2025/08/11 13:53:28 by tcohadon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define ERR_DUPLICATE "Error\nDuplicate texture\n"
 # define ERR_LINE "Error\nInvalid line: %s"
 # define ERR_BOTTOMWALL "Error\nWrong order/map is not closed on the bottom\n"
-# define ERR_TEXTURES "Error\nMissing one or more wall textures\n"
+# define ERR_TEXTURES "Error\nMissing one or more textures\n"
 # define ERR_LEFTWALL "Error\nMap is not closed on the left\n"
 # define ERR_RIGHTWALL "Error\nMap is not closed on the right\n"
 # define ERR_INVCHAR "Error\nInvalid characters on your map\n"

@@ -1,7 +1,8 @@
-NO srcs/img/NORTH.png
+NO                srcs/img/NORTH.png
+
 SO srcs/img/SOUTH.png
-WE srcs/img/WEST.png
-EA srcs/img/EAST.png
+WE srcs/img/WES   T.png
+   EA                srcs/img/EAST.png
 
 F 000,200,000
 C 000,000,255
@@ -9,6 +10,3 @@ C 000,000,255
 111111111111
 10E011111111
 1111111111111
-11111111111
-11111111111
-111111111111
